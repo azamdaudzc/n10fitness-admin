@@ -263,13 +263,6 @@ User Libraries
             @foreach($exerciseLibraries as $at)
             <tr>
 
-                <!--begin::User=-->
-
-                <!--begin::Last login=-->
-
-                <!--end::Last login=-->
-
-                <!--begin::Joined-->
 
                 <td> <div class="d-flex align-items-center">
                     <!--begin::Avatar-->

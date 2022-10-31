@@ -55,6 +55,7 @@ class UserController extends Controller
         $data['athleticTypes']=AthleticType::all();
         $data['formRoute']=route('users.store');
         $data['type']='POST';
+        return $data;
     }
     public function getInfo(Request $request)
     {
