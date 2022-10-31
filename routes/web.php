@@ -21,11 +21,8 @@ use App\Http\Controllers\N10Controllers\ProgramBuilderShareController;
 use App\Http\Controllers\N10Controllers\CheckinQuestionInputController;
 use App\Http\Controllers\N10Controllers\ProgramBuilderWeekDayController;
 use App\Http\Controllers\N10Controllers\ExcerciseLibraryMuscleController;
-use App\Http\Controllers\N10Controllers\ProgramBuilderTemplateController;
 use App\Http\Controllers\N10Controllers\ExerciseMovementPatternController;
-use App\Http\Controllers\N10Controllers\ProgramBuilderDayWarmupController;
-use App\Http\Controllers\N10Controllers\ProgramBuilderDayExerciseController;
-use App\Http\Controllers\N10Controllers\ProgramBuilderDayExerciseInputController;
+use App\Http\Controllers\N10Controllers\UserAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +76,10 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
     Route::resource('program-builders-day-exercises', ProgramBuilderDayExerciseController::class);
     Route::resource('builder-day-exercise-inputs', ProgramBuilderDayExerciseInputController::class);
 
+    Route::controller(UserAdminController::class)->group(function(){
+        Route::get('user/admin', 'index')->name('user.admin.index');
+        Route::get('user/admin/lists', 'list')->name('user.admin.list');
+    });
     Route::get('all-admins',[UserController::class,'indexAdmin'])->name('usersAdmins');
     Route::get('all-users',[UserController::class,'indexUsers'])->name('usersUsers');
     Route::get('all-coaches',[UserController::class,'indexCoaches'])->name('usersCoaches');

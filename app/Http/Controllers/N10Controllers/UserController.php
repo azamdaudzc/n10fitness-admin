@@ -57,6 +57,7 @@ class UserController extends Controller
         $data['type']='POST';
         return $data;
     }
+
     public function getInfo(Request $request)
     {
         $data['exerciseCategory'] = User::where('id',$request->id)->with('userCreator')->get()->first();

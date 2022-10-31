@@ -260,7 +260,7 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('usersAdmins')}}">
+												<a class="menu-link " href="{{route('user.admin.index')}}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
