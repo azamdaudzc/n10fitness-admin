@@ -30,6 +30,8 @@ class UserAdminResource extends JsonResource
                             </div>
                             <!--end::Details-->
                         </div>';
+
+
                 $actions = '
                             <div class="dropdown">
                               <button class="btn btn-active-dark btn-sm dropdown-toggle" type="button" id="actionsMenu" data-bs-toggle="dropdown" aria-expanded="false">
