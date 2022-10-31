@@ -96,8 +96,7 @@ class ExerciseLibraryController extends Controller
         request()->validate(ExerciseLibrary::$rules);
         $data=array_merge($request->all(),['created_by' => Auth::user()->id,'avatar' => $newavatar]);
         $exerciseLibrary = ExerciseLibrary::create($data);
-        return redirect()->route('exercise-libraries.index')
-            ->with('success', 'ExerciseLibrary created successfully.');
+        return $exerciseLibrary;
     }
 
 

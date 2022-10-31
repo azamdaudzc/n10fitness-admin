@@ -21,7 +21,12 @@ class CheckUserType
         return $next($request);
         }
         else{
-            return response(404);
+            return response('
+            <html>
+            <h1>You Are Not Allowed</h1>
+            <a href="/logout">Logout</a>
+            </html>
+            ');
         }
     }
 }

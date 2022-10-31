@@ -27,13 +27,19 @@
                         <!--end::Remove-->
                     </div>
 
-                         <div class="mb-10">
-            {{ Form::label('full_name','', array('class' => 'form-label')) }}
-            {{ Form::text('name', $user->name, ['class' => 'form-control' . ($errors->has('full_name') ? ' is-invalid' : ''), 'placeholder' => 'Full Name']) }}
-            {!! $errors->first('full_name', '<div class="invalid-feedback">:message</div>') !!}
+        <div class="mb-10">
+            {{ Form::label('first_name','', array('class' => 'form-label')) }}
+            {{ Form::text('first_name', $user->first_name, ['class' => 'form-control' . ($errors->has('first_name') ? ' is-invalid' : ''), 'placeholder' => 'First Name']) }}
+            {!! $errors->first('first_name', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
-      
+        <div class="mb-10">
+            {{ Form::label('last_name','', array('class' => 'form-label')) }}
+            {{ Form::text('last_name', $user->last_name, ['class' => 'form-control' . ($errors->has('last_name') ? ' is-invalid' : ''), 'placeholder' => 'Last Name']) }}
+            {!! $errors->first('last_name', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+
         <div class="mb-10">
             {{ Form::label('email','', array('class' => 'form-label')) }}
             {{ Form::text('email', $user->email, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'Email']) }}
@@ -110,7 +116,7 @@ $(document).on("submit", "form", function(event)
     $.ajax({
         url: $(this).attr("action"),
         type: $(this).attr("method"),
-       
+
         data: new FormData(this),
         processData: false,
         contentType: false,

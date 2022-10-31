@@ -313,8 +313,9 @@ User Libraries
                     <!--end::Avatar-->
                     <!--begin::Details-->
                     <div   class="text-gray-800 mb-1 ms-5">
-                        {{@$at->exerciseCreator->name}}
-                        <div class="fw-semibold text-muted">{{@$at->exerciseCreator->user_type}}</div>
+                        {{@$at->exerciseCreator->first_name}}
+                        {{@$at->exerciseCreator->last_name}}
+                         <div class="fw-semibold text-muted">{{@$at->exerciseCreator->user_type}}</div>
                     </div>
                     <!--end::Details-->
                 </div></td>

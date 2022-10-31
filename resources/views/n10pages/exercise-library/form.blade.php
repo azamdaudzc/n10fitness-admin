@@ -4,30 +4,30 @@
     <div class="rounded border p-10">
 
         <!--begin::Image input-->
-         <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
-                        <!--begin::Preview existing avatar-->
-                        <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{asset('storage/').'/'.$exerciseLibrary->avatar}});  background-size: 125px 125px;" ></div>
-                        <!--end::Preview existing avatar-->
-                        <!--begin::Label-->
-                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                            <i class="bi bi-pencil-fill fs-7"></i>
-                            <!--begin::Inputs-->
-                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                            <input type="hidden" name="avatar_remove" />
-                            <!--end::Inputs-->
-                        </label>
-                        <!--end::Label-->
-                        <!--begin::Cancel-->
-                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end::Cancel-->
-                        <!--begin::Remove-->
-                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                            <i class="bi bi-x fs-2"></i>
-                        </span>
-                        <!--end::Remove-->
-                    </div>
+        <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
+            <!--begin::Preview existing avatar-->
+            <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{asset('storage/').'/'.$exerciseLibrary->avatar}});  background-size: 125px 125px;" ></div>
+            <!--end::Preview existing avatar-->
+            <!--begin::Label-->
+            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                <i class="bi bi-pencil-fill fs-7"></i>
+                <!--begin::Inputs-->
+                <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+                <input type="hidden" name="avatar_remove" />
+                <!--end::Inputs-->
+            </label>
+            <!--end::Label-->
+            <!--begin::Cancel-->
+            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                <i class="bi bi-x fs-2"></i>
+            </span>
+            <!--end::Cancel-->
+            <!--begin::Remove-->
+            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                <i class="bi bi-x fs-2"></i>
+            </span>
+            <!--end::Remove-->
+        </div>
 
         <!--end::Image input-->
         <div class="mb-10">
@@ -40,7 +40,7 @@
             {{ Form::text('video_link', $exerciseLibrary->video_link, ['class' => 'form-control' . ($errors->has('video_link') ? ' is-invalid' : ''), 'placeholder' => 'Video Link']) }}
             {!! $errors->first('video_link', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-      
+
         <div class="mb-10">
             {{ Form::label('category','', array('class' => 'form-label')) }}
             {{-- {{ Form::text('category_id', $exerciseLibrary->category_id, ['class' => 'form-control' . ($errors->has('category_id') ? ' is-invalid' : ''), 'placeholder' => 'Category Id']) }} --}}
@@ -100,47 +100,47 @@
 
     $(document).on("submit", "form", function(event)
     {
-   
-      if($(this).attr("action")=="{{ $formRoute }}"){
-        event.preventDefault();
-        $.ajax({
-            url: "{{ $formRoute }}",
-            type: $(this).attr("method"),
-            dataType: "JSON",
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            success: function (data, status)
-            {
-              console.log(data);
-              if(data.approved_by==0 && data.rejected_by==0){
-                location.replace("{{route('exercise-libraries-requested')}}");
-              }
-              else if(data.approved_by!=0 ){
-                location.replace("{{route('exercise-libraries-approved')}}");
-              }
-              else if(data.rejected_by!=0){
-                location.replace("{{route('exercise-libraries-rejected')}}");
-              }
-              
-            },
-            error: function (data)
-            {
-                  var response = JSON.parse(data.responseText);
-        var errorString = '<ul>';
-        $.each( response.errors, function( key, value) {
-            errorString += '<li>' + value + '</li>';
-        });
-        errorString += '</ul>';
-        $('.error-area').html('')
-        $('.error-area').append(errorString);
 
+        if($(this).attr("action")=="{{ $formRoute }}"){
+            event.preventDefault();
+            $.ajax({
+                url: "{{ $formRoute }}",
+                type: $(this).attr("method"),
+                dataType: "JSON",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                success: function (data, status)
+                {
+                    console.log(data);
+                    if(data.approved_by==0 && data.rejected_by==0){
+                        location.replace("{{route('exercise-libraries-requested')}}");
+                    }
+                    else if(data.approved_by!=0 ){
+                        location.replace("{{route('exercise-libraries-approved')}}");
+                    }
+                    else if(data.rejected_by!=0){
+                        location.replace("{{route('exercise-libraries-rejected')}}");
+                    }
+
+                },
+                error: function (data)
+                {
+                    var response = JSON.parse(data.responseText);
+                    var errorString = '<ul>';
+                        $.each( response.errors, function( key, value) {
+                            errorString += '<li>' + value + '</li>';
+                        });
+                        errorString += '</ul>';
+                        $('.error-area').html('')
+                        $('.error-area').append(errorString);
+
+                    }
+
+                });
             }
 
         });
-    }
 
-    });
-
-</script>
-@endsection
+    </script>
+    @endsection

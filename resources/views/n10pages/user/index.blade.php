@@ -256,13 +256,13 @@ Users
            <!--end::Input group-->
            <!--begin::Input group-->
            <div class="fv-row mb-7">
-             <!--begin::Label-->
-             <label class="required fw-semibold fs-6 mb-2">Full Name</label>
-             <!--end::Label-->
-             <!--begin::Input-->
-             <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name"  />
-             <!--end::Input-->
+             <label class="required fw-semibold fs-6 mb-2">First Name</label>
+             <input type="text" name="first_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="First name"  />
          </div>
+         <div class="fv-row mb-7">
+            <label class="required fw-semibold fs-6 mb-2">Last Name</label>
+            <input type="text" name="last_name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Last name"  />
+        </div>
          <!--end::Input group-->
          <!--begin::Input group-->
          <div class="fv-row mb-7">
@@ -375,7 +375,7 @@ Users
         <thead>
             <!--begin::Table row-->
             <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-               
+
                 <th>User</th>
 
                 <th>Phone</th>
@@ -395,7 +395,7 @@ Users
             <!--begin::Table row-->
             @foreach($users as $user)
             <tr>
-              
+
                 <!--begin::User=-->
 
                 <!--begin::Last login=-->
@@ -410,12 +410,12 @@ Users
                         <img alt="Pic" src="assets/media/avatars/blank.png" style=" object-fit: cover;" />
                         @endif
 
-                        
+
                     </div>
                     <!--end::Avatar-->
                     <!--begin::Details-->
                     <div   class="text-gray-800 text-hover-primary mb-1 ms-5">
-                        {{ $user->name }}
+                        {{$user->first_name}} {{$user->last_name}}
                         <div class="fw-semibold text-muted">{{$user->email}}</div>
                     </div>
                     <!--end::Details-->
@@ -447,7 +447,9 @@ Users
                     <!--end::Avatar-->
                     <!--begin::Details-->
                     <div   class="text-gray-800 mb-1 ms-5">
-                        {{@$user->userCreator->name}}
+                        {{@$user->userCreator->first_name}}
+                        {{@$user->userCreator->last_name}}
+
                         <div class="fw-semibold text-muted">{{@$user->userCreator->user_type}}</div>
                     </div>
                     <!--end::Details-->
@@ -457,7 +459,7 @@ Users
                 <!--begin::Joined-->
                 <!--begin::Action=-->
                 <td class="text-end">
-                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm " 
+                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm "
                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                     <span class="svg-icon svg-icon-5 m-0">
@@ -475,7 +477,7 @@ Users
             data-kt-menu="true">
             <!--begin::Menu item-->
              <div class="menu-item px-3"  onclick="showInfoModal('{{$user->id}}')" >
-                                                   <a class="menu-link px-3">View</a> 
+                                                   <a class="menu-link px-3">View</a>
                                                 </div>
             <div class="menu-item px-3">
                 <a href="{{ route('users.edit',$user->id) }}"
@@ -596,11 +598,11 @@ Users
     $(document).on("submit", "form", function(event)
     {
         event.preventDefault();
-        
+
         $.ajax({
             url: $(this).attr("action"),
             type: $(this).attr("method"),
-            
+
             data: new FormData(this),
             processData: false,
             contentType: false,
@@ -637,7 +639,7 @@ Users
             one+="<li><strong>Email:</strong> "+data.exerciseCategory.email+"</li>";
 
             for (var i = data.permissions.length - 1; i >= 0; i--) {
-                
+
             one+="<li>Permission: "+data.permissions[i].name+"</li>";
 
             }

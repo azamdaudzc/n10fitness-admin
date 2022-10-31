@@ -13,15 +13,16 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     static $rules = [
-		'name' => 'required',
+		'first_name' => 'required',
+		'last_name' => 'required',
 		'password' => 'required',
 		'email' => 'required|unique:users,email',
 
     ];
 
     static $editrules = [
-		'name' => 'required',
-
+		'first_name' => 'required',
+		'last_name' => 'required',
 		'email' => 'required',
 
     ];
@@ -33,7 +34,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
         'user_type',
