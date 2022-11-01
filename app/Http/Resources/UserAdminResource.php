@@ -39,7 +39,7 @@ class UserAdminResource extends JsonResource
                               </button>
                               <ul class="dropdown-menu" aria-labelledby="actionsMenu">
                                 <li >
-                                    <a class="dropdown-item" onclick="editItem('.$user->id.')" href="javascript:void(0);" >Edit</a>
+                                    <a class="dropdown-item create_new_off_canvas_modal edit_record" data-id="' . $user->id . '" href="javascript:void(0);" >Edit</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">Delete</a>
