@@ -34,7 +34,7 @@
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
-          type="text/css" />
+    type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 
     <style>
@@ -55,8 +55,17 @@
             padding: 10px;
             font-size: medium;
         }
-        .dataTables_filter{
+        .dataTables_filter, .dataTables_length{
             display: none;
+        }
+        .dataTables_paginate a{
+            padding: 10px;
+
+        }
+        .paginate_button.current{
+            background-color: green;
+            color: aliceblue;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -194,7 +203,25 @@ class="engage-toolbar d-flex position-fixed px-5 fw-bold zindex-2 top-50 end-0 t
 <!--begin::Vendors Javascript(used for this page only)-->
 <!-- Datatables JS CDN -->
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
+<script>
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toastr-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+</script>
 @yield('page_scripts')
 @yield('sub_page_scripts')
 <!--end::Vendors Javascript-->

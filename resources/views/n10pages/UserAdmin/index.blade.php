@@ -62,27 +62,11 @@ data-kt-drawer-width="500px">
 @section('scripts')
 <script type="text/javascript">
     $(function() {
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toastr-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
 
         let form_body = $('#subdiv_kt_drawer_example_basic');
         let table = $('#users_table').DataTable({
-            pagingType: 'full_numbers',
+            pageLength:50,
+            lenghtChange:false,
             ajax: {
                 url: "{{ route('user.admin.list') }}",
             },
