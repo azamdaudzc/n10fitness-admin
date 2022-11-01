@@ -55,6 +55,9 @@
             padding: 10px;
             font-size: medium;
         }
+        .dataTables_filter{
+            display: none;
+        }
     </style>
 </head>
 <!--end::Head-->

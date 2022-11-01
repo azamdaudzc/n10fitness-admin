@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\N10Controllers\UserController;
+use App\Http\Controllers\N10Controllers\UserAdminController;
 use App\Http\Controllers\N10Controllers\ClientCoachController;
 use App\Http\Controllers\N10Controllers\UserCheckinController;
 use App\Http\Controllers\N10Controllers\WarmupVideoController;
@@ -22,7 +24,6 @@ use App\Http\Controllers\N10Controllers\CheckinQuestionInputController;
 use App\Http\Controllers\N10Controllers\ProgramBuilderWeekDayController;
 use App\Http\Controllers\N10Controllers\ExcerciseLibraryMuscleController;
 use App\Http\Controllers\N10Controllers\ExerciseMovementPatternController;
-use App\Http\Controllers\N10Controllers\UserAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,9 @@ use App\Http\Controllers\N10Controllers\UserAdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 
 Route::middleware(['auth','check_user_type','verified'])->group(function () {
 

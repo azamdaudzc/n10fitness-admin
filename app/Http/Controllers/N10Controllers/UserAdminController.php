@@ -41,19 +41,46 @@ class UserAdminController extends Controller
 
     public function store(Request $request)
     {
-
-        request()->validate(User::$rules);
-        $newavatar=$this->updateprofile($request,'avatar');
-        unset($request['avatar']);
-
+        if(isset($request->id)){
+            request()->validate(User::$editrules);
+            $user=User::find($request->id);
         if($request->password!=null){
-                $password = Hash::make($request->password);
+            $password = Hash::make($request->password);
+            if($request->hasFile('avatar')){
+                $newavatar=$this->updateprofile($request,'avatar');
                 unset($request['avatar']);
-                $user = User::create(array_merge($request->all(),['password' => $password,'avatar' => $newavatar,'created_by' => Auth::user()->id,'user_type' => 'admin']));
+                $user->update(array_merge($request->all(),['password' => $password,'avatar' => $newavatar]));
+            }
+            else{
+                $user->update(array_merge($request->all(),['password' => $password]));
+            }
         }
         else{
-                $user = User::create(array_merge($request->all(),['avatar' => $newavatar,'created_by' => Auth::user()->id,'user_type' => 'admin']));
+        unset($request['password']);
+        if($request->hasFile('avatar')){
+            $newavatar=$this->updateprofile($request,'avatar');
+            unset($request['avatar']);
+            $user->update(array_merge($request->all(),['avatar' => $newavatar]));
+        }
+        else{
+            $user->update(array_merge($request->all()));
+        }
+        }
+        }
+        else{
+            request()->validate(User::$rules);
+            $newavatar=$this->updateprofile($request,'avatar');
+            unset($request['avatar']);
 
+            if($request->password!=null){
+                    $password = Hash::make($request->password);
+                    unset($request['avatar']);
+                    $user = User::create(array_merge($request->all(),['password' => $password,'avatar' => $newavatar,'created_by' => Auth::user()->id,'user_type' => 'admin']));
+            }
+            else{
+                    $user = User::create(array_merge($request->all(),['avatar' => $newavatar,'created_by' => Auth::user()->id,'user_type' => 'admin']));
+
+            }
         }
 
         return $request->user_type;

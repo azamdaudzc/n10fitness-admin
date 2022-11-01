@@ -3,26 +3,43 @@
     @if($user)
         <input type="hidden" name="id" value="{{ $user->id }}">
     @endif
-    <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
-        <div class="image-input-wrapper w-125px h-125px"
-             style="background-image: url(http://localhost:8000/storage/{{ @$user->avatar }});  background-size: 125px 125px;"></div>
-        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-               data-kt-image-input-action="change" data-bs-toggle="tooltip" aria-label="Change avatar"
-               data-bs-original-title="Change avatar" data-kt-initialized="1">
-            <i class="bi bi-pencil-fill fs-7"></i>
-            <input type="file" name="avatar" accept=".png, .jpg, .jpeg">
-            <input type="hidden" name="avatar_remove">
-        </label>
-        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-              data-kt-image-input-action="cancel" data-bs-toggle="tooltip" aria-label="Cancel avatar"
-              data-bs-original-title="Cancel avatar" data-kt-initialized="1">
-                    <i class="bi bi-x fs-2"></i>
-                </span>
-        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-              data-kt-image-input-action="remove" data-bs-toggle="tooltip" aria-label="Remove avatar"
-              data-bs-original-title="Remove avatar" data-kt-initialized="1">
-                    <i class="bi bi-x fs-2"></i>
-                </span>
+    <div class="fv-row mb-7">
+        <!--begin::Label-->
+        <label class="d-block fw-semibold fs-6 mb-5">Avatar</label>
+        <!--end::Label-->
+        <!--begin::Image placeholder-->
+
+        <style>.image-input-placeholder { background-image: url('assets/media/svg/files/blank-image.svg'); } [data-theme="dark"] .image-input-placeholder { background-image: url('assets/media/svg/files/blank-image-dark.svg'); }</style>
+        <!--end::Image placeholder-->
+        <!--begin::Image input-->
+        <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
+            <!--begin::Preview existing avatar-->
+            <div class="image-input-wrapper w-125px h-125px"  @if($user->avatar!=null)  style="background-image: url('{{asset("storage/".$user->avatar)}}');"@else style="background-image: url('{{asset("assets/media/svg/files/blank-image-dark.svg")}}')"@endif></div>
+            <!--end::Preview existing avatar-->
+            <!--begin::Label-->
+            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                <i class="bi bi-pencil-fill fs-7"></i>
+                <!--begin::Inputs-->
+                 <input type="file"  id="imgInp" name="avatar" accept=".png, .jpg, .jpeg" />
+                <input type="hidden" name="avatar_remove" />
+                <!--end::Inputs-->
+            </label>
+            <!--end::Label-->
+            <!--begin::Cancel-->
+            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                <i class="bi bi-x fs-2"></i>
+            </span>
+            <!--end::Cancel-->
+            <!--begin::Remove-->
+            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                <i class="bi bi-x fs-2"></i>
+            </span>
+            <!--end::Remove-->
+        </div>
+        <!--end::Image input-->
+        <!--begin::Hint-->
+        <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+        <!--end::Hint-->
     </div>
 
     <div class="mb-10">
@@ -56,6 +73,14 @@
 
     <div class="error-area"></div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary me-10" id="crud-form-submit-button">
+            <span class="indicator-label">
+                Submit
+            </span>
+            <span class="indicator-progress">
+                Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+        </button>
     </div>
+
 </form>
