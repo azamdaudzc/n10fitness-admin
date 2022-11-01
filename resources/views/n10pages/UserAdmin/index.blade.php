@@ -53,9 +53,13 @@ data-kt-drawer-toggle="#create_new_off_canvas_modal"
 data-kt-drawer-close="#kt_drawer_example_basic_close"
 data-kt-drawer-width="500px"
 >
-@include('n10pages.UserAdmin.form')
+<div class="py-5 col-12 pt-12 p-14">
+<form method="POST" id="crud-form" action="{{ route('user.admin.store') }}"  role="form" enctype="multipart/form-data">
+@csrf
+<div id="subdiv_kt_drawer_example_basic" ></div>
+</form>
 </div>
-
+</div>
 @endsection
 
 @section('page_scripts')
@@ -125,30 +129,43 @@ data-kt-drawer-width="500px"
             KTDrawer.hideAll();
         }
 
-        function showInfoModal(id) {
-            $.get("{{route('users-get')}}?id=" + id, function (data, status) {
-                var t = "<ul class='setAllInfo'>";
-                    var p = "</ul>";
-                    // console.log(data);
-                    var one = "<li ><strong>Name: </strong>" + data.exerciseCategory.name + "</li>";
-                    one += "<li><strong>Phone:</strong> " + data.exerciseCategory.phone + "</li>";
-                    one += "<li><strong>User Type:</strong> " + data.exerciseCategory.user_type + "</li>";
-                    one += "<li><strong>Height:</strong> " + data.exerciseCategory.height + "</li>";
-                    one += "<li><strong>Age:</strong> " + data.exerciseCategory.age + "</li>";
-                    one += "<li><strong>Gender:</strong> " + data.exerciseCategory.gender + "</li>";
-                    one += "<li><strong>Email:</strong> " + data.exerciseCategory.email + "</li>";
 
-                    for (var i = data.permissions.length - 1; i >= 0; i--) {
+       $('#create_new_off_canvas_modal').click(function () {
+            this.id.replace('my', '');
+            $.ajax({
+                url:"{{route('user.admin.form')}}",
+                type:'get',
+                data:{
+                    "_token":$('meta[name="csrf-token"]').attr('content'),
+                },
+                success: function(data){
+                    $('#subdiv_kt_drawer_example_basic').html(data);
+                },
+                error: function(data){
 
-                        one += "<li>Permission: " + data.permissions[i].name + "</li>";
+                }
+            });
 
-                    }
-                    $('#userInfoModalSubHeading').html('User Info');
-                    $('#userInfoModalHeading').html('Users');
-                    $('#setAllInfo').html(t + one + p);
-                    // console.log(data);
-                });
-                $("#kt_modal_users_search").modal('show');
-            }
+       });
+
+       function editItem (id) {
+
+
+            $.ajax({
+                url:"{{route('user.admin.form')}}?id="+id,
+                type:'get',
+                data:{
+                    "_token":$('meta[name="csrf-token"]').attr('content'),
+                },
+                success: function(data){
+                    $('#subdiv_kt_drawer_example_basic').html(data);
+
+                },
+                error: function(data){
+
+                }
+            });
+
+       };
         </script>
         @endsection
