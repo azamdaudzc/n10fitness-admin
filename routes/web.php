@@ -85,6 +85,7 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::post('user/admin/details', 'details')->name('user.admin.details');
         Route::get('user/admin/form', 'form')->name('user.admin.form');
         Route::post('user/admin/store', 'store')->name('user.admin.store');
+        Route::post('user/admin/delete', 'delete')->name('user.admin.delete');
     });
     Route::get('all-admins',[UserController::class,'indexAdmin'])->name('usersAdmins');
     Route::get('all-users',[UserController::class,'indexUsers'])->name('usersUsers');

@@ -3,30 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    static $rules = [
-		'first_name' => 'required',
-		'last_name' => 'required',
-		'password' => 'required',
-		'email' => 'required|unique:users,email',
-
-    ];
-
-    static $editrules = [
-		'first_name' => 'required',
-		'last_name' => 'required',
-		'email' => 'required',
-
-    ];
-
+    use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -74,6 +59,24 @@ class User extends Authenticatable
     public function userCreator()
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');
+    }
+
+    public static function editRules($id){
+        return  [
+            'id' =>'exists:users,id',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'email|required|unique:users,email,'.$id,
+        ];
+    }
+
+    public static function createRules(){
+        return [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'password' => 'required',
+            'email' => 'email|required|unique:users,email',
+        ];
     }
 
 }

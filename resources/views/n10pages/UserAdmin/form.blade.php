@@ -4,42 +4,24 @@
         <input type="hidden" name="id" value="{{ $user->id }}">
     @endif
     <div class="fv-row mb-7">
-        <!--begin::Label-->
         <label class="d-block fw-semibold fs-6 mb-5">Avatar</label>
-        <!--end::Label-->
-        <!--begin::Image placeholder-->
-
         <style>.image-input-placeholder { background-image: url('assets/media/svg/files/blank-image.svg'); } [data-theme="dark"] .image-input-placeholder { background-image: url('assets/media/svg/files/blank-image-dark.svg'); }</style>
-        <!--end::Image placeholder-->
-        <!--begin::Image input-->
         <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
-            <!--begin::Preview existing avatar-->
             <div class="image-input-wrapper w-125px h-125px"  @if($user->avatar!=null)  style="background-image: url('{{asset("storage/".$user->avatar)}}');"@else style="background-image: url('{{asset("assets/media/svg/files/blank-image-dark.svg")}}')"@endif></div>
-            <!--end::Preview existing avatar-->
-            <!--begin::Label-->
             <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                 <i class="bi bi-pencil-fill fs-7"></i>
-                <!--begin::Inputs-->
                  <input type="file"  id="imgInp" name="avatar" accept=".png, .jpg, .jpeg" />
                 <input type="hidden" name="avatar_remove" />
-                <!--end::Inputs-->
             </label>
-            <!--end::Label-->
-            <!--begin::Cancel-->
             <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
                 <i class="bi bi-x fs-2"></i>
             </span>
-            <!--end::Cancel-->
-            <!--begin::Remove-->
             <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
                 <i class="bi bi-x fs-2"></i>
             </span>
-            <!--end::Remove-->
         </div>
-        <!--end::Image input-->
-        <!--begin::Hint-->
         <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
-        <!--end::Hint-->
+
     </div>
 
     <div class="mb-10">
@@ -66,7 +48,7 @@
 
     <div class="mb-10">
         <label for="phone" class="form-label">Phone</label>
-        <input class="form-control" placeholder="Phone" name="phone" type="text" id="phone" value="{{ $user->phone }}">
+        <input class="form-control" placeholder="Phone" name="phone" type="number" id="phone" value="{{ $user->phone }}">
     </div>
 
     <input type="hidden" name="is_active" value="1">

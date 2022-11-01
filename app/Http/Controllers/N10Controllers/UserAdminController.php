@@ -34,15 +34,11 @@ class UserAdminController extends Controller
         return view('n10pages.UserAdmin.form', compact('user'));
     }
 
-    public function form(Request $request)
-    {
-
-    }
 
     public function store(Request $request)
     {
         if(isset($request->id)){
-            request()->validate(User::$editrules);
+            request()->validate(User::editRules($request->id));
             $user=User::find($request->id);
         if($request->password!=null){
             $password = Hash::make($request->password);
@@ -66,9 +62,11 @@ class UserAdminController extends Controller
             $user->update(array_merge($request->all()));
         }
         }
+        return response()->json(['success' => true, 'msg' => 'User Edit Complete']);
+
         }
         else{
-            request()->validate(User::$rules);
+            request()->validate(User::createRules());
             $newavatar=$this->updateprofile($request,'avatar');
             unset($request['avatar']);
 
@@ -81,13 +79,18 @@ class UserAdminController extends Controller
                     $user = User::create(array_merge($request->all(),['avatar' => $newavatar,'created_by' => Auth::user()->id,'user_type' => 'admin']));
 
             }
+            return response()->json(['success' => true, 'msg' => 'User Created']);
+
         }
 
-        return $request->user_type;
+        return response()->json(['success' => false, 'msg' => 'Some Error']);
+
     }
+
 
     public function delete(Request $request)
     {
-
+        $user = User::find($request->id)->delete();
+        return response()->json(['success' => true, 'msg' => 'User Deleted']);
     }
 }
