@@ -6,7 +6,7 @@
 							<div class="app-sidebar-logo d-none d-md-flex flex-center pt-10 pb-2" id="kt_app_sidebar_logo">
 								<!--begin::Logo image-->
 								<a href="../../demo24/dist/index.html">
-									<img alt="Logo" src="assets/media/logos/default-small.svg" class="h-30px" />
+									<img alt="Logo" src="{{asset('assets/media/logos/logo-white.png')}}" class="h-30px" />
 								</a>
 								<!--end::Logo image-->
 							</div>
@@ -242,7 +242,7 @@
 										<!--begin:Menu link-->
 										<span class="menu-link menu-center">
 											<span class="menu-icon me-0">
-												<i class="fonticon-house fs-1"></i>
+												<i class="fonticon-user fs-2"></i>
 											</span>
 										</span>
 										<!--end:Menu link-->
@@ -272,11 +272,11 @@
                                             <!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('usersUsers')}}">
+												<a class="menu-link " href="{{route('user.client.index')}}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
-													<span class="menu-title">Users</span>
+													<span class="menu-title">Client</span>
 												</a>
 												<!--end:Menu link-->
 											</div>
@@ -284,7 +284,7 @@
                                             <!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('usersCoaches')}}">
+												<a class="menu-link " href="{{route('user.coach.index')}}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -304,7 +304,7 @@
 										<!--begin:Menu link-->
 										<span class="menu-link menu-center">
 											<span class="menu-icon me-0">
-												<i class="fonticon-house fs-1"></i>
+												<i class="fa-solid fa-dumbbell fs-2"></i>
 											</span>
 										</span>
 										<!--end:Menu link-->
@@ -323,7 +323,7 @@
                                             <!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('exercise-libraries-approved')}}">
+												<a class="menu-link " href="{{route('exerciselibrary.index')}}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -332,30 +332,8 @@
 												<!--end:Menu link-->
 											</div>
 											<!--end:Menu item-->
-                                            <!--begin:Menu item-->
-											<div class="menu-item">
-												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('exercise-libraries-requested')}}">
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-													<span class="menu-title">Requested Libraries</span>
-												</a>
-												<!--end:Menu link-->
-											</div>
-											<!--end:Menu item-->
-                                            <!--begin:Menu item-->
-											<div class="menu-item">
-												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('exercise-libraries-rejected')}}">
-													<span class="menu-bullet">
-														<span class="bullet bullet-dot"></span>
-													</span>
-													<span class="menu-title">Rejected Libraries</span>
-												</a>
-												<!--end:Menu link-->
-											</div>
-											<!--end:Menu item-->
+
+
 
 
 
@@ -369,7 +347,7 @@
 										<!--begin:Menu link-->
 										<span class="menu-link menu-center">
 											<span class="menu-icon me-0">
-												<i class="fonticon-house fs-1"></i>
+                                                <i class="fa-solid fa-gear fs-2"></i>
 											</span>
 										</span>
 
@@ -388,7 +366,7 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('exercise-movement-patterns.index')}}">
+												<a class="menu-link " href="{{route('setting.movementpattern.index')}}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -400,7 +378,7 @@
 											<!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('exercise-equipments.index')}}">
+                                                <a class="menu-link " href="{{route('setting.equipment.index')}}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -412,7 +390,7 @@
                                             <!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('exercise-categories.index')}}">
+                                                <a class="menu-link " href="{{route('setting.category.index')}}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -424,7 +402,7 @@
                                             <!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('exercise-muscles.index')}}">
+                                                <a class="menu-link " href="{{route('setting.muscle.index')}}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>
@@ -437,7 +415,7 @@
                                             <!--begin:Menu item-->
 											<div class="menu-item">
 												<!--begin:Menu link-->
-												<a class="menu-link " href="{{route('athletic-types.index')}}">
+                                                <a class="menu-link " href="{{route('setting.athletictype.index')}}">
 													<span class="menu-bullet">
 														<span class="bullet bullet-dot"></span>
 													</span>

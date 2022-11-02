@@ -35,6 +35,7 @@
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
     type="text/css" />
+
     <!--end::Global Stylesheets Bundle-->
 
     <style>
@@ -113,7 +114,7 @@ data-kt-app-toolbar-enabled="true" class="app-default">
         <!--begin::Logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
             <a href="/">
-                <img alt="Logo" src="{{ asset('assets/media/logos/default-small.svg') }}"
+                <img alt="Logo" src="{{ asset('assets/media/logos/logo-white.png') }}"
                 class="h-30px" />
             </a>
         </div>

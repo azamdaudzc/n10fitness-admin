@@ -34,13 +34,7 @@ use Illuminate\Database\Eloquent\Model;
 class ExerciseLibrary extends Model
 {
 
-    static $rules = [
-		'name' => 'required',
-		'category_id' => 'required',
-		'equipment_id' => 'required',
-		'movement_pattern_id' => 'required',
 
-    ];
 
     protected $perPage = 20;
 
@@ -109,4 +103,13 @@ class ExerciseLibrary extends Model
     }
 
 
+    public static function rules(){
+        return [
+            'name' => 'required',
+            'category_id' => 'required',
+            'equipment_id' => 'required',
+            'movement_pattern_id' => 'required',
+
+        ];
+    }
 }
