@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('excercise_library_muscles', function (Blueprint $table) {
+        Schema::create('exercise_library_muscles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('exercise_library_id');

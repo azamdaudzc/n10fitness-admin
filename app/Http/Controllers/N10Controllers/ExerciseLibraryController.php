@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ExerciseLibraryResource;
 use App\Models\ExerciseCategory;
 use App\Models\ExerciseEquipment;
+use App\Models\ExerciseLibraryMuscle;
 use App\Models\ExerciseMovementPattern;
+use App\Models\ExerciseMuscle;
 
 class ExerciseLibraryController extends Controller
 {
@@ -23,12 +25,14 @@ class ExerciseLibraryController extends Controller
 
     public function list()
     {
-        $librarys = ExerciseLibrary::get();
+        $librarys = ExerciseLibrary::with('exerciseCategory')->get();
         return new ExerciseLibraryResource($librarys);
     }
 
-    public function details(Request $request)
+    public function create_edit(Request $request)
     {
+        $page_heading = 'ExerciseLibrary';
+        $sub_page_heading = 'View all exercise library';
         $library = new ExerciseLibrary();
         $title="Add ExerciseLibrary";
         if($request->id){
@@ -37,8 +41,9 @@ class ExerciseLibraryController extends Controller
         }
         $categories=ExerciseCategory::all();
         $equipments=ExerciseEquipment::all();
+        $muscles=ExerciseMuscle::all();
         $movement_patterns=ExerciseMovementPattern::all();
-        return view('N10Pages.ExerciseLibrary.form', compact('library','title','categories','equipments','movement_patterns'));
+        return view('N10Pages.ExerciseLibrary.form', compact('library','title','categories','equipments','movement_patterns','muscles','page_heading', 'sub_page_heading'));
     }
 
     public function info(Request $request)
@@ -64,6 +69,7 @@ class ExerciseLibraryController extends Controller
 
     public function store(Request $request)
     {
+        // return $request;
         if(isset($request->id)){
             request()->validate(ExerciseLibrary::rules($request->id));
             $library=ExerciseLibrary::find($request->id);
@@ -76,6 +82,18 @@ class ExerciseLibraryController extends Controller
         else{
             $library->update(array_merge($request->all()));
         }
+        ExerciseLibraryMuscle::where('exercise_library_id',$request->id)->delete();
+        foreach($request->kt_docs_repeater_basic as $item){
+            $musclename=$item['musclename'];
+            $muscleid=$item['muscleid'];
+            if($musclename!=null && $muscleid!=null){
+               ExerciseLibraryMuscle::create([
+                    'exercise_library_id ' => $request->id,
+                    'name' => $musclename,
+                    'excercise_muscle_id' => $muscleid
+                ]);
+            }
+        }
 
         return response()->json(['success' => true, 'msg' => 'ExerciseLibrary Edit Complete']);
 
@@ -85,10 +103,23 @@ class ExerciseLibraryController extends Controller
             $newavatar=$this->updateprofile($request,'avatar');
             unset($request['avatar']);
             $library = ExerciseLibrary::create(array_merge($request->all(),['avatar' => $newavatar,'created_by' => Auth::user()->id,'user_type' => 'admin']));
-            return response()->json(['success' => true, 'msg' => 'ExerciseLibrary Created']);
+
+
+
+        foreach($request->kt_docs_repeater_basic as $item){
+            $musclename=$item['musclename'];
+            $muscleid=$item['muscleid'];
+            if($musclename!=null && $muscleid!=null){
+               ExerciseLibraryMuscle::create([
+                    'exercise_library_id ' => $library->id,
+                    'name' => $musclename,
+                    'excercise_muscle_id' => $muscleid
+                ]);
+            }
+        }
+        return response()->json(['success' => true, 'msg' => 'ExerciseLibrary Created']);
 
         }
-
         return response()->json(['success' => false, 'msg' => 'Some Error']);
 
     }

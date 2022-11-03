@@ -25,8 +25,8 @@ class ExerciseLibraryResource extends JsonResource
                                          style=" object-fit: cover;"/>
                             </div>
                             <div class="text-gray-800 text-hover-primary mb-1 ms-5">
-                                ' . $library->first_name . ' ' . $library->last_name . '
-                                <div class="fw-semibold text-muted">' . $library->email . '</div>
+                                ' . $library->name . '
+                                <div class="fw-semibold text-muted">' . $library->exerciseCategory->name . '</div>
                             </div>
                             <!--end::Details-->
                         </div>';
@@ -39,7 +39,7 @@ class ExerciseLibraryResource extends JsonResource
                               </button>
                               <ul class="dropdown-menu" aria-labelledby="actionsMenu">
                                 <li >
-                                    <a class="dropdown-item create_new_off_canvas_modal edit_record" data-id="' . $library->id . '" href="javascript:void(0);" >Edit</a>
+                                    <a class="dropdown-item  edit_record" data-id="' . $library->id . '" href="javascript:void(0);" >Edit</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item"  href="'.route('user.admin.view').'?id='.$library->id.'">View</a>
@@ -50,12 +50,12 @@ class ExerciseLibraryResource extends JsonResource
                               </ul>
                             </div>
                 ';
-                $status = '';
-                $creator='';
+                $video_link = '<a href="'.$library->video_link.'">'.$library->video_link.'</a>';
+                $description=$library->description;
                 $librarys[] = [
                     'user' => $libraryAvatar,
-                    'status' => $status,
-                    'createdBy' => $creator,
+                    'video_link' => $video_link,
+                    'description' => $description,
                     'createdAt' => Carbon::createFromFormat('Y-m-d H:i:s', $library->created_at)->format('d M, Y h:i A'),
                     'actions' => $actions
                 ];

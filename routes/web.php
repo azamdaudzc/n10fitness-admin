@@ -180,7 +180,7 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
     Route::controller(ExerciseLibraryController::class)->group(function(){
         Route::get('exerciselibrary', 'index')->name('exerciselibrary.index');
         Route::get('exerciselibrary/lists', 'list')->name('exerciselibrary.list');
-        Route::post('exerciselibrary/details', 'details')->name('exerciselibrary.details');
+        Route::get('exerciselibrary/create-edit', 'create_edit')->name('exerciselibrary.create-edit');
         Route::post('exerciselibrary/info', 'info')->name('exerciselibrary.info');
         Route::post('exerciselibrary/store', 'store')->name('exerciselibrary.store');
         Route::post('exerciselibrary/delete', 'delete')->name('exerciselibrary.delete');

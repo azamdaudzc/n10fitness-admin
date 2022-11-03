@@ -19,7 +19,7 @@ Users
                 <div class="card-toolbar">
 
                     <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                        <button type="button" class="btn btn-primary create_new_off_canvas_modal create_new_record">
+                        <button type="button" class="btn btn-primary  create_new_record">
                             <i class="fa-solid fa-plus fs-2"></i>Create New
                         </button>
                     </div>
@@ -30,8 +30,8 @@ Users
                     <thead>
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                             <th>User</th>
-                            <th>Status</th>
-                            <th>Created By</th>
+                            <th>Video Link</th>
+                            <th>Description</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -65,7 +65,7 @@ data-kt-drawer-width="500px">
 
         let form_body = $('#subdiv_kt_drawer_example_basic');
         let table = $('#users_table').DataTable({
-            pageLength:50,
+            pageLength:10,
             lenghtChange:false,
             ajax: {
                 url: "{{ route('exerciselibrary.list') }}",
@@ -74,10 +74,10 @@ data-kt-drawer-width="500px">
                 data: 'user'
             },
             {
-                data: 'status'
+                data: 'video_link'
             },
             {
-                data: 'createdBy'
+                data: 'description'
             },
             {
                 data: 'createdAt'
@@ -92,64 +92,15 @@ data-kt-drawer-width="500px">
             table.search($(this).val()).draw();
         });
 
-        $('.create_new_record').on('click', function() {
-            form_body.empty();
-            $.post('{{ route('exerciselibrary.details') }}', {
-                _token: '{{ csrf_token() }}'
-            }, function(d) {
-                form_body.html(d);
-                $('.select-2-setup').select2();
 
-            });
+        $('.create_new_record').on('click', function() {
+            window.location.href="{{ route('exerciselibrary.create-edit')}}";
         });
 
         $('body').on('click', '.edit_record', function() {
-            let id = $(this).attr('data-id');
-            form_body.empty();
-            $.post('{{ route('exerciselibrary.details') }}', {
-                _token: '{{ csrf_token() }}',
-                id
-            }, function(d) {
-                form_body.html(d);
-                $('.select-2-setup').select2();
-
-            });
+          let id = $(this).attr('data-id');
+          window.location.href="{{ route('exerciselibrary.create-edit') }}?id="+id;
         });
-
-        $(document).on("submit", "form", function(event) {
-            event.preventDefault();
-            $('#crud-form-submit-button').attr("data-kt-indicator", "on");
-
-            $.ajax({
-                url: $(this).attr("action"),
-                type: $(this).attr("method"),
-
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                success: function(d, status) {
-                    if (d.success == true) {
-                        toastr.success(d.msg);
-                        reloadTable();
-                    }
-                    $('#crud-form-submit-button').attr("data-kt-indicator", "off");
-
-                },
-                error: function(data) {
-                    var response = JSON.parse(data.responseText);
-                    var errorString = '<ul>';
-                        $.each(response.errors, function(key, value) {
-                            errorString += '<li>' + value + '</li>';
-                        });
-                        errorString += '</ul>';
-                        $('.error-area').html('');
-                        toastr.error(errorString);
-                        $('#crud-form-submit-button').attr("data-kt-indicator", "off");
-
-                    }
-                });
-
-            });
 
             function reloadTable() {
                 table.ajax.reload();
@@ -157,17 +108,6 @@ data-kt-drawer-width="500px">
             }
 
 
-            $('body').on('change', '#imgInp', function() {
-                let input = this;
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('.image-input-wrapper').css('background-image', "url(" + e.target.result +
-                        ")");
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
-            });
 
             $('body').on('click', '.delete_record', function() {
                 let id = $(this).attr('data-id');
