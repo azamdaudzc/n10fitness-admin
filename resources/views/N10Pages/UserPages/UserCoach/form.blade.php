@@ -58,6 +58,99 @@
 
             <input type="hidden" name="is_active" value="1">
 
+             <!--begin::Card-->
+             <div class="card pt-4 mb-6 mb-xl-9">
+                <!--begin::Card header-->
+                <div class="card-header border-0">
+                    <!--begin::Card title-->
+                    <div class="card-title flex-column">
+                        <h2>Coach Permissions</h2>
+                        <div class="fs-6 fw-semibold text-muted">Choose what permissions apply to each coach.</div>
+                    </div>
+                    <!--end::Card title-->
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body">
+                    <!--begin::Form-->
+                        <!--begin::Item-->
+                        <div class="d-flex">
+                            <!--begin::Checkbox-->
+                            <div class="form-check form-check-custom form-check-solid">
+                                <!--begin::Input-->
+                                <input class="form-check-input me-3" name="nutrition_permission"
+                                    type="checkbox"
+                                    @if($nutrition_permission) checked @endif
+                                    id="kt_modal_update_email_notification_0"  />
+                                <!--end::Input-->
+                                <!--begin::Label-->
+                                <label class="form-check-label"
+                                    for="kt_modal_update_email_notification_0">
+                                    <div class="fw-bold">Nutrition Deployments</div>
+                                    <div class="text-gray-600">Deploy nutrition informaion
+                                        payment.</div>
+                                </label>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Checkbox-->
+                        </div>
+                        <!--end::Item-->
+                        <div class='separator separator-dashed my-5'></div>
+                        <!--begin::Item-->
+                        <div class="d-flex">
+                            <!--begin::Checkbox-->
+                            <div class="form-check form-check-custom form-check-solid">
+                                <!--begin::Input-->
+                                <input class="form-check-input me-3" name="program_permission"
+                                    type="checkbox"
+                                    @if($program_permission) checked @endif
+                                    id="kt_modal_update_email_notification_1" />
+                                <!--end::Input-->
+                                <!--begin::Label-->
+                                <label class="form-check-label"
+                                    for="kt_modal_update_email_notification_1">
+                                    <div class="fw-bold">Program Deployments</div>
+                                    <div class="text-gray-600">Deploy program information</div>
+                                </label>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Checkbox-->
+                        </div>
+                        <!--end::Item-->
+                        <div class='separator separator-dashed my-5'></div>
+                        <!--begin::Item-->
+                        <div class="d-flex">
+                            <!--begin::Checkbox-->
+                            <div class="form-check form-check-custom form-check-solid">
+                                <!--begin::Input-->
+                                <input class="form-check-input me-3" name="pdf_permission"
+                                    type="checkbox"
+                                    @if($pdf_permission) checked @endif
+                                    id="kt_modal_update_email_notification_2" />
+                                <!--end::Input-->
+                                <!--begin::Label-->
+                                <label class="form-check-label"
+                                    for="kt_modal_update_email_notification_2">
+                                    <div class="fw-bold">PDF Deployments</div>
+                                    <div class="text-gray-600">Deploy PDF informations</div>
+                                </label>
+                                <!--end::Label-->
+                            </div>
+                            <!--end::Checkbox-->
+                        </div>
+                        <!--end::Item-->
+                        <div class='separator separator-dashed my-5'></div>
+
+
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Card body-->
+                <!--begin::Card footer-->
+                <!--end::Card footer-->
+            </div>
+            <!--end::Card-->
+
             <div class="error-area"></div>
             <div class="box-footer mt20">
                 <button type="submit" class="btn btn-primary me-10" id="crud-form-submit-button">

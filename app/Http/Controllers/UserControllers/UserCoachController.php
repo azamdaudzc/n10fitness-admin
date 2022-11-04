@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\Users\UserCoachResource;
+use App\Http\Resources\Users\CoachClientResource;
+use App\Models\ClientCoach;
+use App\Models\UserPermission;
 
 class UserCoachController extends Controller
 {
@@ -25,6 +28,11 @@ class UserCoachController extends Controller
         return new UserCoachResource($users);
     }
 
+    public function assigedclients(){
+        $users = User::where('user_type', 'admin')->with('userAthleticType')->get();
+        return new CoachClientResource($users);
+    }
+
     public function details(Request $request)
     {
         $user = new User();
@@ -33,7 +41,10 @@ class UserCoachController extends Controller
             $title="Edit Coach";
             $user = User::find($request->id);
         }
-        return view('N10Pages.UserPages.UserCoach.form', compact('user','title'));
+        $nutrition_permission=UserPermission::where('user_id',$request->id)->where('name','Nutrition Deployment')->exists();
+        $program_permission=UserPermission::where('user_id',$request->id)->where('name','Program Deployment')->exists();
+        $pdf_permission=UserPermission::where('user_id',$request->id)->where('name','PDF Deployment')->exists();
+        return view('N10Pages.UserPages.UserCoach.form', compact('user','title','nutrition_permission','program_permission','pdf_permission'));
     }
 
     public function info(Request $request)
@@ -47,15 +58,17 @@ class UserCoachController extends Controller
     }
 
 
-    public function view(Request $request)
+    public function view($id)
     {
         $user = new User();
         $page_heading = 'Coach';
-        $sub_page_heading = 'View all coach users';
-        if($request->id){
-            $user = User::find($request->id);
+        $sub_page_heading = 'View coach user';
+        if($id){
+            $user = User::find($id);
         }
-        return view('N10Pages.UserPages.UserCoach.view', compact('user','sub_page_heading','page_heading'));
+        $all_users=User::where('user_type','user')->get();
+        return view('N10Pages.UserPages.UserCoach.view', compact('user','sub_page_heading','page_heading','all_users'
+        ));
     }
 
 
@@ -86,6 +99,7 @@ class UserCoachController extends Controller
             $user->update(array_merge($request->all()));
         }
         }
+        $this->store_permissions($request, $request->id);
         return response()->json(['success' => true, 'msg' => 'User Edit Complete']);
 
         }
@@ -93,7 +107,7 @@ class UserCoachController extends Controller
             request()->validate(User::createRules());
             $newavatar=$this->updateprofile($request,'avatar');
             unset($request['avatar']);
-
+            $user=null;
             if($request->password!=null){
                     $password = Hash::make($request->password);
                     unset($request['avatar']);
@@ -103,6 +117,8 @@ class UserCoachController extends Controller
                     $user = User::create(array_merge($request->all(),['avatar' => $newavatar,'created_by' => Auth::user()->id,'user_type' => 'coach']));
 
             }
+            $this->store_permissions($request, $user->id);
+
             return response()->json(['success' => true, 'msg' => 'User Created']);
 
         }
@@ -116,5 +132,55 @@ class UserCoachController extends Controller
     {
         $user = User::find($request->id)->delete();
         return response()->json(['success' => true, 'msg' => 'User Deleted']);
+    }
+
+    public function permissions(Request $request){
+        $this->store_permissions($request, $request->user_id);
+    }
+    public function store_permissions(Request $request,$user_id){
+
+        if(isset($request->nutrition_permission)){
+            $there=UserPermission::where('user_id',$user_id)->where('name','Nutrition Deployment')->exists();
+            if(!$there){
+                UserPermission::create(['user_id' => $user_id,
+                 'name' => 'Nutrition Deployment'] );
+            }
+        }
+        else{
+            UserPermission::where('user_id',$user_id)->where('name','Nutrition Deployment')->delete();
+        }
+        if(isset($request->program_permission)){
+            $there=UserPermission::where('user_id',$user_id)->where('name','Program Deployment')->exists();
+            if(!$there){
+                UserPermission::create(['user_id' => $user_id,
+                 'name' => 'Program Deployment'] );
+            }
+        }
+        else{
+            UserPermission::where('user_id',$user_id)->where('name','Program Deployment')->delete();
+        }
+        if(isset($request->pdf_permission)){
+            $there=UserPermission::where('user_id',$user_id)->where('name','PDF Deployment')->exists();
+            if(!$there){
+                UserPermission::create(['user_id' => $user_id,
+                 'name' => 'PDF Deployment'] );
+            }
+        }
+        else{
+            UserPermission::where('user_id',$user_id)->where('name','PDF Deployment')->delete();
+        }
+        return response()->json(['success' => true, 'msg' => 'Permissions Updated']);
+
+    }
+
+    public function attachclient(Request $request){
+        $coach_id=$request->coach_id;
+        $client_id=$request->client_id;
+        ClientCoach::create([
+            'assigned_by' => Auth::user()->id,
+            'client_id' => $client_id,
+            'coach_id' => $coach_id
+        ]);
+        return response()->json(['success' => true, 'msg' => 'User Assigned']);
     }
 }

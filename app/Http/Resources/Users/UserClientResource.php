@@ -42,7 +42,7 @@ class UserClientResource extends JsonResource
                                     <a class="dropdown-item create_new_off_canvas_modal edit_record" data-id="' . $user->id . '" href="javascript:void(0);" >Edit</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item"  href="'.route('user.client.view').'?id='.$user->id.'">View</a>
+                                    <a class="dropdown-item"  href="'.route('user.client.view',$user->id).'">View</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item delete_record" data-id="' . $user->id . '" href="javascript:void(0);">Delete</a>

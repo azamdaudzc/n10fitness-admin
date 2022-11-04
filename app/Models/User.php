@@ -61,6 +61,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\User', 'id', 'created_by');
     }
 
+    public function userAthleticType()
+    {
+        return $this->hasOne('App\Models\AthleticType', 'id', 'athletic_type');
+    }
+
     public static function editRules($id){
         return  [
             'id' =>'exists:users,id',

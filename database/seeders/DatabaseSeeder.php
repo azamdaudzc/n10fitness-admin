@@ -24,5 +24,23 @@ class DatabaseSeeder extends Seeder
             'user_type' => 'admin',
             'password' => Hash::make('admin'),
         ]);
+
+        \App\Models\AthleticType::create([
+            'name' => 'Powerlifter',
+        ]);
+        \App\Models\AthleticType::create([
+            'name' => 'Physique Athlete',
+        ]);
+        \App\Models\AthleticType::create([
+            'name' => 'Lifestyle Athlete',
+        ]);
+        \App\Models\AthleticType::create([
+            'name' => 'Sport Performance',
+        ]);
+        \App\Models\AthleticType::create([
+            'name' => 'Speed and agility',
+        ]);
+
+
     }
 }

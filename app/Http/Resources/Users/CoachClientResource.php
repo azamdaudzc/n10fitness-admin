@@ -5,7 +5,7 @@ namespace App\Http\Resources\Users;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserAdminResource extends JsonResource
+class CoachClientResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -33,31 +33,21 @@ class UserAdminResource extends JsonResource
 
 
                 $actions = '
-                            <div class="dropdown">
-                              <button class="btn btn-active-dark btn-sm dropdown-toggle" type="button" id="actionsMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                                Action
-                              </button>
-                              <ul class="dropdown-menu" aria-labelledby="actionsMenu">
-                                <li >
-                                    <a class="dropdown-item create_new_off_canvas_modal edit_record" data-id="' . $user->id . '" href="javascript:void(0);" >Edit</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item"  href="'.route('user.admin.view',$user->id).'">View</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item delete_record" data-id="' . $user->id . '" href="javascript:void(0);">Delete</a>
-                                </li>
-                              </ul>
-                            </div>
+                <a class="btn btn-danger btn-sm delete_record" data-id="' . $user->id . '" href="javascript:void(0);">Remove</a>
+
                 ';
-                $status = $user->is_active == 1 ? '<div class="badge badge-light-primary fw-bold">Active</div>' : '<div class="badge badge-light-warning fw-bold">Disabled</div>';
-                $creator=$user->userCreator==null ?'':$user->userCreator->first_name.' '.$user->userCreator->last_name;
+                $athletic_type=$user->userAthleticType==null ?'':$user->userAthleticType->first_name.' '.$user->userAthleticType->last_name;
+                $age=$user->age;
+                $height=$user->height;
+                $gender=$user->gender;
                 $users[] = [
                     'user' => $userAvatar,
-                    'status' => $status,
-                    'createdBy' => $creator,
-                    'createdAt' => Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('d M, Y h:i A'),
+                    'athletic_type' => $athletic_type,
+                    'age' => $age,
+                    'height' => $height,
+                    'gender' => $gender,
                     'actions' => $actions
+
                 ];
             }
         }

@@ -107,7 +107,7 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::post('user/admin/info', 'info')->name('user.admin.info');
         Route::post('user/admin/store', 'store')->name('user.admin.store');
         Route::post('user/admin/delete', 'delete')->name('user.admin.delete');
-        Route::get('user/admin/view', 'view')->name('user.admin.view');
+        Route::get('user/admin/view/{id}', 'view')->name('user.admin.view');
     });
 
     Route::controller(UserClientController::class)->group(function(){
@@ -117,18 +117,20 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::post('user/client/info', 'info')->name('user.client.info');
         Route::post('user/client/store', 'store')->name('user.client.store');
         Route::post('user/client/delete', 'delete')->name('user.client.delete');
-        Route::get('user/client/view', 'view')->name('user.client.view');
+        Route::get('user/client/view/{id}', 'view')->name('user.client.view');
 
     });
 
     Route::controller(UserCoachController::class)->group(function(){
         Route::get('user/coach', 'index')->name('user.coach.index');
         Route::get('user/coach/lists', 'list')->name('user.coach.list');
+        Route::get('user/coach/assigedclients', 'assigedclients')->name('user.coach.assigedclients');
         Route::post('user/coach/details', 'details')->name('user.coach.details');
         Route::post('user/coach/info', 'info')->name('user.coach.info');
         Route::post('user/coach/store', 'store')->name('user.coach.store');
         Route::post('user/coach/delete', 'delete')->name('user.coach.delete');
-        Route::get('user/coach/view', 'view')->name('user.coach.view');
+        Route::post('user/coach/attachclient', 'attachclient')->name('user.coach.attachclient');
+        Route::get('user/coach/view/{id}', 'view')->name('user.coach.view');
 
     });
 
@@ -180,11 +182,13 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
     Route::controller(ExerciseLibraryController::class)->group(function(){
         Route::get('exerciselibrary', 'index')->name('exerciselibrary.index');
         Route::get('exerciselibrary/lists', 'list')->name('exerciselibrary.list');
-        Route::get('exerciselibrary/create-edit', 'create_edit')->name('exerciselibrary.create-edit');
+        Route::get('exerciselibrary/create-edit/{id}', 'create_edit')->name('exerciselibrary.create-edit');
         Route::post('exerciselibrary/info', 'info')->name('exerciselibrary.info');
         Route::post('exerciselibrary/store', 'store')->name('exerciselibrary.store');
         Route::post('exerciselibrary/delete', 'delete')->name('exerciselibrary.delete');
-        Route::get('exerciselibrary/view', 'view')->name('exerciselibrary.view');
+        Route::post('exerciselibrary/approve', 'approve')->name('exerciselibrary.approve');
+        Route::post('exerciselibrary/reject', 'reject')->name('exerciselibrary.reject');
+        Route::get('exerciselibrary/view/{id}', 'view')->name('exerciselibrary.view');
     });
 
 

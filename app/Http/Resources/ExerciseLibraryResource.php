@@ -39,17 +39,28 @@ class ExerciseLibraryResource extends JsonResource
                               </button>
                               <ul class="dropdown-menu" aria-labelledby="actionsMenu">
                                 <li >
-                                    <a class="dropdown-item  edit_record" data-id="' . $library->id . '" href="javascript:void(0);" >Edit</a>
+                                    <a class="dropdown-item " data-id="' . $library->id . '" href="'.route('exerciselibrary.create-edit',$library->id).'" >Edit</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item"  href="'.route('user.admin.view').'?id='.$library->id.'">View</a>
+                                    <a class="dropdown-item"  href="'.route('exerciselibrary.view',$library->id).'">View</a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item delete_record" data-id="' . $library->id . '" href="javascript:void(0);">Delete</a>
-                                </li>
-                              </ul>
-                            </div>
+
+
                 ';
+                if($library->approved_by==0 && $library->rejected_by==0){
+                    $actions.='<li>
+                    <a class="dropdown-item approve_record" data-id="' . $library->id . '" href="javascript:void(0);">Approve</a>
+                    </li>';
+
+                    $actions.='<li>
+                    <a class="dropdown-item reject_record" data-id="' . $library->id . '" href="javascript:void(0);">Reject</a>
+                    </li>';
+                }
+
+                $actions.='<li>
+                <a class="dropdown-item delete_record" data-id="' . $library->id . '" href="javascript:void(0);">Delete</a>
+                </li> </ul>
+                </div>';
                 $video_link = '<a href="'.$library->video_link.'">'.$library->video_link.'</a>';
                 $description=$library->description;
                 $librarys[] = [

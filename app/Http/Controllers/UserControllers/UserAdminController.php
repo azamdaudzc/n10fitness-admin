@@ -46,13 +46,13 @@ class UserAdminController extends Controller
         return view('N10Pages.UserPages.UserAdmin.info', compact('user'));
     }
 
-    public function view(Request $request)
+    public function view($id)
     {
         $user = new User();
         $page_heading = 'Admins';
         $sub_page_heading = 'View admin user';
-        if($request->id){
-            $user = User::find($request->id);
+        if($id){
+            $user = User::find($id);
         }
         return view('N10Pages.UserPages.UserAdmin.view', compact('user','page_heading','sub_page_heading'));
     }

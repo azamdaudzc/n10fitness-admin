@@ -135,23 +135,56 @@
                                 <div id="kt_docs_repeater_basic">
                                     <!--begin::Form group-->
                                     <div class="form-group">
+                                        <h5>Muscles</h5>
                                         <div data-repeater-list="kt_docs_repeater_basic">
+                                            @foreach ($library_muscles as $lm )
                                             <div data-repeater-item>
                                                 <div class="form-group row">
                                                     <div class="col-md-3">
-                                                        <label class="form-label">Type:</label>
+                                                        <label class="form-label"></label>
 
-                                                            <select  class="form-control mb-2 mb-md-0"   name="musclename[]" id="">
-                                                               <option value="">Select A Type</option>
+                                                            <select  class="form-control mb-2 mb-md-0"   name="musclename" id="">
+                                                               <option value="">Select Type</option>
+                                                                <option value="Primary Muscle" @if($lm->name=='Primary Muscle') selected @endif>Primary Muscle</option>
+                                                                <option value="Secondary Muscle" @if($lm->name=='Secondary Muscle') selected @endif>Secondary Muscle</option>
+                                                                <option value="Accessory Muscle" @if($lm->name=='Accessory Muscle') selected @endif>Accessory Muscle</option>
+                                                            </select>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label class="form-label"></label>
+                                                            <select  class="form-control mb-2 mb-md-0"   name="muscleid" id=""  >
+                                                               <option value="">Select Muscle</option>
+                                                               @foreach($muscles as $m)
+                                                               <option value="{{$m->id}}" @if($lm->excercise_muscle_id==$m->id) selected @endif>{{$m->name}}</option>
+                                                               @endforeach
+                                                            </select>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <a href="javascript:;" data-repeater-delete
+                                                            class="btn btn-sm btn-light-danger mt-3 mt-md-8">
+                                                            <i class="la la-trash-o"></i>Delete
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            <div data-repeater-item>
+                                                <div class="form-group row">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label"></label>
+
+                                                            <select  class="form-control mb-2 mb-md-0"   name="musclename" id="">
+                                                               <option value="">Select Type</option>
                                                                 <option value="Primary Muscle">Primary Muscle</option>
                                                                 <option value="Secondary Muscle">Secondary Muscle</option>
                                                                 <option value="Accessory Muscle">Accessory Muscle</option>
                                                             </select>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label class="form-label">Muscle:</label>
-                                                            <select  class="form-control mb-2 mb-md-0"   name="muscleid[]" id=""  >
-                                                               <option value="">Select A Muscle</option>
+                                                        <label class="form-label"></label>
+                                                            <select  class="form-control mb-2 mb-md-0"   name="muscleid" id=""  >
+                                                               <option value="">Select Muscle</option>
                                                                @foreach($muscles as $m)
                                                                <option value="{{$m->id}}">{{$m->name}}</option>
                                                                @endforeach
@@ -181,7 +214,7 @@
                                 <!--end::Repeater-->
 
                                 <div class="error-area"></div>
-                                <div class="box-footer mt20">
+                                <div class="box-footer mt-13">
                                     <button type="submit" class="btn btn-primary me-10" id="crud-form-submit-button">
                                         <span class="indicator-label">
                                             Submit
@@ -247,7 +280,7 @@
                         console.log(d);
                         if (d.success == true) {
                             toastr.success(d.msg);
-
+                            window.location.href="{{route('exerciselibrary.index')}}";
                         }
                         $('#crud-form-submit-button').attr("data-kt-indicator", "off");
 

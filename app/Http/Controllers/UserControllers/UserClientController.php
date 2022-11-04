@@ -48,13 +48,13 @@ class UserClientController extends Controller
         return view('N10Pages.UserPages.UserClient.info', compact('user'));
     }
 
-    public function view(Request $request)
+    public function view($id)
     {
         $user = new User();
         $page_heading = 'Clients';
         $sub_page_heading = 'View all client users';
-        if($request->id){
-            $user = User::find($request->id);
+        if($id){
+            $user = User::find($id);
         }
         return view('N10Pages.UserPages.UserClient.view', compact('user','page_heading','sub_page_heading'));
     }
