@@ -2943,7 +2943,7 @@
                             <h2 class="fw-bold">Add Client</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
-                            <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                            <div class="btn btn-icon btn-sm btn-active-icon-primary" onclick="closeModal()">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -2978,7 +2978,7 @@
                                         id="movement_pattern">
                                         <option></option>
                                         @foreach ($all_users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}
+                                            <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -2990,7 +2990,7 @@
                                 <!--begin::Actions-->
                                 <div class="text-center pt-15">
                                     <button type="reset" class="btn btn-light me-3"
-                                        data-kt-users-modal-action="cancel">Discard</button>
+                                        data-kt-users-modal-action="cancel"  onclick="closeModal()">Discard</button>
                                     <button type="submit" class="btn btn-primary"
                                         data-kt-users-modal-action="submit">
                                         <span class="indicator-label">Submit</span>
@@ -3757,7 +3757,7 @@
                 let id = $(this).attr('data-id');
 
                 Swal.fire({
-                    html: `Are you sure you want to delete this user`,
+                    html: `Are you sure you want to delete this client`,
                     icon: "info",
                     buttonsStyling: false,
                     showCancelButton: true,
@@ -3769,15 +3769,20 @@
                     }
                 }).then(function(data) {
                     if(data.isConfirmed==true){
-                        $.post('{{ route('user.coach.delete') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
+                        $.post('{{ route('user.coach.deleteclient') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
                             if(d.success==true){
                                 toastr.success(d.msg);
-                                reloadTable();
+                                table.ajax.reload(null,false);
                             }
                         });
                     }
                 });
             });
+
+        function closeModal(){
+            $('#kt_modal_add_client').modal('hide');
+        }
+
 
         $(document).on("submit", "form", function(event) {
             event.preventDefault();
@@ -3795,6 +3800,9 @@
                         toastr.success(d.msg);
                         loadForm();
                         loadInfo();
+                        table.ajax.reload(null,false);
+                        closeModal();
+
                     }
                     $('#crud-form-submit-button').attr("data-kt-indicator", "off");
 

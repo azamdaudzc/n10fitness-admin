@@ -18,15 +18,15 @@ class CoachClientResource extends JsonResource
         $users = [];
         if ($this->resource->count() > 0) {
             foreach ($this->resource as $user) {
-                $picture = $user->avatar != null ? asset('storage/' . $user->avatar) : '/assets/media/avatars/blank.png';
+                $picture = $user->user->avatar != null ? asset('storage/' . $user->user->avatar) : '/assets/media/avatars/blank.png';
                 $userAvatar = '<div class="d-flex align-items-center">
                             <div class="symbol symbol-35px symbol-circle">
                                     <img alt="Pic" src="' . $picture . '"
                                          style=" object-fit: cover;"/>
                             </div>
                             <div class="text-gray-800 text-hover-primary mb-1 ms-5">
-                                ' . $user->first_name . ' ' . $user->last_name . '
-                                <div class="fw-semibold text-muted">' . $user->email . '</div>
+                                ' . $user->user->first_name . ' ' . $user->user->last_name . '
+                                <div class="fw-semibold text-muted">' . $user->user->email . '</div>
                             </div>
                             <!--end::Details-->
                         </div>';
@@ -36,10 +36,10 @@ class CoachClientResource extends JsonResource
                 <a class="btn btn-danger btn-sm delete_record" data-id="' . $user->id . '" href="javascript:void(0);">Remove</a>
 
                 ';
-                $athletic_type=$user->userAthleticType==null ?'':$user->userAthleticType->first_name.' '.$user->userAthleticType->last_name;
-                $age=$user->age;
-                $height=$user->height;
-                $gender=$user->gender;
+                $athletic_type=$user->user->userAthleticType==null ?'':$user->user->userAthleticType->name;
+                $age=$user->user->age;
+                $height=$user->user->height;
+                $gender=$user->user->gender;
                 $users[] = [
                     'user' => $userAvatar,
                     'athletic_type' => $athletic_type,

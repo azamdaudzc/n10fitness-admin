@@ -124,12 +124,13 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
     Route::controller(UserCoachController::class)->group(function(){
         Route::get('user/coach', 'index')->name('user.coach.index');
         Route::get('user/coach/lists', 'list')->name('user.coach.list');
-        Route::get('user/coach/assigedclients', 'assigedclients')->name('user.coach.assigedclients');
         Route::post('user/coach/details', 'details')->name('user.coach.details');
         Route::post('user/coach/info', 'info')->name('user.coach.info');
         Route::post('user/coach/store', 'store')->name('user.coach.store');
         Route::post('user/coach/delete', 'delete')->name('user.coach.delete');
+        Route::get('user/coach/assigedclients', 'assigedclients')->name('user.coach.assigedclients');
         Route::post('user/coach/attachclient', 'attachclient')->name('user.coach.attachclient');
+        Route::post('user/coach/deleteclient', 'deleteclient')->name('user.coach.deleteclient');
         Route::get('user/coach/view/{id}', 'view')->name('user.coach.view');
 
     });

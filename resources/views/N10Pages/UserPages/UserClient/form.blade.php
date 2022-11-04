@@ -58,7 +58,7 @@
 
             <div class="mb-10">
                 <label for="age" class="form-label">Age</label>
-                <input class="form-control" placeholder="age" name="age" type="text" value="{{$user->age}}" id="age">
+                <input class="form-control" placeholder="age" name="age" type="number" value="{{$user->age}}" id="age">
             </div>
 
             <div class="mb-10">
@@ -82,7 +82,7 @@
                 <select name="athletic_type" id="athletic_type" class="form-select select-2-setup" data-control="select2" data-placeholder="Select An Athletic Type">
                     <option ></option>
                     @foreach ($athletic_types as $at )
-                        <option value="{[$at->id}}" @if($user->athletic_type==$at->id) selected @endif>{{$at->name}}</option>
+                        <option value="{{$at->id}}" @if($user->athletic_type==$at->id) selected @endif>{{$at->name}}</option>
                     @endforeach
                 </select>
             </div>

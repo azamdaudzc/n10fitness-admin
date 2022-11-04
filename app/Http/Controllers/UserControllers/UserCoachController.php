@@ -28,8 +28,8 @@ class UserCoachController extends Controller
         return new UserCoachResource($users);
     }
 
-    public function assigedclients(){
-        $users = User::where('user_type', 'admin')->with('userAthleticType')->get();
+    public function assigedclients(Request $request){
+        $users = ClientCoach::where('coach_id', $request->id)->with('user')->get();
         return new CoachClientResource($users);
     }
 
@@ -176,11 +176,22 @@ class UserCoachController extends Controller
     public function attachclient(Request $request){
         $coach_id=$request->coach_id;
         $client_id=$request->client_id;
+        if(!ClientCoach::where('client_id',$client_id)->where('coach_id',$coach_id)->exists()){
         ClientCoach::create([
             'assigned_by' => Auth::user()->id,
             'client_id' => $client_id,
             'coach_id' => $coach_id
         ]);
         return response()->json(['success' => true, 'msg' => 'User Assigned']);
+    }
+    else{
+        return response()->json(['success' => true, 'msg' => 'User Already Assigned']);
+
+    }
+    }
+
+    public function deleteclient(Request $request){
+        $user = ClientCoach::find($request->id)->delete();
+        return response()->json(['success' => true, 'msg' => 'User Removed']);
     }
 }
