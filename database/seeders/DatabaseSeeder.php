@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin'),
         ]);
 
+
         \App\Models\AthleticType::create([
             'name' => 'Powerlifter',
         ]);
@@ -40,6 +41,48 @@ class DatabaseSeeder extends Seeder
         \App\Models\AthleticType::create([
             'name' => 'Speed and agility',
         ]);
+
+
+        \App\Models\ExerciseEquipment::create([
+            'name' => 'Dumbell',
+        ]);
+        \App\Models\ExerciseEquipment::create([
+            'name' => 'Barbell',
+        ]);
+
+
+        \App\Models\ExerciseCategory::create([
+            'name' => 'Chest',
+        ]);
+        \App\Models\ExerciseCategory::create([
+            'name' => 'Shoulder',
+        ]);
+
+
+
+        \App\Models\ExerciseMovementPattern::create([
+            'name' => 'Shoulder',
+        ]);
+        \App\Models\ExerciseMovementPattern::create([
+            'name' => 'Shoulder',
+        ]);
+
+
+
+        \App\Models\ExerciseMuscle::create([
+            'name' => 'Erector Spinae',
+        ]);
+        \App\Models\ExerciseMuscle::create([
+            'name' => 'Glute Maximus',
+        ]);
+        \App\Models\ExerciseMuscle::create([
+            'name' => 'Hamstring',
+        ]);
+        \App\Models\ExerciseMuscle::create([
+            'name' => 'Latissimus Dorsi',
+        ]);
+
+
 
 
     }

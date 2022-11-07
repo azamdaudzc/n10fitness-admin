@@ -11,25 +11,8 @@ use App\Http\Controllers\SettingControllers\CategoryController;
 use App\Http\Controllers\SettingControllers\MuscleController;
 use App\Http\Controllers\SettingControllers\AthleticTypeController;
 use App\Http\Controllers\N10Controllers\ExerciseLibraryController;
-
-use App\Http\Controllers\N10Controllers\ClientCoachController;
-use App\Http\Controllers\N10Controllers\UserCheckinController;
-use App\Http\Controllers\N10Controllers\WarmupVideoController;
+use App\Http\Controllers\CheckIns\UserCheckinQuestionsController;
 use App\Http\Controllers\N10Controllers\WarmupBuilderController;
-use App\Http\Controllers\N10Controllers\ExerciseMuscleController;
-use App\Http\Controllers\N10Controllers\ProgramBuilderController;
-use App\Http\Controllers\N10Controllers\UserPermissionController;
-use App\Http\Controllers\N10Controllers\CheckinQuestionController;
-use App\Http\Controllers\N10Controllers\ExerciseCategoryController;
-use App\Http\Controllers\N10Controllers\ExerciseEquipmentController;
-use App\Http\Controllers\N10Controllers\UserCheckinAnswerController;
-use App\Http\Controllers\N10Controllers\ProgramBuilderWeekController;
-use App\Http\Controllers\N10Controllers\RecommendedLoadValController;
-use App\Http\Controllers\N10Controllers\ProgramBuilderShareController;
-use App\Http\Controllers\N10Controllers\CheckinQuestionInputController;
-use App\Http\Controllers\N10Controllers\ProgramBuilderWeekDayController;
-use App\Http\Controllers\N10Controllers\ExcerciseLibraryMuscleController;
-use App\Http\Controllers\N10Controllers\ExerciseMovementPatternController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,46 +41,7 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         return view('dashboard')->with($data);
     })->name('dashboard');
 
-    // ***************************N10 Routes*******************************
-    Route::resource('users', App\Http\Controllers\N10Controllers\UserController::class);
-    Route::resource('athletic-types', AthleticTypeController::class);
-    Route::resource('user-permissions', UserPermissionController::class);
-    Route::resource('user-checkins', UserCheckinController::class);
-    Route::resource('client-coaches', ClientCoachController::class);
-    Route::resource('checkin-questions', CheckinQuestionController::class);
-    Route::resource('checkin-question-inputs', CheckinQuestionInputController::class);
-    Route::resource('user-checkin-answers', UserCheckinAnswerController::class);
-    Route::resource('exercise-movement-patterns', ExerciseMovementPatternController::class);
-    Route::resource('exercise-equipments', ExerciseEquipmentController::class);
-    Route::resource('exercise-categories', ExerciseCategoryController::class);
-    Route::resource('exercise-libraries', ExerciseLibraryController::class);
-    Route::resource('exercise-muscles', ExerciseMuscleController::class);
-    Route::resource('excercise-library-muscles', ExcerciseLibraryMuscleController::class);
-    Route::resource('warmup-builders', WarmupBuilderController::class);
-    Route::resource('warmup-videos', WarmupVideoController::class);
-    Route::resource('recommended-load-vals', RecommendedLoadValController::class);
-    Route::resource('program-builders', ProgramBuilderController::class);
-    Route::resource('program-builder-templates', ProgramBuilderTemplateController::class);
-    Route::resource('program-builder-shares', ProgramBuilderShareController::class);
-    Route::resource('program-builder-weeks', ProgramBuilderWeekController::class);
-    Route::resource('program-builder-week-days', ProgramBuilderWeekDayController::class);
-    Route::resource('builder-day-warmups', ProgramBuilderDayWarmupController::class);
-    Route::resource('program-builders-day-exercises', ProgramBuilderDayExerciseController::class);
-    Route::resource('builder-day-exercise-inputs', ProgramBuilderDayExerciseInputController::class);
 
-
-     Route::get('approved-libraries',[ExerciseLibraryController::class,'indexApproved'])->name('exercise-libraries-approved');
-    Route::get('requested-libraries',[ExerciseLibraryController::class,'indexRequested'])->name('exercise-libraries-requested');
-    Route::get('rejected-libraries',[ExerciseLibraryController::class,'indexRejected'])->name('exercise-libraries-rejected');
-
-
-    Route::get('get-exercise-categories',[ExerciseCategoryController::class,'getInfo'])->name('exercise-categories-get');
-    Route::get('get-exercise-libraries',[ExerciseLibraryController::class,'getInfo'])->name('exercise-libraries-get');
-    Route::get('get-users',[UserController::class,'getInfo'])->name('users-get');
-
-
-    Route::post('approve-library',[ExerciseLibraryController::class,'approveLibrary'])->name('exercise-libraries.approve');
-    Route::post('reject-library',[ExerciseLibraryController::class,'rejectLibrary'])->name('exercise-libraries.reject');
 
 
     Route::controller(UserAdminController::class)->group(function(){
@@ -177,6 +121,26 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::get('setting/athletictype/index','index')->name('setting.athletictype.index');
         Route::post('setting/athletictype/store','store')->name('setting.athletictype.store');
         Route::post('setting/athletictype/delete', 'delete')->name('setting.athletictype.delete');
+
+    });
+
+    Route::controller(UserCheckinQuestionsController::class)->group(function(){
+        Route::get('checkin/questions/lists', 'list')->name('checkin.questions.list');
+        Route::get('checkin/questions/create-edit{id}', 'create_edit')->name('checkin.questions.create-edit');
+        Route::get('checkin/questions/index','index')->name('checkin.questions.index');
+        Route::post('checkin/questions/store','store')->name('checkin.questions.store');
+        Route::get('checkin/questions/view/{id}', 'view')->name('checkin.questions.view');
+        Route::post('checkin/questions/delete', 'delete')->name('checkin.questions.delete');
+
+    });
+
+    Route::controller(WarmupBuilderController::class)->group(function(){
+        Route::get('warmup/builder/lists', 'list')->name('warmup.builder.list');
+        Route::get('warmup/builder/create-edit{id}', 'create_edit')->name('warmup.builder.create-edit');
+        Route::get('warmup/builder/index','index')->name('warmup.builder.index');
+        Route::post('warmup/builder/store','store')->name('warmup.builder.store');
+        Route::get('warmup/builder/view/{id}', 'view')->name('warmup.builder.view');
+        Route::post('warmup/builder/delete', 'delete')->name('warmup.builder.delete');
 
     });
 

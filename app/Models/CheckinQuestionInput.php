@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CheckinQuestionInput extends Model
 {
-    
+
     static $rules = [
 		'input_type' => 'required',
 		'label' => 'required',
@@ -40,7 +40,7 @@ class CheckinQuestionInput extends Model
      *
      * @var array
      */
-    protected $fillable = ['input_type','label','placeholder','is_required','display_order','checkin_question_id'];
+    protected $fillable = ['input_type','label','placeholder','is_required','display_order','checkin_question_id','options'];
 
 
     /**
@@ -50,7 +50,7 @@ class CheckinQuestionInput extends Model
     {
         return $this->hasOne('App\Models\CheckinQuestion', 'id', 'checkin_question_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -58,6 +58,6 @@ class CheckinQuestionInput extends Model
     {
         return $this->hasMany('App\Models\UserCheckinAnswer', 'checkin_question_input_id', 'id');
     }
-    
+
 
 }

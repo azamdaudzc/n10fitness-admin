@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('label');
             $table->string('placeholder');
             $table->tinyInteger('is_required');
+            $table->json('options')->nullable();
             $table->integer('display_order')->nullable();
             $table->unsignedBigInteger('checkin_question_id');
             $table->foreign('checkin_question_id')->references('id')->on('checkin_questions')->onDelete('cascade');

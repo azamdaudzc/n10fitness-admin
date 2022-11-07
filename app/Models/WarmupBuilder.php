@@ -25,10 +25,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class WarmupBuilder extends Model
 {
-    
+
     static $rules = [
 		'name' => 'required',
-		'created_by' => 'required',
+
     ];
 
     protected $perPage = 20;
@@ -48,7 +48,7 @@ class WarmupBuilder extends Model
     {
         return $this->hasMany('App\Models\ProgramBuilderDayWarmup', 'warmup_builder_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -56,7 +56,7 @@ class WarmupBuilder extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -64,6 +64,6 @@ class WarmupBuilder extends Model
     {
         return $this->hasMany('App\Models\WarmupVideo', 'warmup_builder_id', 'id');
     }
-    
+
 
 }
