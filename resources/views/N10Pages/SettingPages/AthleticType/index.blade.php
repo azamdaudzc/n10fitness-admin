@@ -42,7 +42,7 @@ Users
 <div id="kt_drawer_example_basic" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
 data-kt-drawer-toggle=".create_new_off_canvas_modal" data-kt-drawer-close="#kt_drawer_example_basic_close"
 data-kt-drawer-width="500px">
-<div class="py-5 col-12 pt-12 p-14">
+<div class="py-5 col-12 p-1">
     <div id="subdiv_kt_drawer_example_basic"></div>
 </div>
 </div>

@@ -24,7 +24,19 @@ class UserCheckinQuestionsController extends Controller
         return new CheckInQuestionsResource($users);
     }
 
+    public function details(Request $request)
+    {
+        $page_heading = 'ExerciseLibrary';
+        $sub_page_heading = 'View all exercise library';
+        $data = new CheckinQuestion();
+        $title="Add ExerciseLibrary";
+        if($request->id){
+            $title="Edit ExerciseLibrary";
+            $data = CheckinQuestion::find($request->id);
+        }
 
+        return view('N10Pages.ExerciseLibrary.view', compact('data','title','page_heading','sub_page_heading'));
+    }
 
     public function create_edit($id)
     {

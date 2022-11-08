@@ -16,12 +16,12 @@
                     <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                         <i class="bi bi-pencil-fill fs-7"></i>
                         <input type="file"  id="imgInp" name="avatar" accept=".png, .jpg, .jpeg" />
-                        <input type="hidden" name="avatar_remove" />
+                        <input type="hidden" name="avatar_remove" id="avatar_removed" />
                     </label>
                     <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
                         <i class="bi bi-x fs-2"></i>
                     </span>
-                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                    <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow remove-avatar-button" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
                         <i class="bi bi-x fs-2"></i>
                     </span>
                 </div>
@@ -48,7 +48,7 @@
 
             <div class="mb-10">
                 <label for="password" class="form-label">Password</label>
-                <input class="form-control" placeholder="password" name="password" type="text" value="" id="password">
+                <input class="form-control" placeholder="password" name="password" type="password" value="" id="password">
             </div>
 
             <div class="mb-10">
@@ -166,3 +166,27 @@
         </form>
     </div>
 </div>
+@section('sub_page_scripts')
+    <script type="text/javascript">
+        $(function() {
+            $('body').on('click', '.remove-avatar-button', function() {
+                $('#imgInp').val('');
+                $('#avatar_removed').val(1)
+                $('.image-input-wrapper').css('background-image',
+                    "url('{{ asset('assets/media/svg/files/blank-image-dark.svg') }}')");
+            });
+
+            $('body').on('change', '#imgInp', function() {
+                let input = this;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('.image-input-wrapper').css('background-image', "url(" + e.target.result +
+                            ")");
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
+
+        });
+    </script>

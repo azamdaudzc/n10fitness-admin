@@ -31,9 +31,9 @@ class CheckInQuestionsResource extends JsonResource
                                    <li >
                                     <a class="dropdown-item " data-id="' . $setting->id . '" href="' . route('checkin.questions.create-edit', $setting->id) . '" >Edit</a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item"  href="' . route('checkin.questions.view', $setting->id) . '">View</a>
-                                </li>
+                                <li >
+                                <a class="dropdown-item create_new_off_canvas_modal view_record" data-id="' . $setting->id . '" href="javascript:void(0);" >View</a>
+                            </li>
                                 <li>
                                     <a class="dropdown-item delete_record" data-id="' . $setting->id . '" href="javascript:void(0);">Delete</a>
                                 </li>

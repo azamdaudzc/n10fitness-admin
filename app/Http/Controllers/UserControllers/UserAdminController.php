@@ -59,6 +59,7 @@ class UserAdminController extends Controller
 
     public function store(Request $request)
     {
+
         if(isset($request->id)){
             request()->validate(User::editRules($request->id));
             $user=User::find($request->id);
@@ -68,6 +69,9 @@ class UserAdminController extends Controller
                 $newavatar=$this->updateprofile($request,'avatar');
                 unset($request['avatar']);
                 $user->update(array_merge($request->all(),['password' => $password,'avatar' => $newavatar]));
+            }
+            else if($request->avatar_remove==1){
+                $user->update(array_merge($request->all(),['password' => $password,'avatar' => null]));
             }
             else{
                 $user->update(array_merge($request->all(),['password' => $password]));
@@ -80,6 +84,9 @@ class UserAdminController extends Controller
             unset($request['avatar']);
             $user->update(array_merge($request->all(),['avatar' => $newavatar]));
         }
+        else if($request->avatar_remove==1){
+            $user->update(array_merge($request->all(),['avatar' => null]));
+        }
         else{
             $user->update(array_merge($request->all()));
         }
@@ -91,12 +98,15 @@ class UserAdminController extends Controller
             request()->validate(User::createRules());
             $newavatar=$this->updateprofile($request,'avatar');
             unset($request['avatar']);
-
+            if($request->avatar_remove==1){
+                $newavatar=null;
+            }
             if($request->password!=null){
                     $password = Hash::make($request->password);
                     unset($request['avatar']);
                     $user = User::create(array_merge($request->all(),['password' => $password,'avatar' => $newavatar,'created_by' => Auth::user()->id,'user_type' => 'admin']));
             }
+
             else{
                     $user = User::create(array_merge($request->all(),['avatar' => $newavatar,'created_by' => Auth::user()->id,'user_type' => 'admin']));
 

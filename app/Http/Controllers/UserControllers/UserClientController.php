@@ -72,6 +72,9 @@ class UserClientController extends Controller
                 unset($request['avatar']);
                 $user->update(array_merge($request->all(),['password' => $password,'avatar' => $newavatar]));
             }
+            else if($request->avatar_remove==1){
+                $user->update(array_merge($request->all(),['password' => $password,'avatar' => null]));
+            }
             else{
                 $user->update(array_merge($request->all(),['password' => $password]));
             }
@@ -82,6 +85,9 @@ class UserClientController extends Controller
             $newavatar=$this->updateprofile($request,'avatar');
             unset($request['avatar']);
             $user->update(array_merge($request->all(),['avatar' => $newavatar]));
+        }
+        else if($request->avatar_remove==1){
+            $user->update(array_merge($request->all(),['avatar' => null]));
         }
         else{
             $user->update(array_merge($request->all()));
@@ -94,7 +100,9 @@ class UserClientController extends Controller
             request()->validate(User::createRules());
             $newavatar=$this->updateprofile($request,'avatar');
             unset($request['avatar']);
-
+            if($request->avatar_remove==1){
+                $newavatar=null;
+            }
             if($request->password!=null){
                     $password = Hash::make($request->password);
                     unset($request['avatar']);

@@ -29,11 +29,11 @@
                                     <label class="d-block fw-semibold fs-6 mb-5">Avatar</label>
                                     <style>
                                         .image-input-placeholder {
-                                            background-image: url('assets/media/svg/files/blank-image.svg');
+                                            background-image:  url('{{ asset('assets/media/svg/files/blank-image-dark.svg') }}');
                                         }
 
                                         [data-theme="dark"] .image-input-placeholder {
-                                            background-image: url('assets/media/svg/files/blank-image-dark.svg');
+                                            background-image:  url('{{ asset('assets/media/svg/files/blank-image-dark.svg') }}');
                                         }
                                     </style>
                                     <div class="image-input image-input-outline image-input-placeholder"
@@ -48,7 +48,7 @@
                                             <i class="bi bi-pencil-fill fs-7"></i>
                                             <input type="file" id="imgInp" name="avatar"
                                                 accept=".png, .jpg, .jpeg" />
-                                            <input type="hidden" name="avatar_remove" />
+                                                <input type="hidden" name="avatar_remove" id="avatar_removed" />
                                         </label>
                                         <span
                                             class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
@@ -57,7 +57,7 @@
                                             <i class="bi bi-x fs-2"></i>
                                         </span>
                                         <span
-                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow remove-avatar"
                                             data-kt-image-input-action="remove" data-bs-toggle="tooltip"
                                             title="Remove avatar">
                                             <i class="bi bi-x fs-2"></i>
@@ -118,18 +118,18 @@
                                         @endforeach
                                     </select>
                                 </div>
-
-                                <div class="mb-10">
-                                    <label for="description" class="form-label">Description</label>
-                                    <input class="form-control" placeholder="Description" name="description" type="text"
-                                        id="description" value="{{ $library->description }}">
-                                </div>
-
                                 <div class="mb-10">
                                     <label for="top_three_cues" class="form-label">Top Three Cues</label>
                                     <input class="form-control" placeholder="Top Three Cues" name="top_three_cues"
                                         type="text" id="top_three_cues" value="{{ $library->top_three_cues }}">
                                 </div>
+                                <div class="mb-10">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea class="form-control" placeholder="Description" name="description" type="text"
+                                        id="description" value="{{ $library->description }}"></textarea>
+                                </div>
+
+
 
                                 <!--begin::Repeater-->
                                 <div id="kt_docs_repeater_basic">
@@ -169,6 +169,8 @@
                                                 </div>
                                             </div>
                                             @endforeach
+                                            @isset($library_muscles)
+                                            @else
                                             <div data-repeater-item>
                                                 <div class="form-group row">
                                                     <div class="col-md-3">
@@ -199,6 +201,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endisset
                                         </div>
                                     </div>
                                     <!--end::Form group-->
@@ -236,7 +239,7 @@
     <div id="kt_drawer_example_basic" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
         data-kt-drawer-toggle=".create_new_off_canvas_modal" data-kt-drawer-close="#kt_drawer_example_basic_close"
         data-kt-drawer-width="500px">
-        <div class="py-5 col-12 pt-12 p-14">
+        <div class="py-5 col-12 p-1">
             <div id="subdiv_kt_drawer_example_basic"></div>
         </div>
     </div>
@@ -248,7 +251,11 @@
 
     <script type="text/javascript">
         $(function() {
-
+            $('body').on('click', '.remove-avatar-button', function() {
+                $('#imgInp').val('');
+                $('#avatar_removed').val(1)
+                $('.image-input-wrapper').css('background-image', "url('{{asset('assets/media/svg/files/blank-image-dark.svg')}}')");
+            });
             $('.select-2-setup').select2();
 
             $('#search_table').on('keyup', function() {

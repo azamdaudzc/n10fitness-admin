@@ -69,6 +69,8 @@
 
                             </div>
                             @endforeach
+                            @isset($warmupvideos)
+                            @else
                             <div data-repeater-item>
                                 <div class="form-group row">
                                     <div class="col-md-3">
@@ -94,6 +96,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endisset
                         </div>
                     </div>
                     <!--end::Form group-->

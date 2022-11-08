@@ -36,7 +36,7 @@
                         <!--begin:::Tab item-->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab"
-                                href="#kt_user_view_overview_security">Security</a>
+                                href="#kt_user_view_overview_security">Profile</a>
                         </li>
                         <!--end:::Tab item-->
                         <!--begin:::Tab item-->
@@ -45,114 +45,7 @@
                                 href="#kt_user_view_overview_events_and_logs_tab">Clients</a>
                         </li>
                         <!--end:::Tab item-->
-                        <!--begin:::Tab item-->
-                        <li class="nav-item ms-auto">
-                            <!--begin::Action menu-->
-                            <a href="#" class="btn btn-primary ps-7" data-kt-menu-trigger="click"
-                                data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">Actions
-                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                <span class="svg-icon svg-icon-2 me-0">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                            </a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold py-4 w-250px fs-6"
-                                data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <div class="menu-content text-muted pb-2 px-5 fs-7 text-uppercase">Payments</div>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link px-5">Create invoice</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link flex-stack px-5">Create payments
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="Specify a target name for future usage and reference"></i></a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5" data-kt-menu-trigger="hover"
-                                    data-kt-menu-placement="left-start">
-                                    <a href="#" class="menu-link px-5">
-                                        <span class="menu-title">Subscription</span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <!--begin::Menu sub-->
-                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-5">Apps</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-5">Billing</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-5">Statements</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content px-3">
-                                                <label class="form-check form-switch form-check-custom form-check-solid">
-                                                    <input class="form-check-input w-30px h-20px" type="checkbox"
-                                                        value="" name="notifications" checked="checked"
-                                                        id="kt_user_menu_notifications" />
-                                                    <span class="form-check-label text-muted fs-6"
-                                                        for="kt_user_menu_notifications">Notifications</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!--end::Menu item-->
-                                    </div>
-                                    <!--end::Menu sub-->
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu separator-->
-                                <div class="separator my-3"></div>
-                                <!--end::Menu separator-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <div class="menu-content text-muted pb-2 px-5 fs-7 text-uppercase">Account</div>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link px-5">Reports</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5 my-1">
-                                    <a href="#" class="menu-link px-5">Account Settings</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link text-danger px-5">Delete customer</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu-->
-                            <!--end::Menu-->
-                        </li>
-                        <!--end:::Tab item-->
+
                     </ul>
                     <!--end:::Tabs-->
                     <!--begin:::Tab content-->
@@ -2977,8 +2870,8 @@
                                         data-placeholder="Select A Client" name="client_id"
                                         id="movement_pattern">
                                         <option></option>
-                                        @foreach ($all_users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}
+                                        @foreach ($all_users as $u)
+                                            <option value="{{ $u->id }}">{{ $u->first_name }} {{ $u->last_name }}
                                             </option>
                                         @endforeach
                                     </select>

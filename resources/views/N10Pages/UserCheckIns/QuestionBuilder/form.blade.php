@@ -124,6 +124,8 @@
                                     </div>
                                 </div>
                             @endforeach
+                            @isset($question_inputs)
+                            @else
                             <div data-repeater-item>
                                 <div class="form-group row mb-5">
                                     <div class="col-md-1">
@@ -185,6 +187,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endisset
                         </div>
                     </div>
                     <!--end::Form group-->

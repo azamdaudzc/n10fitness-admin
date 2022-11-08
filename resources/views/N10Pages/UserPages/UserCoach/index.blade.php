@@ -44,7 +44,7 @@ Users
 <div id="kt_drawer_example_basic" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
 data-kt-drawer-toggle=".create_new_off_canvas_modal" data-kt-drawer-close="#kt_drawer_example_basic_close"
 data-kt-drawer-width="500px">
-<div class="py-5 col-12 pt-12 p-14">
+<div class="py-5 col-12 p-1">
     <div id="subdiv_kt_drawer_example_basic"></div>
 </div>
 </div>
@@ -57,6 +57,7 @@ data-kt-drawer-width="500px">
 @section('scripts')
 <script type="text/javascript">
     $(function() {
+
 
         let form_body = $('#subdiv_kt_drawer_example_basic');
         let table = $('#users_table').DataTable({
@@ -148,17 +149,7 @@ data-kt-drawer-width="500px">
             }
 
 
-            $('body').on('change', '#imgInp', function() {
-                let input = this;
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('.image-input-wrapper').css('background-image', "url(" + e.target.result +
-                        ")");
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
-            });
+
 
             $('body').on('click', '.delete_record', function() {
                 let id = $(this).attr('data-id');

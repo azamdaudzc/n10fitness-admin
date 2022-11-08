@@ -41,8 +41,8 @@ class ExerciseLibraryResource extends JsonResource
                                 <li >
                                     <a class="dropdown-item " data-id="' . $library->id . '" href="'.route('exerciselibrary.create-edit',$library->id).'" >Edit</a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item"  href="'.route('exerciselibrary.view',$library->id).'">View</a>
+                                <li >
+                                    <a class="dropdown-item create_new_off_canvas_modal view_record" data-id="' . $library->id . '" href="javascript:void(0);" >View</a>
                                 </li>
 
 

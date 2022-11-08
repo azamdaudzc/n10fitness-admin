@@ -43,7 +43,7 @@ Users
 <div id="kt_drawer_example_basic" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"
 data-kt-drawer-toggle=".create_new_off_canvas_modal" data-kt-drawer-close="#kt_drawer_example_basic_close"
 data-kt-drawer-width="500px">
-<div class="py-5 col-12 pt-12 p-14">
+<div class="py-5 col-12 p-1">
     <div id="subdiv_kt_drawer_example_basic"></div>
 </div>
 </div>
@@ -56,11 +56,22 @@ data-kt-drawer-width="500px">
 @section('scripts')
 <script type="text/javascript">
             function createNewQuestion(){
-                window.location.href="{{route('checkin.questions.create-edit',' ')}}";
+                window.location.href="{{route('checkin.questions.create-edit')}}";
             }
     $(function() {
 
             let form_body = $('#subdiv_kt_drawer_example_basic');
+            $('body').on('click', '.view_record', function() {
+                let id = $(this).attr('data-id');
+                form_body.empty();
+                $.post('{{ route('checkin.questions.details') }}', {
+                    _token: '{{ csrf_token() }}',
+                    id
+                }, function(d) {
+                    form_body.html(d);
+                });
+            });
+
             let table = $('#users_table').DataTable({
                 pageLength:50,
                 lenghtChange:false,

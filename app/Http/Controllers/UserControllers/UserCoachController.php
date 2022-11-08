@@ -60,6 +60,7 @@ class UserCoachController extends Controller
 
     public function view($id)
     {
+
         $user = new User();
         $page_heading = 'Coach';
         $sub_page_heading = 'View coach user';
@@ -84,6 +85,9 @@ class UserCoachController extends Controller
                 unset($request['avatar']);
                 $user->update(array_merge($request->all(),['password' => $password,'avatar' => $newavatar]));
             }
+            else if($request->avatar_remove==1){
+                $user->update(array_merge($request->all(),['password' => $password,'avatar' => null]));
+            }
             else{
                 $user->update(array_merge($request->all(),['password' => $password]));
             }
@@ -94,6 +98,9 @@ class UserCoachController extends Controller
             $newavatar=$this->updateprofile($request,'avatar');
             unset($request['avatar']);
             $user->update(array_merge($request->all(),['avatar' => $newavatar]));
+        }
+        else if($request->avatar_remove==1){
+            $user->update(array_merge($request->all(),['avatar' => null]));
         }
         else{
             $user->update(array_merge($request->all()));
@@ -108,6 +115,9 @@ class UserCoachController extends Controller
             $newavatar=$this->updateprofile($request,'avatar');
             unset($request['avatar']);
             $user=null;
+            if($request->avatar_remove==1){
+                $newavatar=null;
+            }
             if($request->password!=null){
                     $password = Hash::make($request->password);
                     unset($request['avatar']);
