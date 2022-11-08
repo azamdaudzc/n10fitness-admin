@@ -39,7 +39,7 @@ class ExerciseLibraryController extends Controller
         return new ExerciseLibraryResource($librarys);
     }
 
-    public function create_edit($id)
+    public function create_edit($id = 0)
     {
 
         $page_heading = 'Exercise Library';

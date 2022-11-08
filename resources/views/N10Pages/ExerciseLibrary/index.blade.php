@@ -66,9 +66,8 @@ Users
                         <div class="card-toolbar">
 
                             <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                                <button type="button" class="btn btn-primary" onclick="createNewLibrary()">
-                                    <i class="fa-solid fa-plus fs-2"></i>Create New
-                                </button>
+                                <a href="{{ route('exerciselibrary.create-edit')}}" class="btn btn-primary">
+                                    <i class="fa-solid fa-plus fs-2"></i>Create New</a>
                             </div>
                         </div>
                     </div>
@@ -139,9 +138,6 @@ data-kt-drawer-width="500px">
 @endsection
 @section('scripts')
 <script type="text/javascript">
-function createNewLibrary() {
-            window.location.href="{{ route('exerciselibrary.create-edit',' ')}}";
-        };
     $(function() {
 
         let form_body = $('#subdiv_kt_drawer_example_basic');
