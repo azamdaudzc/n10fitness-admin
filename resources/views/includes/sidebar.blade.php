@@ -392,7 +392,7 @@
 										<!--begin:Menu link-->
 										<span class="menu-link menu-center">
 											<span class="menu-icon me-0">
-												<i class="fa-solid fa-question-circle fs-2"></i>
+												<i class="fa-solid fa-fire fs-2"></i>
 											</span>
 										</span>
 										<!--end:Menu link-->
@@ -532,7 +532,7 @@
                                     @if(Auth::user()->avatar!=null)
                                     <img alt="Logo" src="{{asset('storage/').'/'.Auth::user()->avatar}}" style=" object-fit: cover;"  />
                                     @else
-                                    <img alt="Logo" src="assets/media/avatars/300-2.jpg" />
+                                    <img alt="Logo" src="{{asset('assets/media/avatars/300-2.jpg')}}" />
 
                                     @endif
 								</div>
@@ -546,7 +546,7 @@
                                                 @if(Auth::user()->avatar!=null)
 												<img alt="Logo" src="{{asset('storage/').'/'.Auth::user()->avatar}}" style=" object-fit: cover;"  />
                                                 @else
-												<img alt="Logo" src="assets/media/avatars/300-2.jpg" />
+												<img alt="Logo" src="{{asset('assets/media/avatars/300-2.jpg')}}" />
 
                                                 @endif
 											</div>

@@ -19,7 +19,7 @@ class UserCoachResource extends JsonResource
         if ($this->resource->count() > 0) {
             foreach ($this->resource as $user) {
 
-                $picture = $user->avatar != null ? asset('storage/' . $user->avatar) : '/assets/media/avatars/blank.png';
+                $picture = $user->avatar != null ? asset('storage/' . $user->avatar) : asset('/assets/media/avatars/blank.png');
                 $userAvatar = '<div class="d-flex align-items-center">
                             <div class="symbol symbol-35px symbol-circle">
                                     <img alt="Pic" src="' . $picture . '"

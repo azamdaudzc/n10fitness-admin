@@ -28,4 +28,24 @@ class Controller extends BaseController
         }
        return $path;
     }
+
+
+public function saveThumbnailImage(Request $request,$file)
+{
+
+    $path ='';
+
+    if ($file) {
+        // $request->validate([
+        //     $file => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+        $imagePath = $file;
+        $imageName = $imagePath->getClientOriginalName();
+        $path = $file->storeAs('public/thumbnailimage', time().$imageName);
+        $path=str_replace('public/','',$path);
+    }
+   return $path;
+}
+
+
 }

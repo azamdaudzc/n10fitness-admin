@@ -46,7 +46,7 @@ class ExerciseLibraryController extends Controller
         $sub_page_heading = 'Create exercise library';
         $library = new ExerciseLibrary();
         $title="Add ExerciseLibrary";
-        if($id){
+        if($id>0){
             $title="Edit Exercise Library";
             $sub_page_heading = 'Edit exercise library';
             $library = ExerciseLibrary::find($id);

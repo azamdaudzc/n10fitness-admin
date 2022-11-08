@@ -49,13 +49,8 @@ data-kt-drawer-width="500px">
 @endsection
 
 @section('page_scripts')
-<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-<script src="assets/js/custom/apps/user-management/users/list/export-users.js"></script>
-<script src="assets/js/custom/apps/user-management/users/list/add.js"></script>
-<script src="assets/js/widgets.bundle.js"></script>
-<script src="assets/js/custom/widgets.js"></script>
-<script src="assets/js/custom/apps/chat/chat.js"></script>
-<script src="assets/js/custom/utilities/modals/users-search.js"></script>
+<script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+
 @endsection
 @section('scripts')
 <script type="text/javascript">
@@ -161,7 +156,7 @@ data-kt-drawer-width="500px">
                 let id = $(this).attr('data-id');
 
                 Swal.fire({
-                    html: `Are you sure you want to delete this user`,
+                    html: `Are you sure you want to delete this setting`,
                     icon: "info",
                     buttonsStyling: false,
                     showCancelButton: true,

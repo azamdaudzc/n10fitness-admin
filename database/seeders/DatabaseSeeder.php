@@ -61,10 +61,10 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\ExerciseMovementPattern::create([
-            'name' => 'Shoulder',
+            'name' => 'Horizontal Abduction',
         ]);
         \App\Models\ExerciseMovementPattern::create([
-            'name' => 'Shoulder',
+            'name' => 'Hinge',
         ]);
 
 

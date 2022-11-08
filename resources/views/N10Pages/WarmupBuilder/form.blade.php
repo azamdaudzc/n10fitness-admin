@@ -51,11 +51,15 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="form-label">Thumbnail:</label>
-                                        <input type="text" name="thumbnail" class="form-control mb-2 mb-md-0"
+                                        <input type="file" name="thumbnail" class="form-control mb-2 mb-md-0 imgInp"
                                             placeholder="Thumbnail" value="{{$wv->thumbnail}}" />
+                                        <input type="hidden" value="{{$wv->thumbnail}}" name="old_thumbnail">
                                     </div>
+                                    <div class="col-md-3">
+                                        <img @if($wv->thumbnail ==null)src="{{asset('assets/media/sample/image-area.jpg')}}" @else src="{{asset('storage/' . $wv->thumbnail)}}" @endif  class=" mt-3 thumbnail-image " />
 
-                                    <div class="col-md-4">
+                                    </div>
+                                    <div class="col-md-3">
                                         <a href="javascript:;" data-repeater-delete
                                             class="btn btn-sm btn-light-danger mt-3 mt-md-8">
                                             <i class="la la-trash-o"></i>Delete
@@ -74,11 +78,15 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="form-label">Thumbnail:</label>
-                                        <input type="text" name="thumbnail" class="form-control mb-2 mb-md-0"
+                                        <input type="file" name="thumbnail" class="form-control mb-2 mb-md-0 imgInp"
                                             placeholder="Thumbnail" />
                                     </div>
+                                    <div class="col-md-3">
+                                        <img src="{{asset('assets/media/sample/image-area.jpg')}}"  class=" mt-3 thumbnail-image " />
 
-                                    <div class="col-md-4">
+                                    </div>
+
+                                    <div class="col-md-3">
                                         <a href="javascript:;" data-repeater-delete
                                             class="btn btn-sm btn-light-danger mt-3 mt-md-8">
                                             <i class="la la-trash-o"></i>Delete
@@ -118,15 +126,7 @@
     </div>
 @endsection
 
-@section('page_scripts')
-    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-    <script src="assets/js/custom/apps/user-management/users/list/export-users.js"></script>
-    <script src="assets/js/custom/apps/user-management/users/list/add.js"></script>
-    <script src="assets/js/widgets.bundle.js"></script>
-    <script src="assets/js/custom/widgets.js"></script>
-    <script src="assets/js/custom/apps/chat/chat.js"></script>
-    <script src="assets/js/custom/utilities/modals/users-search.js"></script>
-@endsection
+
 @section('scripts')
     <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script type="text/javascript">
@@ -186,7 +186,16 @@
             });
 
 
-
+            $('body').on('change', '.imgInp', function() {
+                let input = this;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $(input).parent().parent().find('.thumbnail-image').attr("src",  e.target.result );
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
         });
     </script>
 @endsection

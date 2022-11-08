@@ -28,7 +28,6 @@ class WarmupBuilder extends Model
 
     static $rules = [
 		'name' => 'required',
-
     ];
 
     protected $perPage = 20;

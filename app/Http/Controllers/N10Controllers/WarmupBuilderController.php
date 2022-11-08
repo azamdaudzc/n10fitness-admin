@@ -34,7 +34,7 @@ class WarmupBuilderController extends Controller
         $sub_page_heading = "Add Warmup";
         $data = new WarmupBuilder();
         $title = "Add Warmup";
-        if ($id>0) {
+        if ($id > 0) {
             $title = "Edit Warmup";
             $page_heading = "Edit Warmup";
             $sub_page_heading = "Edit Warmup";
@@ -43,7 +43,6 @@ class WarmupBuilderController extends Controller
 
         return view('N10Pages.WarmupBuilder.form', compact('data', 'title', 'page_heading', 'sub_page_heading', 'warmupvideos'));
     }
-
 
     public function store(Request $request)
     {
@@ -55,11 +54,18 @@ class WarmupBuilderController extends Controller
 
             WarmupVideo::where('warmup_builder_id', $request->id)->delete();
             foreach ($request->kt_docs_repeater_basic as $item) {
-
-                $thumbnail = $item['thumbnail'];
-                $video_url = $item['video_url'];
-                $lid = $request->id;
-                if ($video_url !== null) {
+                if ($item['video_url'] !== null) {
+                    if (array_key_exists('thumbnail', $item)) {
+                        $thumbnail = $this->saveThumbnailImage($request, $item['thumbnail']);
+                    } else {
+                        if (array_key_exists('old_thumbnail', $item)) {
+                            $thumbnail = $item['old_thumbnail'];
+                        } else {
+                            $thumbnail = null;
+                        }
+                    }
+                    $video_url = $item['video_url'];
+                    $lid = $request->id;
                     WarmupVideo::create([
                         'warmup_builder_id' => $lid,
                         'thumbnail' => $thumbnail,
@@ -71,15 +77,23 @@ class WarmupBuilderController extends Controller
             return response()->json(['success' => true, 'msg' => 'Warmup Updated']);
         } else {
             request()->validate(WarmupBuilder::$rules);
-            $warmup = WarmupBuilder::create(array_merge($request->all(),['created_by' => Auth::user()->id]));
+            $warmup = WarmupBuilder::create(array_merge($request->all(), ['created_by' => Auth::user()->id]));
 
             foreach ($request->kt_docs_repeater_basic as $item) {
 
-                $thumbnail = $item['thumbnail'];
-                $video_url = $item['video_url'];
-                $lid = $warmup->id;
-                if ($video_url !== null) {
 
+                if ($item['video_url'] !== null) {
+                    if (array_key_exists('thumbnail', $item)) {
+                        $thumbnail = $this->saveThumbnailImage($request, $item['thumbnail']);
+                    } else {
+                        if (array_key_exists('old_thumbnail', $item)) {
+                            $thumbnail = $item['old_thumbnail'];
+                        } else {
+                            $thumbnail = null;
+                        }
+                    }
+                    $video_url = $item['video_url'];
+                    $lid = $warmup->id;
                     WarmupVideo::create([
                         'warmup_builder_id' => $lid,
                         'thumbnail' => $thumbnail,

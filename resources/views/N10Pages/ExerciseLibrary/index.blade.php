@@ -28,6 +28,16 @@ Users
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel">
                 <div class="card">
+                    <div class="card-header border-0 pt-6">
+                        <div class="card-title">
+                            <div class="d-flex align-items-center position-relative my-1">
+                                <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
+                                <input type="text" data-kt-user-table-filter="search" id="search_table_1"
+                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Question" />
+                            </div>
+                        </div>
+
+                    </div>
                 <div class="card-body py-4">
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="approved_table">
                     <thead>
@@ -45,6 +55,23 @@ Users
             </div>
             <div class="tab-pane fade" id="kt_tab_pane_2" role="tabpanel">
                 <div class="card">
+                    <div class="card-header border-0 pt-6">
+                        <div class="card-title">
+                            <div class="d-flex align-items-center position-relative my-1">
+                                <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
+                                <input type="text" data-kt-user-table-filter="search" id="search_table_2"
+                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Question" />
+                            </div>
+                        </div>
+                        <div class="card-toolbar">
+
+                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                <button type="button" class="btn btn-primary" onclick="createNewLibrary()">
+                                    <i class="fa-solid fa-plus fs-2"></i>Create New
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 <div class="card-body py-4">
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="requested_table">
                     <thead>
@@ -62,6 +89,16 @@ Users
             </div>
             <div class="tab-pane fade" id="kt_tab_pane_3" role="tabpanel">
                 <div class="card">
+                    <div class="card-header border-0 pt-6">
+                        <div class="card-title">
+                            <div class="d-flex align-items-center position-relative my-1">
+                                <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
+                                <input type="text" data-kt-user-table-filter="search" id="search_table_3"
+                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Question" />
+                            </div>
+                        </div>
+
+                    </div>
                 <div class="card-body py-4">
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="rejected_table">
                     <thead>
@@ -97,16 +134,14 @@ data-kt-drawer-width="500px">
 @endsection
 
 @section('page_scripts')
-<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-<script src="assets/js/custom/apps/user-management/users/list/export-users.js"></script>
-<script src="assets/js/custom/apps/user-management/users/list/add.js"></script>
-<script src="assets/js/widgets.bundle.js"></script>
-<script src="assets/js/custom/widgets.js"></script>
-<script src="assets/js/custom/apps/chat/chat.js"></script>
-<script src="assets/js/custom/utilities/modals/users-search.js"></script>
+<script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+
 @endsection
 @section('scripts')
 <script type="text/javascript">
+function createNewLibrary() {
+            window.location.href="{{ route('exerciselibrary.create-edit',' ')}}";
+        };
     $(function() {
 
         let form_body = $('#subdiv_kt_drawer_example_basic');
@@ -180,14 +215,18 @@ data-kt-drawer-width="500px">
             ],
         });
 
-        $('#search_table').on('keyup', function() {
+        $('#search_table_1').on('keyup', function() {
             table.search($(this).val()).draw();
         });
-
-
-        $('.create_new_record').on('click', function() {
-            window.location.href="{{ route('exerciselibrary.create-edit','')}}";
+        $('#search_table_2').on('keyup', function() {
+            table2.search($(this).val()).draw();
         });
+        $('#search_table_3').on('keyup', function() {
+            table3.search($(this).val()).draw();
+        });
+
+
+
 
 
             function reloadTable() {
