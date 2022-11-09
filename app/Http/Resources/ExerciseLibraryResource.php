@@ -47,15 +47,7 @@ class ExerciseLibraryResource extends JsonResource
 
 
                 ';
-                if($library->approved_by==0 && $library->rejected_by==0){
-                    $actions.='<li>
-                    <a class="dropdown-item approve_record" data-id="' . $library->id . '" href="javascript:void(0);">Approve</a>
-                    </li>';
 
-                    $actions.='<li>
-                    <a class="dropdown-item reject_record" data-id="' . $library->id . '" href="javascript:void(0);">Reject</a>
-                    </li>';
-                }
 
                 $actions.='<li>
                 <a class="dropdown-item delete_record" data-id="' . $library->id . '" href="javascript:void(0);">Delete</a>

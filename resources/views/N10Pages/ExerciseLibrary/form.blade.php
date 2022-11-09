@@ -126,7 +126,7 @@
                                 <div class="mb-10">
                                     <label for="description" class="form-label">Description</label>
                                     <textarea class="form-control" placeholder="Description" name="description" type="text"
-                                        id="description" value="{{ $library->description }}"></textarea>
+                                        id="description" >{{ $library->description }}</textarea>
                                 </div>
 
 
@@ -169,7 +169,7 @@
                                                 </div>
                                             </div>
                                             @endforeach
-                                            @isset($library_muscles)
+                                            @if($library_muscles->count()>0)
                                             @else
                                             <div data-repeater-item>
                                                 <div class="form-group row">
@@ -201,7 +201,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @endisset
+                                            @endif
                                         </div>
                                     </div>
                                     <!--end::Form group-->
@@ -279,7 +279,17 @@
                         console.log(d);
                         if (d.success == true) {
                             toastr.success(d.msg);
-                            window.location.href="{{route('exerciselibrary.index')}}";
+                            var goto=1;
+                            if(d.type=='approved'){
+                                goto=1;
+                            }
+                            else if(d.type=='rejected'){
+                                goto=3;
+                            }
+                            else{
+                                goto=2;
+                            }
+                            window.location.href="{{route('exerciselibrary.index')}}?goto="+goto;
                         }
                         $('#crud-form-submit-button').attr("data-kt-indicator", "off");
 

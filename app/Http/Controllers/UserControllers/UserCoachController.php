@@ -72,6 +72,20 @@ class UserCoachController extends Controller
         ));
     }
 
+    public function profile()
+    {
+        $id=Auth::user()->id;
+        $user = new User();
+        $page_heading = 'Profile';
+        $sub_page_heading = 'my profile';
+        if($id){
+            $user = User::find($id);
+        }
+        $all_users=User::where('user_type','user')->get();
+        return view('N10Pages.UserPages.UserCoach.view', compact('user','sub_page_heading','page_heading','all_users'
+        ));
+    }
+
 
     public function store(Request $request)
     {

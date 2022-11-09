@@ -7,8 +7,10 @@
         </div>
         <!--end::Card title-->
         <!--begin::Action-->
-        <a href="../../demo24/dist/account/settings.html" class="btn btn-primary align-self-center">Edit Profile</a>
+
+
         <!--end::Action-->
+
     </div>
     <!--begin::Card header-->
     <!--begin::Card body-->
@@ -16,11 +18,11 @@
         <!--begin::Row-->
         <div class="row mb-7">
             <!--begin::Label-->
-            <label class="col-lg-4 fw-semibold text-muted">Name</label>
+            <label class="col-lg-12 fw-semibold text-muted">Question</label>
             <!--end::Label-->
             <!--begin::Col-->
-            <div class="col-lg-8">
-                <span class="fw-bold fs-6 text-gray-800">{{$data->name}}</span>
+            <div class="col-lg-12">
+                <span class="fw-bold fs-6 text-gray-800">{{ $data->question }}</span>
             </div>
             <!--end::Col-->
         </div>
@@ -28,104 +30,110 @@
         <!--begin::Input group-->
         <div class="row mb-7">
             <!--begin::Label-->
-            <label class="col-lg-4 fw-semibold text-muted">Company</label>
+            <label class="col-lg-12 fw-semibold text-muted">Display Order</label>
             <!--end::Label-->
             <!--begin::Col-->
-            <div class="col-lg-8 fv-row">
-                <span class="fw-semibold text-gray-800 fs-6">Keenthemes</span>
+            <div class="col-lg-12 fv-row">
+                <span class="fw-semibold text-gray-800 fs-6">{{ $data->display_order }}</span>
             </div>
             <!--end::Col-->
         </div>
         <!--end::Input group-->
-        <!--begin::Input group-->
-        <div class="row mb-7">
-            <!--begin::Label-->
-            <label class="col-lg-4 fw-semibold text-muted">Contact Phone
-            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" aria-label="Phone number must be active" data-bs-original-title="Phone number must be active" data-kt-initialized="1"></i></label>
-            <!--end::Label-->
-            <!--begin::Col-->
-            <div class="col-lg-8 d-flex align-items-center">
-                <span class="fw-bold fs-6 text-gray-800 me-2">044 3276 454 935</span>
-                <span class="badge badge-success">Verified</span>
-            </div>
-            <!--end::Col-->
-        </div>
-        <!--end::Input group-->
-        <!--begin::Input group-->
-        <div class="row mb-7">
-            <!--begin::Label-->
-            <label class="col-lg-4 fw-semibold text-muted">Company Site</label>
-            <!--end::Label-->
-            <!--begin::Col-->
-            <div class="col-lg-8">
-                <a href="#" class="fw-semibold fs-6 text-gray-800 text-hover-primary">keenthemes.com</a>
-            </div>
-            <!--end::Col-->
-        </div>
-        <!--end::Input group-->
-        <!--begin::Input group-->
-        <div class="row mb-7">
-            <!--begin::Label-->
-            <label class="col-lg-4 fw-semibold text-muted">Country
-            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" aria-label="Country of origination" data-bs-original-title="Country of origination" data-kt-initialized="1"></i></label>
-            <!--end::Label-->
-            <!--begin::Col-->
-            <div class="col-lg-8">
-                <span class="fw-bold fs-6 text-gray-800">Germany</span>
-            </div>
-            <!--end::Col-->
-        </div>
-        <!--end::Input group-->
-        <!--begin::Input group-->
-        <div class="row mb-7">
-            <!--begin::Label-->
-            <label class="col-lg-4 fw-semibold text-muted">Communication</label>
-            <!--end::Label-->
-            <!--begin::Col-->
-            <div class="col-lg-8">
-                <span class="fw-bold fs-6 text-gray-800">Email, Phone</span>
-            </div>
-            <!--end::Col-->
-        </div>
-        <!--end::Input group-->
-        <!--begin::Input group-->
-        <div class="row mb-10">
-            <!--begin::Label-->
-            <label class="col-lg-4 fw-semibold text-muted">Allow Changes</label>
-            <!--begin::Label-->
-            <!--begin::Label-->
-            <div class="col-lg-8">
-                <span class="fw-semibold fs-6 text-gray-800">Yes</span>
-            </div>
-            <!--begin::Label-->
-        </div>
-        <!--end::Input group-->
-        <!--begin::Notice-->
-        <div class="notice d-flex bg-light-warning rounded border-warning border border-dashed p-6">
-            <!--begin::Icon-->
-            <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-            <span class="svg-icon svg-icon-2tx svg-icon-warning me-4">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
-                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor"></rect>
-                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor"></rect>
-                </svg>
-            </span>
-            <!--end::Svg Icon-->
-            <!--end::Icon-->
-            <!--begin::Wrapper-->
-            <div class="d-flex flex-stack flex-grow-1">
-                <!--begin::Content-->
-                <div class="fw-semibold">
-                    <h4 class="text-gray-900 fw-bold">We need your attention!</h4>
-                    <div class="fs-6 text-gray-700">Your payment was declined. To start using tools, please
-                    <a class="fw-bold" href="../../demo24/dist/account/billing.html">Add Payment Method</a>.</div>
+
+        @foreach ($question_inputs as $input)
+            <div class="col">
+                @if ($input->input_type == 'select')
+                    <div class="fv-row mb-7 fv-plugins-icon-container" data-select2-id="select2-data-114-vrpt">
+                        <label class="fs-6 fw-semibold form-label mt-3">
+                            <span @if ($input->is_required) class="required" @endif>{{ $input->label }}</span>
+                        </label>
+                        <select name="" class="form-select form-select-solid lh-1 py-3 ">
+                            <option value="">Select {{ $input->placeholder }}</option>
+                            @if ($input->options != null)
+                                @foreach (json_decode($input->options) as $option)
+                                    <option value="{{ $option->question_value }}">{{ $option->question_label }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+
+                    </div>
+                @elseif ($input->input_type == 'radio')
+                    <div class="py-5 mb-5">
+                        <label class="fs-6 fw-semibold form-label mt-3">
+                            <span @if ($input->is_required) class="required" @endif>{{ $input->label }}</span>
+                        </label>
+
+                        @if ($input->options != null)
+                            @foreach (json_decode($input->options) as $option)
+                                <div class="mb-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio"
+                                            value="{{ $option->question_value }}" id="flexCheckDefault1" name="radio2">
+                                        <label class="form-check-label"
+                                            for="flexCheckDefault1">{{ $option->question_label }}</label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+
+
+                    </div>
+
+                @elseif ($input->input_type == 'multi_select')
+                    <div class="fv-row mb-7 fv-plugins-icon-container" data-select2-id="select2-data-114-vrpt">
+                        <label class="fs-6 fw-semibold form-label mt-3">
+                            <span @if ($input->is_required) class="required" @endif>{{ $input->label }}</span>
+                        </label>
+                        <select class="js-example-basic-multiple form-select" name="states[]" multiple="multiple" >
+
+                            <option value="">Select {{ $input->placeholder }}</option>
+                            @if ($input->options != null)
+                                @foreach (json_decode($input->options) as $option)
+                                    <option value="{{ $option->question_value }}">{{ $option->question_label }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+
+                    </div>
+
+                @elseif ($input->input_type == 'textarea')
+                <div class="fv-row mb-7">
+                    <label class="fs-6 fw-semibold form-label mt-3">
+                        <span @if ($input->is_required) class="required" @endif>{{ $input->label }}</span>
+                    </label>
+                    <textarea class="form-control form-control-solid"
+                        placeholder="{{ $input->placeholder }}" id="" cols="10" rows="5"></textarea><br>
+
+
                 </div>
-                <!--end::Content-->
+                @elseif ($input->input_type == 'image')
+                <div class="fv-row mb-7">
+                    <label class="fs-6 fw-semibold form-label mt-3">
+                        <span @if ($input->is_required) class="required" @endif>{{ $input->label }}</span>
+                    </label>
+                    <input class="form-control form-control-solid" type="file"
+                        placeholder="{{ $input->placeholder }}" id=""><br>
+                </div>
+                @else
+                    <div class="fv-row mb-7">
+                        <label class="fs-6 fw-semibold form-label mt-3">
+                            <span @if ($input->is_required) class="required" @endif>{{ $input->label }}</span>
+                        </label>
+                        <input class="form-control form-control-solid" type="{{ $input->input_type }}"
+                            placeholder="{{ $input->placeholder }}" id=""><br>
+                    </div>
+                @endif
             </div>
-            <!--end::Wrapper-->
-        </div>
-        <!--end::Notice-->
+        @endforeach
+
+
+
+
+
+
+
     </div>
     <!--end::Card body-->
 </div>
+

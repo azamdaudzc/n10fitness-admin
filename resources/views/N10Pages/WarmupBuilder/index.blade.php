@@ -19,9 +19,9 @@
                     <div class="card-toolbar">
 
                         <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                            <button type="button" class="btn btn-primary" onclick="createNewQuestion()">
+                            <a type="button" class="btn btn-primary" href="{{ route('warmup.builder.create-edit') }}">
                                 <i class="fa-solid fa-plus fs-2"></i>Create New
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -54,9 +54,7 @@
 @endsection
 @section('scripts')
     <script type="text/javascript">
-        function createNewQuestion() {
-            window.location.href = "{{ route('warmup.builder.create-edit') }}";
-        }
+
         $(function() {
 
             let form_body = $('#subdiv_kt_drawer_example_basic');

@@ -69,6 +69,8 @@ data-kt-drawer-width="500px">
                     id
                 }, function(d) {
                     form_body.html(d);
+                    $('.js-example-basic-multiple').select2();
+
                 });
             });
 

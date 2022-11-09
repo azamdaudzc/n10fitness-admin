@@ -16,12 +16,16 @@ use App\Http\Resources\ExerciseLibraryResource;
 
 class ExerciseLibraryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $page_heading = 'ExerciseLibrary';
         $sub_page_heading = 'View all exercise library';
         $library = new ExerciseLibrary();
-        return view('N10Pages.ExerciseLibrary.index', compact('page_heading', 'sub_page_heading', 'library'));
+        $goto=1;
+        if(isset($request->goto)){
+            $goto=$request->goto;
+        }
+        return view('N10Pages.ExerciseLibrary.index', compact('goto','page_heading', 'sub_page_heading', 'library'));
     }
 
     public function list(Request $request)
@@ -47,8 +51,9 @@ class ExerciseLibraryController extends Controller
             $title="Edit ExerciseLibrary";
             $data = ExerciseLibrary::where('id',$request->id)->with('exerciseCategory','exerciseEquipment','exerciseMovementPattern')->get()->first();
         }
+        $library_muscles = ExerciseLibraryMuscle::where('exercise_library_id', $request->id)->with('exerciseMuscle')->get();
 
-        return view('N10Pages.ExerciseLibrary.view', compact('data','title','page_heading','sub_page_heading'));
+        return view('N10Pages.ExerciseLibrary.view', compact('library_muscles','data','title','page_heading','sub_page_heading'));
     }
 
     public function create_edit($id = 0)
@@ -121,8 +126,16 @@ class ExerciseLibraryController extends Controller
                     ]);
                 }
             }
-
-            return response()->json(['success' => true, 'msg' => 'ExerciseLibrary Edit Complete']);
+            if($library->approved_by>0){
+                $type='approved';
+            }
+            else if($library->rejected_by>0){
+                $type='rejected';
+            }
+            else{
+                $type='none';
+            }
+            return response()->json(['success' => true, 'msg' => 'ExerciseLibrary Edit Complete','type' => $type]);
         } else {
             request()->validate(ExerciseLibrary::rules());
             $newavatar = $this->updateprofile($request, 'avatar');
@@ -144,7 +157,10 @@ class ExerciseLibraryController extends Controller
                     ]);
                 }
             }
-            return response()->json(['success' => true, 'msg' => 'ExerciseLibrary Created']);
+
+            $type='requested';
+
+            return response()->json(['success' => true, 'msg' => 'ExerciseLibrary Created','type' => $type]);
         }
         return response()->json(['success' => false, 'msg' => 'Some Error']);
     }

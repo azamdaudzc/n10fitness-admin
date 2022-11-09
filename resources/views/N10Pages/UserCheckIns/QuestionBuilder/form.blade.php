@@ -39,8 +39,8 @@
                             @foreach ($question_inputs as $input)
                                 <div data-repeater-item>
                                     <div class="form-group row mb-5">
-                                        <div class="col-md-1">
-                                            <label class="form-label">Type</label>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Type/Placeholder</label>
 
                                             <select class="form-control mb-2 mb-md-0" onchange="selectChanged(this)"
                                                 name="input_type" id="">
@@ -53,29 +53,37 @@
                                                     Radio</option>
                                                 <option value="select" @if ($input->input_type == 'select') selected @endif>
                                                     Select</option>
+                                                <option value="image" @if ($input->input_type == 'image') selected @endif>
+                                                    Image</option>
+                                                <option value="multi_select"
+                                                    @if ($input->input_type == 'multi_select') selected @endif>
+                                                    Multi Select</option>
+                                                <option value="date" @if ($input->input_type == 'date') selected @endif>
+                                                    Date</option>
+                                                <option value="checkbox" @if ($input->input_type == 'checkbox') selected @endif>
+                                                    checkbox</option>
+                                                <option value="textarea" @if ($input->input_type == 'textarea') selected @endif>
+                                                    Textarea</option>
                                             </select>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <label class="form-label">Placeholder</label>
                                             <input type="text" name="placeholder" value="{{ $input->placeholder }}"
                                                 placeholder="Placeholder" class="form-control mb-2 mb-md-0">
                                         </div>
+
+
                                         <div class="col-md-2">
-                                            <label class="form-label">Label</label>
+                                            <label class="form-label">Label/Order</label>
                                             <input type="text" name="label" value="{{ $input->label }}"
                                                 placeholder="Label" class="form-control mb-2 mb-md-0">
-                                        </div>
-                                        <div class="col-md-1">
-                                            <label class="form-label">Order</label>
                                             <input type="number" name="display_order" value="{{ $input->display_order }}"
                                                 placeholder="Display Order" class="form-control mb-2 mb-md-0">
                                         </div>
 
+
                                         <div class="col-md-4 nested-option"
                                             @if ($input->options == null) style="display: none" @endif>
                                             <div class="inner-repeater">
-                                                <div data-repeater-list="kt_docs_repeater_nested_inner" class="mb-5">
+                                                <div data-repeater-list="kt_docs_repeater_nested_inner"
+                                                    class="mb-5 nested-option-inner">
                                                     @if (json_decode($input->options) != null)
                                                         @foreach (json_decode($input->options) as $option)
                                                             <div data-repeater-item>
@@ -95,6 +103,18 @@
                                                                 </div>
                                                             </div>
                                                         @endforeach
+                                                    @else
+                                                        <div data-repeater-item> <label class="form-label">Options
+                                                                label/value</label>
+                                                            <div class="input-group pb-3"> <input type="text"
+                                                                    name="question_label" class="form-control"
+                                                                    placeholder="Label" /> <input type="text"
+                                                                    name="question_value" class="form-control"
+                                                                    placeholder="Value" /> <button
+                                                                    class="border border-secondary btn btn-icon btn-light-danger"
+                                                                    data-repeater-delete type="button"> <i
+                                                                        class="la la-trash-o fs-3"></i> </button> </div>
+                                                        </div>
                                                     @endif
                                                 </div>
                                                 <button class="btn btn-sm btn-light-primary" data-repeater-create
@@ -105,9 +125,9 @@
                                         </div>
 
 
-                                        <div class="col-md-1">
+                                        <div class="col-md-2 ">
                                             <div class="form-check form-check-custom form-check-solid mt-2 mt-md-11">
-                                                <input class="form-check-input"
+                                                <input class="form-check-input requiredcheckbox"
                                                     @if ($input->is_required == 1) checked @endif name="is_required"
                                                     type="checkbox" value="" />
                                                 <label class="form-check-label" for="form_checkbox">
@@ -124,70 +144,82 @@
                                     </div>
                                 </div>
                             @endforeach
-                            @isset($question_inputs)
-                            @else
-                            <div data-repeater-item>
-                                <div class="form-group row mb-5">
-                                    <div class="col-md-1">
-                                        <label class="form-label">Type</label>
+                            @if (!$question_inputs->count() > 0)
+                                <div data-repeater-item>
+                                    <div class="form-group row mb-5">
+                                        <div class="col-md-3">
+                                            <label class="form-label">Type/Placeholder</label>
 
-                                        <select class="form-control mb-2 mb-md-0" onchange="selectChanged(this)"
-                                            name="input_type" id="">
-                                            <option value="">Select Input Type</option>
-                                            <option value="text">Text</option>
-                                            <option value="number">Number</option>
-                                            <option value="radio">Radio</option>
-                                            <option value="select">Select</option>
-                                        </select>
-                                    </div>
+                                            <select class="form-control mb-2 mb-md-0" onchange="selectChanged(this)"
+                                                name="input_type" id="">
+                                                <option value="">Select Input Type</option>
+                                                <option value="text">Text</option>
+                                                <option value="number">Number</option>
+                                                <option value="radio">Radio</option>
+                                                <option value="select">Select</option>
+                                                <option value="image">Image</option>
+                                                <option value="date">Date</option>
+                                                <option value="checkbox">checkbox</option>
+                                                <option value="multi_select">Multi Select</option>
+                                                <option value="textarea">Text Area</option>
+                                            </select>
 
-                                    <div class="col-md-2">
-                                        <label class="form-label">Placeholder</label>
-                                        <input type="text" name="placeholder" placeholder="Placeholder"
-                                            class="form-control mb-2 mb-md-0">
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label">Label</label>
-                                        <input type="text" name="label" placeholder="Label"
-                                            class="form-control mb-2 mb-md-0">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <label class="form-label">Order</label>
-                                        <input type="number" name="display_order" placeholder="Display Order"
-                                            class="form-control mb-2 mb-md-0">
-                                    </div>
+                                            <input type="text" name="placeholder" placeholder="Placeholder"
+                                                class="form-control mb-2 mb-md-0">
+                                        </div>
 
-                                    <div class="col-md-4 nested-option" style="display: none">
-                                        <div class="inner-repeater">
-                                            <div data-repeater-list="kt_docs_repeater_nested_inner"
-                                                class="mb-5 nested-option-inner">
+
+                                        <div class="col-md-2">
+                                            <label class="form-label">Label/Order</label>
+                                            <input type="text" name="label" placeholder="Label"
+                                                class="form-control mb-2 mb-md-0">
+                                            <input type="number" name="display_order" placeholder="Display Order"
+                                                class="form-control mb-2 mb-md-0">
+                                        </div>
+
+
+                                        <div class="col-md-4 nested-option" style="display: none">
+                                            <div class="inner-repeater">
+                                                <div data-repeater-list="kt_docs_repeater_nested_inner"
+                                                    class="mb-5 nested-option-inner">
+                                                    <div data-repeater-item> <label class="form-label">Options
+                                                            label/value</label>
+                                                        <div class="input-group pb-3"> <input type="text"
+                                                                name="question_label" class="form-control"
+                                                                placeholder="Label" /> <input type="text"
+                                                                name="question_value" class="form-control"
+                                                                placeholder="Value" /> <button
+                                                                class="border border-secondary btn btn-icon btn-light-danger"
+                                                                data-repeater-delete type="button"> <i
+                                                                    class="la la-trash-o fs-3"></i> </button> </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-sm btn-light-primary" data-repeater-create
+                                                    type="button">
+                                                    <i class="la la-plus"></i> Add Option
+                                                </button>
                                             </div>
-                                            <button class="btn btn-sm btn-light-primary" data-repeater-create
-                                                type="button">
-                                                <i class="la la-plus"></i> Add Option
-                                            </button>
                                         </div>
-                                    </div>
 
 
-                                    <div class="col-md-1">
-                                        <div class="form-check form-check-custom form-check-solid mt-2 mt-md-11">
-                                            <input class="form-check-input" name="is_required" type="checkbox"
-                                                value="" id="form_checkbox" />
-                                            <label class="form-check-label" for="form_checkbox">
-                                                Required
-                                            </label>
+                                        <div class="col-md-2">
+                                            <div class="form-check form-check-custom form-check-solid mt-2 mt-md-11">
+                                                <input class="form-check-input" name="is_required" type="checkbox"
+                                                    value="" id="form_checkbox" />
+                                                <label class="form-check-label" for="form_checkbox">
+                                                    Required
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <a href="javascript:;" data-repeater-delete
-                                            class="btn btn-sm btn-light-danger mt-3 mt-md-9">
-                                            <i class="la la-trash-o fs-3"></i>
-                                        </a>
+                                        <div class="col-md-1">
+                                            <a href="javascript:;" data-repeater-delete
+                                                class="btn btn-sm btn-light-danger mt-3 mt-md-9">
+                                                <i class="la la-trash-o fs-3"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            @endisset
+                            @endif
                         </div>
                     </div>
                     <!--end::Form group-->
@@ -237,6 +269,8 @@
 
                 show: function() {
                     $(this).slideDown();
+                    $(this).find("div.nested-option").hide();
+
                 },
 
                 hide: function(deleteElement) {
@@ -290,25 +324,18 @@
         });
 
         function selectChanged(select) {
-            var option_element =
-                '<div data-repeater-item> <label class="form-label">Options label/value</label> <div class="input-group pb-3"> <input type="text" name="question_label" class="form-control" placeholder="Label" />  <input type="text" name="question_value" class="form-control" placeholder="Value" /> <button class="border border-secondary btn btn-icon btn-light-danger" data-repeater-delete type="button"> <i class="la la-trash-o fs-3"></i> </button>  </div> </div>';
-
             switch ($(select).val()) {
                 case 'radio':
                     $(select).parent().parent().find("div.nested-option").show();
-                    $(select).parent().parent().find("div.nested-option").find("div.nested-option-inner").html(
-                        option_element);
-                    startRepeater();
                     break;
                 case 'select':
                     $(select).parent().parent().find("div.nested-option").show();
-                    $(select).parent().parent().find("div.nested-option").find("div.nested-option-inner").html(
-                        option_element);
-                    startRepeater();
+                    break;
+                case 'multi_select':
+                    $(select).parent().parent().find("div.nested-option").show();
                     break;
                 default:
                     $(select).parent().parent().find("div.nested-option").hide();
-                    $(select).parent().parent().find("div.nested-option").find("div.nested-option-inner").html('');
                     break;
             }
         }

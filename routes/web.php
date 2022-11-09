@@ -14,6 +14,7 @@ use App\Http\Controllers\N10Controllers\ExerciseLibraryController;
 use App\Http\Controllers\CheckIns\UserCheckinQuestionsController;
 use App\Http\Controllers\N10Controllers\WarmupBuilderController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,7 +44,6 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
 
 
 
-
     Route::controller(UserAdminController::class)->group(function(){
         Route::get('user/admin', 'index')->name('user.admin.index');
         Route::get('user/admin/lists', 'list')->name('user.admin.list');
@@ -52,6 +52,7 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::post('user/admin/store', 'store')->name('user.admin.store');
         Route::post('user/admin/delete', 'delete')->name('user.admin.delete');
         Route::get('user/admin/view/{id?}', 'view')->name('user.admin.view');
+        Route::get('user/admin/profile', 'profile')->name('user.admin.profile');
     });
 
     Route::controller(UserClientController::class)->group(function(){
@@ -62,6 +63,7 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::post('user/client/store', 'store')->name('user.client.store');
         Route::post('user/client/delete', 'delete')->name('user.client.delete');
         Route::get('user/client/view/{id?}', 'view')->name('user.client.view');
+        Route::get('user/client/profile', 'profile')->name('user.client.profile');
 
     });
 
@@ -76,6 +78,7 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::post('user/coach/attachclient', 'attachclient')->name('user.coach.attachclient');
         Route::post('user/coach/deleteclient', 'deleteclient')->name('user.coach.deleteclient');
         Route::get('user/coach/view/{id?}', 'view')->name('user.coach.view');
+        Route::get('user/coach/profile', 'profile')->name('user.coach.profile');
 
     });
 

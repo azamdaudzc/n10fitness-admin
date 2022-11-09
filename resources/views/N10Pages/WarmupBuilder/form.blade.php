@@ -26,14 +26,14 @@
 
                 <div class="mb-10">
                     <label for="description" class="form-label">Description</label>
-                    <input class="form-control" placeholder="description" name="description" type="text"
-                        id="description" value="{{ @$data->description }}">
+                    <textarea class="form-control" placeholder="description" name="description" type="text"
+                        id="description" >{{ @$data->description }}</textarea>
                 </div>
 
                 <div class="mb-10">
                     <label for="instruction" class="form-label">Instruction</label>
-                    <input class="form-control" placeholder="instruction" name="instructions" type="text"
-                        id="instruction" value="{{ @$data->instructions }}">
+                    <textarea class="form-control" placeholder="instruction" name="instructions" type="text"
+                        id="instruction" >{{ @$data->instructions }}</textarea>
                 </div>
 
                 <!--begin::Repeater-->
@@ -69,8 +69,8 @@
 
                             </div>
                             @endforeach
-                            @isset($warmupvideos)
-                            @else
+                            @if(!$warmupvideos->count()>0)
+
                             <div data-repeater-item>
                                 <div class="form-group row">
                                     <div class="col-md-3">
@@ -96,7 +96,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @endisset
+                            @endif
                         </div>
                     </div>
                     <!--end::Form group-->

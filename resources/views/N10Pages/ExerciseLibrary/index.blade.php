@@ -12,13 +12,13 @@ Users
             <div class="d-grid">
                 <ul class="nav nav-tabs flex-nowrap text-nowrap">
                     <li class="nav-item">
-                        <a class="nav-link btn btn-active-light btn-color-gray-600 btn-active-color-primary rounded-bottom-0 active" data-bs-toggle="tab" href="#kt_tab_pane_1">Approved Libraries</a>
+                        <a class="nav-link btn btn-active-light btn-color-gray-600 btn-active-color-primary rounded-bottom-0 @if($goto==1) active @endif" data-bs-toggle="tab" href="#kt_tab_pane_1">Approved Libraries</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-active-light btn-color-gray-600 btn-active-color-primary rounded-bottom-0" data-bs-toggle="tab" href="#kt_tab_pane_2">Requested Libraries</a>
+                        <a class="nav-link btn btn-active-light btn-color-gray-600 btn-active-color-primary rounded-bottom-0 @if($goto==2) active @endif" data-bs-toggle="tab" href="#kt_tab_pane_2">Requested Libraries</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-active-light btn-color-gray-600 btn-active-color-primary rounded-bottom-0" data-bs-toggle="tab" href="#kt_tab_pane_3">Rejected Libraries</a>
+                        <a class="nav-link btn btn-active-light btn-color-gray-600 btn-active-color-primary rounded-bottom-0 @if($goto==3) active @endif" data-bs-toggle="tab" href="#kt_tab_pane_3">Rejected Libraries</a>
                     </li>
 
                 </ul>
@@ -26,7 +26,7 @@ Users
         </div>
 
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel">
+            <div class="tab-pane fade  @if($goto==1) show active @endif" id="kt_tab_pane_1" role="tabpanel">
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <div class="card-title">
@@ -53,7 +53,7 @@ Users
                 </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="kt_tab_pane_2" role="tabpanel">
+            <div class="tab-pane fade @if($goto==2)show  active @endif" id="kt_tab_pane_2" role="tabpanel">
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <div class="card-title">
@@ -86,7 +86,7 @@ Users
                 </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="kt_tab_pane_3" role="tabpanel">
+            <div class="tab-pane fade @if($goto==3) show active @endif" id="kt_tab_pane_3" role="tabpanel">
                 <div class="card">
                     <div class="card-header border-0 pt-6">
                         <div class="card-title">

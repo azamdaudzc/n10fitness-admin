@@ -58,20 +58,17 @@
 
             <input type="hidden" name="is_active" value="1">
 
-             <!--begin::Card-->
-             <div class="card pt-4 mb-6 mb-xl-9">
-                <!--begin::Card header-->
-                <div class="card-header border-0">
+
                     <!--begin::Card title-->
                     <div class="card-title flex-column">
                         <h2>Coach Permissions</h2>
                         <div class="fs-6 fw-semibold text-muted">Choose what permissions apply to each coach.</div>
                     </div>
                     <!--end::Card title-->
-                </div>
+
                 <!--end::Card header-->
                 <!--begin::Card body-->
-                <div class="card-body">
+
                     <!--begin::Form-->
                         <!--begin::Item-->
                         <div class="d-flex">
@@ -144,12 +141,8 @@
 
 
                     <!--end::Form-->
-                </div>
-                <!--end::Card body-->
-                <!--begin::Card footer-->
-                <!--end::Card footer-->
-            </div>
-            <!--end::Card-->
+
+
 
             <div class="error-area"></div>
             <div class="box-footer mt20">

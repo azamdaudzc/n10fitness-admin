@@ -566,7 +566,14 @@
 									<!--end::Menu separator-->
 									<!--begin::Menu item-->
 									<div class="menu-item px-5">
-										<a href="#" class="menu-link px-5">My Profile</a>
+                                        @if(Auth::user()->user_type=='admin')
+										<a href="{{route('user.admin.profile')}}" class="menu-link px-5">My Profile</a>
+                                        @elseif (Auth::user()->user_type=='client')
+										<a href="{{route('user.client.profile')}}" class="menu-link px-5">My Profile</a>
+                                        @elseif (Auth::user()->user_type=='coach')
+										<a href="{{route('user.coach.profile')}}" class="menu-link px-5">My Profile</a>
+                                        @else
+                                        @endif
 									</div>
 									<!--end::Menu item-->
 

@@ -35,11 +35,12 @@ class WarmupBuilderController extends Controller
             $title="Edit ExerciseLibrary";
             $data = WarmupBuilder::find($request->id);
         }
+        $videos = WarmupVideo::where('warmup_builder_id', $request->id)->get();
 
-        return view('N10Pages.ExerciseLibrary.view', compact('data','title','page_heading','sub_page_heading'));
+        return view('N10Pages.WarmupBuilder.view', compact('videos','data','title','page_heading','sub_page_heading'));
     }
 
-    public function create_edit($id)
+    public function create_edit($id=0)
     {
         $warmupvideos = WarmupVideo::where('warmup_builder_id', $id)->get();
         $page_heading = "Add Warmup";

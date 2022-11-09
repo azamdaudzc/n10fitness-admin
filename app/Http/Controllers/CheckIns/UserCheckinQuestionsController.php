@@ -29,23 +29,24 @@ class UserCheckinQuestionsController extends Controller
         $page_heading = 'ExerciseLibrary';
         $sub_page_heading = 'View all exercise library';
         $data = new CheckinQuestion();
-        $title="Add ExerciseLibrary";
-        if($request->id){
-            $title="Edit ExerciseLibrary";
+        $title = "Add ExerciseLibrary";
+        if ($request->id) {
+            $title = "Edit ExerciseLibrary";
             $data = CheckinQuestion::find($request->id);
         }
+        $question_inputs = CheckinQuestionInput::where('checkin_question_id', $request->id)->get();
 
-        return view('N10Pages.ExerciseLibrary.view', compact('data','title','page_heading','sub_page_heading'));
+        return view('N10Pages.UserCheckIns.QuestionBuilder.view', compact('question_inputs', 'data', 'title', 'page_heading', 'sub_page_heading'));
     }
 
-    public function create_edit($id)
+    public function create_edit($id = 0)
     {
         $question_inputs = CheckinQuestionInput::where('checkin_question_id', $id)->get();
         $page_heading = "Add CheckIn Question";
         $sub_page_heading = "Add CheckIn Question";
         $data = new CheckinQuestion();
         $title = "Add CheckIn Question";
-        if ($id>0) {
+        if ($id > 0) {
             $title = "Edit CheckIn Question";
             $page_heading = "Edit CheckIn Question";
             $sub_page_heading = "Edit CheckIn Question";
@@ -72,16 +73,19 @@ class UserCheckinQuestionsController extends Controller
                 $display_order = $item['display_order'];
                 if (array_key_exists("is_required", $item)) {
                     $is_required = 1;
-                }
-                else
+                } else
                     $is_required = 0;
                 $input_type = $item['input_type'];
                 $lid = $request->id;
                 if (array_key_exists("kt_docs_repeater_nested_inner", $item)) {
-                    $options=json_encode($item['kt_docs_repeater_nested_inner']);
-                }
-                else{
-                    $options=null;
+
+                    if ($input_type == 'multi_select' || $input_type == 'radio' || $input_type == 'select') {
+                        $options = json_encode($item['kt_docs_repeater_nested_inner']);
+                    } else {
+                        $options = null;
+                    }
+                } else {
+                    $options = null;
                 }
                 if ($input_type !== null) {
                     CheckinQuestionInput::create([
@@ -108,17 +112,19 @@ class UserCheckinQuestionsController extends Controller
                 $display_order = $item['display_order'];
                 if (array_key_exists("is_required", $item)) {
                     $is_required = 1;
-                }
-                else
+                } else
                     $is_required = 0;
                 $input_type = $item['input_type'];
                 $lid = $question->id;
                 if (array_key_exists("kt_docs_repeater_nested_inner", $item)) {
-                    $options=json_encode($item['kt_docs_repeater_nested_inner']);
+                    if ($input_type == 'multi_select' || $input_type == 'radio' || $input_type == 'select') {
+                        $options = json_encode($item['kt_docs_repeater_nested_inner']);
+                    } else {
+                        $options = null;
                     }
-                    else{
-                        $options=null;
-                    }
+                } else {
+                    $options = null;
+                }
                 if ($input_type !== null) {
 
                     CheckinQuestionInput::create([
