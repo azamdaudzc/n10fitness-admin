@@ -3,7 +3,7 @@
         <h3 class="card-title">{{$title}}</h3>
     </div>
     <div class="card-body py-5">
-        <form method="POST" id="crud-form" action="{{ route('user.client.store') }}" role="form" enctype="multipart/form-data">
+        <form method="POST" id="crud-form" action="{{ route('user.client.store') }}" role="form" enctype="multipart/form-data" autocomplete="off">
             @csrf
             @if($user)
             <input type="hidden" name="id" value="{{ $user->id }}">
@@ -86,7 +86,7 @@
 
             <div class="mb-10">
                 <label for="password" class="form-label">Password</label>
-                <input class="form-control" placeholder="password" name="password" type="password" value="" id="password">
+                <input class="form-control" placeholder="password" name="password" type="password" value="" id="password" autocomplete="new-password">
             </div>
 
 

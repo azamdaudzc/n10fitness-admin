@@ -525,6 +525,20 @@
 								<!--end::Menu-->
 							</div>
 							<!--end::Primary menu-->
+                            <div class="d-flex flex-column flex-center pb-8" id="kt_app_sidebar_footer_notification" style="border-radius: 24px">
+								<div class="cursor-pointer symbol symbol-20px symbol-circle" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-attach="parent" data-kt-menu-placement="right-end">
+                                    <img alt="Logo" src="{{asset('assets/media/sample/notification.png')}}" />
+								</div>
+								<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px" data-kt-menu="true">
+									<div class="separator my-2"></div>
+									<div class="menu-item px-5">
+										<a href="#" class="menu-link px-5">Notification1</a>
+									</div>
+									<div class="menu-item px-5">
+										<a href="#" class="menu-link px-5">Notification2</a>
+									</div>
+								</div>
+							</div>
 							<!--begin::Footer-->
 							<div class="d-flex flex-column flex-center pb-8" id="kt_app_sidebar_footer" style="border-radius: 24px">
 								<!--begin::User menu-->
@@ -595,6 +609,7 @@
 								<!--end::User account menu-->
 							</div>
 							<!--end::Footer-->
+
 						</div>
 						<!--end::Sidebar primary-->
 						<!--begin::Sidebar secondary-->

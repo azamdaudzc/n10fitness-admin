@@ -13,7 +13,7 @@ class UserCheckinQuestionsController extends Controller
     public function index()
     {
         $page_heading = 'CheckIn Questions';
-        $sub_page_heading = 'View All Questions';
+        $sub_page_heading = $this->getBreadCrumbs('User','Checkin Questions');
         $data = new CheckinQuestion();
         return view('N10Pages.UserCheckIns.QuestionBuilder.index', compact('page_heading', 'sub_page_heading', 'data'));
     }

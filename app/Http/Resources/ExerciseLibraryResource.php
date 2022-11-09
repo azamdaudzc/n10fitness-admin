@@ -53,7 +53,7 @@ class ExerciseLibraryResource extends JsonResource
                 <a class="dropdown-item delete_record" data-id="' . $library->id . '" href="javascript:void(0);">Delete</a>
                 </li> </ul>
                 </div>';
-                $video_link = '<a href="'.$library->video_link.'">'.$library->video_link.'</a>';
+                $video_link = '<a target="_blank" href="'.$library->video_link.'">'.$library->video_link.'</a>';
                 $description=$library->description;
                 $librarys[] = [
                     'user' => $libraryAvatar,

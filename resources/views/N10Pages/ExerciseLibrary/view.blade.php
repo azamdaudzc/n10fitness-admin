@@ -64,7 +64,7 @@
             <!--end::Label-->
             <!--begin::Col-->
             <div class="col-lg-8">
-                <a href="{{ $data->video_link }}"
+                <a target="_blank" href="{{ $data->video_link }}"
                     class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ $data->video_link }}</a>
             </div>
             <!--end::Col-->
