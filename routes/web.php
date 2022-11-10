@@ -33,12 +33,12 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
 
     Route::get('/', function () {
         $data['page_heading']="Dashboard";
-        $data['sub_page_heading']="main dashboard";
+        $data['sub_page_heading']=collect(['Main', 'Dashboard']);
         return view('dashboard')->with($data);
     });
     Route::get('/dashboard', function () {
         $data['page_heading']="Dashboard";
-        $data['sub_page_heading']="main dashboard";
+        $data['sub_page_heading']=collect(['Main', 'Dashboard']);
         return view('dashboard')->with($data);
     })->name('dashboard');
 
