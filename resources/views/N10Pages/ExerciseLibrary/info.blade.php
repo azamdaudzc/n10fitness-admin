@@ -5,7 +5,7 @@
         <!--begin::Avatar-->
         <div class="symbol symbol-100px symbol-circle mb-7">
             @if ($library->avatar != null)
-                <img src="{{ asset('storage/' . $library->avatar) }}" alt="image" />
+                <img src="{{  $library->avatar }}" alt="image" />
             @else
                 <img src="{{ asset('assets/media/avatars/blank.png') }}" alt="image" />
             @endif

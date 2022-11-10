@@ -11,28 +11,40 @@ use App\Http\Resources\WarmupBuilderResource;
 
 class WarmupBuilderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $page_heading = 'Warmup Builder';
-        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
+        $sub_page_heading = collect(['User', 'WarmupBuilder']);
         $data = new WarmupBuilder();
-        return view('N10Pages.WarmupBuilder.index', compact('page_heading', 'sub_page_heading', 'data'));
+        $goto=1;
+        if(isset($request->goto)){
+            $goto=$request->goto;
+        }
+
+        return view('N10Pages.WarmupBuilder.index', compact('goto','page_heading', 'sub_page_heading', 'data'));
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $users = WarmupBuilder::all();
+        $users = null;
+        if ($request->type == 'approved') {
+            $users = WarmupBuilder::where('approved_by', '<>', 0)->get();
+        } else if ($request->type == 'requested') {
+            $users = WarmupBuilder::where('approved_by', 0)->where('rejected_by', 0)->get();
+        } else if ($request->type == 'rejected') {
+            $users = WarmupBuilder::where('rejected_by', '<>', 0)->get();
+        }
         return new WarmupBuilderResource($users);
     }
 
     public function details(Request $request)
     {
-        $page_heading = 'ExerciseLibrary';
-        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
+        $page_heading = 'WarmupBuilder';
+        $sub_page_heading = collect(['User', 'WarmupBuilder']);
         $data = new WarmupBuilder();
-        $title="Add ExerciseLibrary";
+        $title="Add WarmupBuilder";
         if($request->id){
-            $title="Edit ExerciseLibrary";
+            $title="Edit WarmupBuilder";
             $data = WarmupBuilder::find($request->id);
         }
         $videos = WarmupVideo::where('warmup_builder_id', $request->id)->get();
@@ -44,13 +56,13 @@ class WarmupBuilderController extends Controller
     {
         $warmupvideos = WarmupVideo::where('warmup_builder_id', $id)->get();
         $page_heading = "Add Warmup";
-        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
+        $sub_page_heading = collect(['User', 'WarmupBuilder']);
         $data = new WarmupBuilder();
         $title = "Add Warmup";
         if ($id > 0) {
             $title = "Edit Warmup";
             $page_heading = "Edit Warmup";
-            $sub_page_heading = collect(['User', 'ExerciseLibrary']);
+            $sub_page_heading = collect(['User', 'WarmupBuilder']);
             $data = WarmupBuilder::find($id);
         }
 
@@ -86,8 +98,16 @@ class WarmupBuilderController extends Controller
                     ]);
                 }
             }
-
-            return response()->json(['success' => true, 'msg' => 'Warmup Updated']);
+            if($warmup->approved_by>0){
+                $type='approved';
+            }
+            else if($warmup->rejected_by>0){
+                $type='rejected';
+            }
+            else{
+                $type='none';
+            }
+            return response()->json(['success' => true, 'msg' => 'Warmup Updated','type' => $type]);
         } else {
             request()->validate(WarmupBuilder::$rules);
             $warmup = WarmupBuilder::create(array_merge($request->all(), ['created_by' => Auth::user()->id]));
@@ -114,8 +134,9 @@ class WarmupBuilderController extends Controller
                     ]);
                 }
             }
+            $type='requested';
 
-            return response()->json(['success' => true, 'msg' => 'Warmup Created']);
+            return response()->json(['success' => true, 'msg' => 'Warmup Created','type' => $type]);
         }
     }
 
@@ -125,5 +146,17 @@ class WarmupBuilderController extends Controller
         WarmupVideo::where('warmup_builder_id', $request->id)->delete();
         $athletictype = WarmupBuilder::find($request->id)->delete();
         return response()->json(['success' => true, 'msg' => 'Question Deleted']);
+    }
+
+    public function approve(Request $request)
+    {
+        $exerciseLibrary = WarmupBuilder::find($request->id)->update(['approved_by' => Auth::user()->id, 'rejected_by' => 0]);
+        return response()->json(['success' => true, 'msg' => 'Warmup Approved']);
+    }
+
+    public function reject(Request $request)
+    {
+        $exerciseLibrary = WarmupBuilder::find($request->id)->update(['rejected_by' => Auth::user()->id, 'approved_by' => 0]);
+        return response()->json(['success' => true, 'msg' => 'Warmup Rejected']);
     }
 }

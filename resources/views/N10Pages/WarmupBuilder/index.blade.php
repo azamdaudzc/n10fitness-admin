@@ -7,26 +7,41 @@
 @section('content')
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <div class="card">
-                <div class="card-header border-0 pt-6">
-                    <div class="card-title">
-                        <div class="d-flex align-items-center position-relative my-1">
-                            <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
-                            <input type="text" data-kt-user-table-filter="search" id="search_table"
-                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Question" />
-                        </div>
-                    </div>
-                    <div class="card-toolbar">
 
-                        <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                            <a type="button" class="btn btn-primary" href="{{ route('warmup.builder.create-edit') }}">
-                                <i class="fa-solid fa-plus fs-2"></i>Create New
-                            </a>
-                        </div>
-                    </div>
+
+
+            <div class="mb-5 hover-scroll-x">
+                <div class="d-grid">
+                    <ul class="nav nav-tabs flex-nowrap text-nowrap">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-active-light btn-color-gray-600 btn-active-color-primary rounded-bottom-0 @if($goto==1) active @endif" data-bs-toggle="tab" href="#kt_tab_pane_1">Approved Warmups</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-active-light btn-color-gray-600 btn-active-color-primary rounded-bottom-0 @if($goto==2) active @endif" data-bs-toggle="tab" href="#kt_tab_pane_2">Requested Warmups</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-active-light btn-color-gray-600 btn-active-color-primary rounded-bottom-0 @if($goto==3) active @endif" data-bs-toggle="tab" href="#kt_tab_pane_3">Rejected Warmups</a>
+                        </li>
+
+                    </ul>
                 </div>
-                <div class="card-body py-4">
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="users_table">
+            </div>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade  @if($goto==1) show active @endif" id="kt_tab_pane_1" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header border-0 pt-6">
+                            <div class="card-title">
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
+                                    <input type="text" data-kt-user-table-filter="search" id="search_table_1"
+                                    class="form-control form-control-solid w-250px ps-14" placeholder="Search Warmup" />
+                                </div>
+                            </div>
+
+                        </div>
+                    <div class="card-body py-4">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="approved_table">
                         <thead>
                             <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                 <th>Name</th>
@@ -36,6 +51,66 @@
                             </tr>
                         </thead>
                     </table>
+                    </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade @if($goto==2)show  active @endif" id="kt_tab_pane_2" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header border-0 pt-6">
+                            <div class="card-title">
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
+                                    <input type="text" data-kt-user-table-filter="search" id="search_table_2"
+                                    class="form-control form-control-solid w-250px ps-14" placeholder="Search Warmup" />
+                                </div>
+                            </div>
+                            <div class="card-toolbar">
+
+                                <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                    <a href="{{ route('warmup.builder.create-edit')}}" class="btn btn-primary">
+                                        <i class="fa-solid fa-plus fs-2"></i>Create New</a>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="card-body py-4">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="requested_table">
+                        <thead>
+                            <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Instruction</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade @if($goto==3) show active @endif" id="kt_tab_pane_3" role="tabpanel">
+                    <div class="card">
+                        <div class="card-header border-0 pt-6">
+                            <div class="card-title">
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
+                                    <input type="text" data-kt-user-table-filter="search" id="search_table_3"
+                                    class="form-control form-control-solid w-250px ps-14" placeholder="Search Warmup" />
+                                </div>
+                            </div>
+
+                        </div>
+                    <div class="card-body py-4">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="rejected_table">
+                        <thead>
+                            <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Instruction</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,13 +143,15 @@
                     form_body.html(d);
                 });
             });
-            let table = $('#users_table').DataTable({
-                pageLength: 50,
-                lenghtChange: false,
-                ajax: {
-                    url: "{{ route('warmup.builder.list') }}",
-                },
-                columns: [{
+
+
+            let table = $('#approved_table').DataTable({
+            pageLength:10,
+            lenghtChange:false,
+            ajax: {
+                url: "{{ route('warmup.builder.list') }}?type=approved",
+            },
+            columns: [{
                         data: 'name'
                     },
                     {
@@ -86,19 +163,67 @@
                     {
                         data: 'actions'
                     },
-                ],
-            });
+            ],
+        });
+        let table2 = $('#requested_table').DataTable({
+            pageLength:10,
+            lenghtChange:false,
+            ajax: {
+                url: "{{ route('warmup.builder.list') }}?type=requested",
+            },
+            columns: [{
+                        data: 'name'
+                    },
+                    {
+                        data: 'description'
+                    },
+                    {
+                        data: 'instructions'
+                    },
+                    {
+                        data: 'actions'
+                    },
+            ],
+        });
+        let table3 = $('#rejected_table').DataTable({
+            pageLength:10,
+            lenghtChange:false,
+            ajax: {
+                url: "{{ route('warmup.builder.list') }}?type=rejected",
+            },
+            columns: [{
+                        data: 'name'
+                    },
+                    {
+                        data: 'description'
+                    },
+                    {
+                        data: 'instructions'
+                    },
+                    {
+                        data: 'actions'
+                    },
+            ],
+        });
 
-            $('#search_table').on('keyup', function() {
-                table.search($(this).val()).draw();
-            });
+            $('#search_table_1').on('keyup', function() {
+            table.search($(this).val()).draw();
+        });
+        $('#search_table_2').on('keyup', function() {
+            table2.search($(this).val()).draw();
+        });
+        $('#search_table_3').on('keyup', function() {
+            table3.search($(this).val()).draw();
+        });
 
 
 
 
 
             function reloadTable() {
-                table.ajax.reload();
+                table.ajax.reload(null,false);
+                table2.ajax.reload(null,false);
+                table3.ajax.reload(null,false);
                 KTDrawer.hideAll();
             }
 
@@ -126,6 +251,57 @@
                             id
                         }, function(d) {
                             if (d.success == true) {
+                                toastr.success(d.msg);
+                                reloadTable();
+                            }
+                        });
+                    }
+                });
+            });
+
+            $('body').on('click', '.approve_record', function() {
+                let id = $(this).attr('data-id');
+
+                Swal.fire({
+                    html: `Are you sure you want to approve`,
+                    icon: "info",
+                    buttonsStyling: false,
+                    showCancelButton: true,
+                    confirmButtonText: "Ok, got it!",
+                    cancelButtonText: 'Nope, cancel it',
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: 'btn btn-danger'
+                    }
+                }).then(function(data) {
+                    if(data.isConfirmed==true){
+                        $.post('{{ route('warmup.builder.approve') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
+                            if(d.success==true){
+                                toastr.success(d.msg);
+                                reloadTable();
+                            }
+                        });
+                    }
+                });
+            });
+            $('body').on('click', '.reject_record', function() {
+                let id = $(this).attr('data-id');
+
+                Swal.fire({
+                    html: `Are you sure you want to reject`,
+                    icon: "info",
+                    buttonsStyling: false,
+                    showCancelButton: true,
+                    confirmButtonText: "Ok, got it!",
+                    cancelButtonText: 'Nope, cancel it',
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: 'btn btn-danger'
+                    }
+                }).then(function(data) {
+                    if(data.isConfirmed==true){
+                        $.post('{{ route('warmup.builder.reject') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
+                            if(d.success==true){
                                 toastr.success(d.msg);
                                 reloadTable();
                             }

@@ -33,7 +33,7 @@ Users
                             <div class="d-flex align-items-center position-relative my-1">
                                 <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
                                 <input type="text" data-kt-user-table-filter="search" id="search_table_1"
-                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Question" />
+                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Library" />
                             </div>
                         </div>
 
@@ -60,7 +60,7 @@ Users
                             <div class="d-flex align-items-center position-relative my-1">
                                 <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
                                 <input type="text" data-kt-user-table-filter="search" id="search_table_2"
-                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Question" />
+                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Library" />
                             </div>
                         </div>
                         <div class="card-toolbar">
@@ -93,7 +93,7 @@ Users
                             <div class="d-flex align-items-center position-relative my-1">
                                 <i class="fa-solid fa-magnifying-glass position-absolute ms-6"></i>
                                 <input type="text" data-kt-user-table-filter="search" id="search_table_3"
-                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Question" />
+                                class="form-control form-control-solid w-250px ps-14" placeholder="Search Library" />
                             </div>
                         </div>
 
@@ -115,12 +115,7 @@ Users
             </div>
         </div>
 
-        {{-- <div class="card">
 
-            <div class="card-body py-4">
-
-            </div>
-        </div> --}}
     </div>
 </div>
 <div id="kt_drawer_example_basic" class="bg-white" data-kt-drawer="true" data-kt-drawer-activate="true"

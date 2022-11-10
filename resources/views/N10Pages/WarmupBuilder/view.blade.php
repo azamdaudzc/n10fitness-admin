@@ -3,8 +3,17 @@
     <div class="card-header cursor-pointer">
         <!--begin::Card title-->
         <div class="card-title m-0">
-            <h3 class="fw-bold m-0">Library</h3>
+            <h3 class="fw-bold m-0">Warmup</h3>
         </div>
+        @if($data->approved_by==0 && $data->rejected_by==0)
+        <div><a class="btn btn-primary align-self-center approve_record" data-id="{{$data->id}}" href="javascript:void(0);">Approve</a>
+        <a class="btn btn-danger align-self-center reject_record" data-id="{{$data->id}}" href="javascript:void(0);">Reject</a>
+        </div>
+        @elseif ($data->approved_by!=0)
+        <div class="badge badge-light-success h-40px">Approved</div>
+        @else
+        <div class="badge badge-light-danger h-40px">Rejected</div>
+        @endif
 
     </div>
     <!--begin::Card header-->
@@ -61,7 +70,7 @@
                 <a href="{{ $lm->video_url }}" target="_blank">
                     <div class="warmupvideo-container">
                         <div class="warmupvideo-top"></div>
-                        <img src="{{ asset('storage/' . $lm->thumbnail) }}" class=" mt-3  w-100 h-80 warmupvideo-image" />
+                        <img src="{{  $lm->thumbnail }}" class=" mt-3  w-100 h-80 warmupvideo-image" />
                         <div class="warmupvideo-middle">
                             <img src="{{asset('assets/media/sample/video-play-icon.png')}}" class="warmupvideo-text" alt="">
                         </div>

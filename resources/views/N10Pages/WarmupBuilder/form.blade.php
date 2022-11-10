@@ -58,7 +58,7 @@
                                         <input type="hidden" value="{{$wv->thumbnail}}" name="old_thumbnail">
                                     </div>
                                     <div class="col-md-3">
-                                        <img @if($wv->thumbnail ==null)src="{{asset('assets/media/sample/image-area.jpg')}}" @else src="{{asset('storage/' . $wv->thumbnail)}}" @endif  class=" mt-3 thumbnail-image " />
+                                        <img @if($wv->thumbnail ==null)src="{{asset('assets/media/sample/image-area.jpg')}}" @else src="{{ $wv->thumbnail}}" @endif  class=" mt-3 thumbnail-image " />
 
                                     </div>
                                     <div class="col-md-3">
@@ -170,7 +170,18 @@
                     success: function(d, status) {
                         if (d.success == true) {
                             toastr.success(d.msg);
-                            window.location.href = "{{ route('warmup.builder.index') }}";
+                            var goto=1;
+                            if(d.type=='approved'){
+                                goto=1;
+                            }
+                            else if(d.type=='rejected'){
+                                goto=3;
+                            }
+                            else{
+                                goto=2;
+                            }
+                            window.location.href="{{route('warmup.builder.index')}}?goto="+goto;
+
 
                         }
                         $('#crud-form-submit-button').attr("data-kt-indicator", "off");

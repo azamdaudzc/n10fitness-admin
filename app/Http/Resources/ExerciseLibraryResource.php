@@ -12,13 +12,14 @@ class ExerciseLibraryResource extends JsonResource
      *
      * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * asset('storage/' . $library->avatar)
      */
     public function toArray($request)
     {
         $librarys = [];
         if ($this->resource->count() > 0) {
             foreach ($this->resource as $library) {
-                $picture = $library->avatar != null ? asset('storage/' . $library->avatar) : asset('/assets/media/avatars/blank.png');
+                $picture = $library->avatar != null ?  $library->avatar : asset('/assets/media/avatars/blank.png');
                 $libraryAvatar = '<div class="d-flex align-items-center">
                             <div class="symbol symbol-35px symbol-circle">
                                     <img alt="Pic" src="' . $picture . '"

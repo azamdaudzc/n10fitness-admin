@@ -29,6 +29,10 @@ Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
 
+Route::get('/migratedatabase', function () {
+    Artisan::call('migrate:fresh --seed');
+});
+
 Route::middleware(['auth','check_user_type','verified'])->group(function () {
 
     Route::get('/', function () {
@@ -146,6 +150,8 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::post('warmup/builder/store','store')->name('warmup.builder.store');
         Route::get('warmup/builder/view/{id?}', 'view')->name('warmup.builder.view');
         Route::post('warmup/builder/delete', 'delete')->name('warmup.builder.delete');
+        Route::post('warmup/builder/approve', 'approve')->name('warmup.builder.approve');
+        Route::post('warmup/builder/reject', 'reject')->name('warmup.builder.reject');
 
     });
 

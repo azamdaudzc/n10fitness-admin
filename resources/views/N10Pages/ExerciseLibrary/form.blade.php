@@ -39,7 +39,7 @@
                                     <div class="image-input image-input-outline image-input-placeholder"
                                         data-kt-image-input="true">
                                         <div class="image-input-wrapper w-125px h-125px"
-                                            @if ($library->avatar != null) style="background-image: url('{{ asset('storage/' . $library->avatar) }}');"@else style="background-image: url('{{ asset('assets/media/svg/files/blank-image-dark.svg') }}')" @endif>
+                                            @if ($library->avatar != null) style="background-image: url('{{  $library->avatar }}');"@else style="background-image: url('{{ asset('assets/media/svg/files/blank-image-dark.svg') }}')" @endif>
                                         </div>
                                         <label
                                             class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
