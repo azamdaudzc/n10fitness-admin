@@ -19,7 +19,7 @@ class ExerciseLibraryController extends Controller
     public function index(Request $request)
     {
         $page_heading = 'ExerciseLibrary';
-        $sub_page_heading = 'View all exercise library';
+        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
         $library = new ExerciseLibrary();
         $goto=1;
         if(isset($request->goto)){
@@ -44,7 +44,7 @@ class ExerciseLibraryController extends Controller
     public function details(Request $request)
     {
         $page_heading = 'ExerciseLibrary';
-        $sub_page_heading = 'View all exercise library';
+        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
         $data = new ExerciseLibrary();
         $title="Add ExerciseLibrary";
         if($request->id){
@@ -60,12 +60,12 @@ class ExerciseLibraryController extends Controller
     {
 
         $page_heading = 'Exercise Library';
-        $sub_page_heading = 'Create exercise library';
+        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
         $library = new ExerciseLibrary();
         $title = "Add ExerciseLibrary";
         if ($id > 0) {
             $title = "Edit Exercise Library";
-            $sub_page_heading = 'Edit exercise library';
+            $sub_page_heading = collect(['User', 'ExerciseLibrary']);
             $library = ExerciseLibrary::find($id);
         }
         $library_muscles = ExerciseLibraryMuscle::where('exercise_library_id', $id)->get();
@@ -90,7 +90,7 @@ class ExerciseLibraryController extends Controller
     {
         $library = new ExerciseLibrary();
         $page_heading = 'Exercise Librarys';
-        $sub_page_heading = 'View exercise library';
+        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
         if ($id) {
             $library = ExerciseLibrary::find($id);
         }

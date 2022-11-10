@@ -14,7 +14,7 @@ class WarmupBuilderController extends Controller
     public function index()
     {
         $page_heading = 'Warmup Builder';
-        $sub_page_heading = 'View All Warmups';
+        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
         $data = new WarmupBuilder();
         return view('N10Pages.WarmupBuilder.index', compact('page_heading', 'sub_page_heading', 'data'));
     }
@@ -28,7 +28,7 @@ class WarmupBuilderController extends Controller
     public function details(Request $request)
     {
         $page_heading = 'ExerciseLibrary';
-        $sub_page_heading = 'View all exercise library';
+        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
         $data = new WarmupBuilder();
         $title="Add ExerciseLibrary";
         if($request->id){
@@ -44,13 +44,13 @@ class WarmupBuilderController extends Controller
     {
         $warmupvideos = WarmupVideo::where('warmup_builder_id', $id)->get();
         $page_heading = "Add Warmup";
-        $sub_page_heading = "Add Warmup";
+        $sub_page_heading = collect(['User', 'ExerciseLibrary']);
         $data = new WarmupBuilder();
         $title = "Add Warmup";
         if ($id > 0) {
             $title = "Edit Warmup";
             $page_heading = "Edit Warmup";
-            $sub_page_heading = "Edit Warmup";
+            $sub_page_heading = collect(['User', 'ExerciseLibrary']);
             $data = WarmupBuilder::find($id);
         }
 

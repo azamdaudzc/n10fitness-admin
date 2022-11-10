@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function index()
     {
         $page_heading = 'Categories';
-        $sub_page_heading = 'View all categories';
+        $sub_page_heading = collect(['User', 'Categories']);
         $data = new ExerciseCategory();
         return view('N10Pages.SettingPages.Category.index', compact('page_heading', 'sub_page_heading','data'));
     }

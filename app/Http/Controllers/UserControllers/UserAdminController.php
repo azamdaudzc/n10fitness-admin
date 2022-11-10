@@ -14,7 +14,7 @@ class UserAdminController extends Controller
     public function index()
     {
         $page_heading = 'Admins';
-        $sub_page_heading = 'View all admin users';
+        $sub_page_heading = collect(['User', 'Admins']);
         $user = new User();
         return view('N10Pages.UserPages.UserAdmin.index', compact('page_heading', 'sub_page_heading','user'));
     }
@@ -50,7 +50,7 @@ class UserAdminController extends Controller
     {
         $user = new User();
         $page_heading = 'Admins';
-        $sub_page_heading = 'View admin user';
+        $sub_page_heading = collect(['User', 'Admins']);
         if($id){
             $user = User::find($id);
         }
@@ -62,7 +62,7 @@ class UserAdminController extends Controller
         $id=Auth::user()->id;
         $user = new User();
         $page_heading = 'Profile';
-        $sub_page_heading = 'my profile';
+        $sub_page_heading = collect(['User', 'Admins']);
         if($id){
             $user = User::find($id);
         }

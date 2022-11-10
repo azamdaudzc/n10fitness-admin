@@ -13,7 +13,7 @@ class UserCheckinQuestionsController extends Controller
     public function index()
     {
         $page_heading = 'CheckIn Questions';
-        $sub_page_heading = $this->getBreadCrumbs('User','Checkin Questions');
+        $sub_page_heading = collect(['User', 'Checkin Questions']);
         $data = new CheckinQuestion();
         return view('N10Pages.UserCheckIns.QuestionBuilder.index', compact('page_heading', 'sub_page_heading', 'data'));
     }
@@ -27,7 +27,7 @@ class UserCheckinQuestionsController extends Controller
     public function details(Request $request)
     {
         $page_heading = 'ExerciseLibrary';
-        $sub_page_heading = 'View all exercise library';
+        $sub_page_heading = collect(['User', 'Checkin Questions']);
         $data = new CheckinQuestion();
         $title = "Add ExerciseLibrary";
         if ($request->id) {
@@ -43,13 +43,13 @@ class UserCheckinQuestionsController extends Controller
     {
         $question_inputs = CheckinQuestionInput::where('checkin_question_id', $id)->get();
         $page_heading = "Add CheckIn Question";
-        $sub_page_heading = "Add CheckIn Question";
+        $sub_page_heading = collect(['User', 'Checkin Questions']);
         $data = new CheckinQuestion();
         $title = "Add CheckIn Question";
         if ($id > 0) {
             $title = "Edit CheckIn Question";
             $page_heading = "Edit CheckIn Question";
-            $sub_page_heading = "Edit CheckIn Question";
+            $sub_page_heading = collect(['User', 'Checkin Questions']);
             $data = CheckinQuestion::find($id);
         }
 

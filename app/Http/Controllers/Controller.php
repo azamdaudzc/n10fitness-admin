@@ -47,20 +47,5 @@ class Controller extends BaseController
         return $path;
     }
 
-    public function getBreadCrumbs($page, $sub_page)
-    {
-        return '<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                <li class="breadcrumb-item text-muted">
-                    <a href="/" class="text-muted text-hover-primary">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted">'.$page.'</li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted">'.$sub_page.'</li>
-                </ul>';
-    }
+
 }

@@ -17,7 +17,7 @@ class UserCoachController extends Controller
     public function index()
     {
         $page_heading = 'Coach';
-        $sub_page_heading = 'View all coach users';
+        $sub_page_heading = collect(['User', 'Coach']);
         $user = new User();
         return view('N10Pages.UserPages.UserCoach.index', compact('page_heading', 'sub_page_heading','user'));
     }
@@ -63,7 +63,7 @@ class UserCoachController extends Controller
 
         $user = new User();
         $page_heading = 'Coach';
-        $sub_page_heading = 'View coach user';
+        $sub_page_heading = collect(['User', 'Coach']);
         if($id){
             $user = User::find($id);
         }
@@ -77,7 +77,7 @@ class UserCoachController extends Controller
         $id=Auth::user()->id;
         $user = new User();
         $page_heading = 'Profile';
-        $sub_page_heading = 'my profile';
+        $sub_page_heading = collect(['User', 'Coach']);
         if($id){
             $user = User::find($id);
         }

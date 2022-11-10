@@ -12,7 +12,7 @@ class EquipmentController extends Controller
     public function index()
     {
         $page_heading = 'Equipments';
-        $sub_page_heading = 'View all equipments';
+        $sub_page_heading = collect(['User', 'Equipments']);
         $data = new ExerciseEquipment();
         return view('N10Pages.SettingPages.Equipment.index', compact('page_heading', 'sub_page_heading','data'));
     }

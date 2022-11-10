@@ -12,7 +12,7 @@ class AthleticTypeController extends Controller
     public function index()
     {
         $page_heading = 'Athletic Types';
-        $sub_page_heading = 'View all athletic types';
+        $sub_page_heading = collect(['User', 'Athletic Types']);
         $data = new AthleticType();
         return view('N10Pages.SettingPages.AthleticType.index', compact('page_heading', 'sub_page_heading','data'));
     }

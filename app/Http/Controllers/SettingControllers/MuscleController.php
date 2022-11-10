@@ -12,7 +12,7 @@ class MuscleController extends Controller
     public function index()
     {
         $page_heading = 'Muscles';
-        $sub_page_heading = 'View all muscles';
+        $sub_page_heading = collect(['User', 'Muscles']);
         $data = new ExerciseMuscle();
         return view('N10Pages.SettingPages.Muscle.index', compact('page_heading', 'sub_page_heading','data'));
     }

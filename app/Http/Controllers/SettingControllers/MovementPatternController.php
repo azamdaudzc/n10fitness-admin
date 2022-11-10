@@ -12,7 +12,7 @@ class MovementPatternController extends Controller
     public function index()
     {
         $page_heading = 'Movement Patterns';
-        $sub_page_heading = 'View all movement patterns';
+        $sub_page_heading = collect(['User', 'Movement Patterns']);
         $data = new ExerciseMovementPattern();
         return view('N10Pages.SettingPages.MovementPatterns.index', compact('page_heading', 'sub_page_heading','data'));
     }

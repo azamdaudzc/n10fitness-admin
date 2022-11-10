@@ -15,7 +15,7 @@ class UserClientController extends Controller
     public function index()
     {
         $page_heading = 'Clients';
-        $sub_page_heading = 'View all client users';
+        $sub_page_heading = collect(['User', 'Clients']);
         $user = new User();
         return view('N10Pages.UserPages.UserClient.index', compact('page_heading', 'sub_page_heading','user'));
     }
@@ -52,7 +52,7 @@ class UserClientController extends Controller
     {
         $user = new User();
         $page_heading = 'Clients';
-        $sub_page_heading = 'View all client users';
+        $sub_page_heading = collect(['User', 'Clients']);
         if($id){
             $user = User::find($id);
         }
@@ -64,7 +64,7 @@ class UserClientController extends Controller
         $id=Auth::user()->id;
         $user = new User();
         $page_heading = 'Profile';
-        $sub_page_heading = 'my profile';
+        $sub_page_heading = collect(['User', 'Clients']);
         if($id){
             $user = User::find($id);
         }
