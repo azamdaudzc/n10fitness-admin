@@ -32,11 +32,11 @@ class ExerciseLibraryController extends Controller
     {
         $librarys = null;
         if ($request->type == 'approved') {
-            $librarys = ExerciseLibrary::with('exerciseCategory')->where('approved_by', '<>', 0)->get();
+            $librarys = ExerciseLibrary::with('exerciseCategory','exerciseCreator')->where('approved_by', '<>', 0)->get();
         } else if ($request->type == 'requested') {
-            $librarys = ExerciseLibrary::with('exerciseCategory')->where('approved_by', 0)->where('rejected_by', 0)->get();
+            $librarys = ExerciseLibrary::with('exerciseCategory','exerciseCreator')->where('approved_by', 0)->where('rejected_by', 0)->get();
         } else if ($request->type == 'rejected') {
-            $librarys = ExerciseLibrary::with('exerciseCategory')->where('rejected_by', '<>', 0)->get();
+            $librarys = ExerciseLibrary::with('exerciseCategory','exerciseCreator')->where('rejected_by', '<>', 0)->get();
         }
         return new ExerciseLibraryResource($librarys);
     }

@@ -45,7 +45,7 @@ Users
                             <th>User</th>
                             <th>Video Link</th>
                             <th>Description</th>
-                            <th>Created At</th>
+                            <th>Creator</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -66,7 +66,7 @@ Users
                         <div class="card-toolbar">
 
                             <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                                <a href="{{ route('exerciselibrary.create-edit')}}" class="btn btn-primary">
+                                <a href="{{ route('exercise.library.create-edit')}}" class="btn btn-primary">
                                     <i class="fa-solid fa-plus fs-2"></i>Create New</a>
                             </div>
                         </div>
@@ -78,7 +78,7 @@ Users
                             <th>User</th>
                             <th>Video Link</th>
                             <th>Description</th>
-                            <th>Created At</th>
+                            <th>Creator</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -105,7 +105,7 @@ Users
                             <th>User</th>
                             <th>Video Link</th>
                             <th>Description</th>
-                            <th>Created At</th>
+                            <th>Creator</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -140,7 +140,7 @@ data-kt-drawer-width="500px">
         $('body').on('click', '.view_record', function() {
             let id = $(this).attr('data-id');
             form_body.empty();
-            $.post('{{ route('exerciselibrary.details') }}', {
+            $.post('{{ route('exercise.library.details') }}', {
                 _token: '{{ csrf_token() }}',
                 id
             }, function(d) {
@@ -152,7 +152,7 @@ data-kt-drawer-width="500px">
             pageLength:10,
             lenghtChange:false,
             ajax: {
-                url: "{{ route('exerciselibrary.list') }}?type=approved",
+                url: "{{ route('exercise.library.list') }}?type=approved",
             },
             columns: [{
                 data: 'user'
@@ -164,7 +164,7 @@ data-kt-drawer-width="500px">
                 data: 'description'
             },
             {
-                data: 'createdAt'
+                data: 'creator'
             },
             {
                 data: 'actions'
@@ -175,7 +175,7 @@ data-kt-drawer-width="500px">
             pageLength:10,
             lenghtChange:false,
             ajax: {
-                url: "{{ route('exerciselibrary.list') }}?type=requested",
+                url: "{{ route('exercise.library.list') }}?type=requested",
             },
             columns: [{
                 data: 'user'
@@ -187,7 +187,7 @@ data-kt-drawer-width="500px">
                 data: 'description'
             },
             {
-                data: 'createdAt'
+                data: 'creator'
             },
             {
                 data: 'actions'
@@ -198,7 +198,7 @@ data-kt-drawer-width="500px">
             pageLength:10,
             lenghtChange:false,
             ajax: {
-                url: "{{ route('exerciselibrary.list') }}?type=rejected",
+                url: "{{ route('exercise.library.list') }}?type=rejected",
             },
             columns: [{
                 data: 'user'
@@ -210,7 +210,7 @@ data-kt-drawer-width="500px">
                 data: 'description'
             },
             {
-                data: 'createdAt'
+                data: 'creator'
             },
             {
                 data: 'actions'
@@ -257,7 +257,7 @@ data-kt-drawer-width="500px">
                     }
                 }).then(function(data) {
                     if(data.isConfirmed==true){
-                        $.post('{{ route('exerciselibrary.delete') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
+                        $.post('{{ route('exercise.library.delete') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
                             if(d.success==true){
                                 toastr.success(d.msg);
                                 reloadTable();
@@ -282,7 +282,7 @@ data-kt-drawer-width="500px">
                     }
                 }).then(function(data) {
                     if(data.isConfirmed==true){
-                        $.post('{{ route('exerciselibrary.approve') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
+                        $.post('{{ route('exercise.library.approve') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
                             if(d.success==true){
                                 toastr.success(d.msg);
                                 reloadTable();
@@ -307,7 +307,7 @@ data-kt-drawer-width="500px">
                     }
                 }).then(function(data) {
                     if(data.isConfirmed==true){
-                        $.post('{{ route('exerciselibrary.reject') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
+                        $.post('{{ route('exercise.library.reject') }}', {_token: '{{ csrf_token() }}', id}, function (d) {
                             if(d.success==true){
                                 toastr.success(d.msg);
                                 reloadTable();

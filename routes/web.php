@@ -156,16 +156,16 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
     });
 
     Route::controller(ExerciseLibraryController::class)->group(function(){
-        Route::get('exerciselibrary', 'index')->name('exerciselibrary.index');
-        Route::get('exerciselibrary/lists', 'list')->name('exerciselibrary.list');
-        Route::get('exerciselibrary/create-edit/{id?}', 'create_edit')->name('exerciselibrary.create-edit');
-        Route::post('exerciselibrary/details', 'details')->name('exerciselibrary.details');
-        Route::post('exerciselibrary/info', 'info')->name('exerciselibrary.info');
-        Route::post('exerciselibrary/store', 'store')->name('exerciselibrary.store');
-        Route::post('exerciselibrary/delete', 'delete')->name('exerciselibrary.delete');
-        Route::post('exerciselibrary/approve', 'approve')->name('exerciselibrary.approve');
-        Route::post('exerciselibrary/reject', 'reject')->name('exerciselibrary.reject');
-        Route::get('exerciselibrary/view/{id?}', 'view')->name('exerciselibrary.view');
+        Route::get('exercise/library', 'index')->name('exercise.library.index');
+        Route::get('exercise/library/lists', 'list')->name('exercise.library.list');
+        Route::get('exercise/library/create-edit/{id?}', 'create_edit')->name('exercise.library.create-edit');
+        Route::post('exercise/library/details', 'details')->name('exercise.library.details');
+        Route::post('exercise/library/info', 'info')->name('exercise.library.info');
+        Route::post('exercise/library/store', 'store')->name('exercise.library.store');
+        Route::post('exercise/library/delete', 'delete')->name('exercise.library.delete');
+        Route::post('exercise/library/approve', 'approve')->name('exercise.library.approve');
+        Route::post('exercise/library/reject', 'reject')->name('exercise.library.reject');
+        Route::get('exercise/library/view/{id?}', 'view')->name('exercise.library.view');
     });
 
 

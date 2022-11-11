@@ -47,6 +47,7 @@
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Instruction</th>
+                                <th>Creator</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -79,6 +80,7 @@
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Instruction</th>
+                                <th>Creator</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -105,6 +107,7 @@
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Instruction</th>
+                                <th>Creator</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -161,6 +164,9 @@
                         data: 'instructions'
                     },
                     {
+                        data: 'creator'
+                    },
+                    {
                         data: 'actions'
                     },
             ],
@@ -181,6 +187,9 @@
                         data: 'instructions'
                     },
                     {
+                        data: 'creator'
+                    },
+                    {
                         data: 'actions'
                     },
             ],
@@ -199,6 +208,9 @@
                     },
                     {
                         data: 'instructions'
+                    },
+                    {
+                        data: 'creator'
                     },
                     {
                         data: 'actions'

@@ -28,11 +28,11 @@ class WarmupBuilderController extends Controller
     {
         $users = null;
         if ($request->type == 'approved') {
-            $users = WarmupBuilder::where('approved_by', '<>', 0)->get();
+            $users = WarmupBuilder::where('approved_by', '<>', 0)->with('user')->get();
         } else if ($request->type == 'requested') {
-            $users = WarmupBuilder::where('approved_by', 0)->where('rejected_by', 0)->get();
+            $users = WarmupBuilder::where('approved_by', 0)->where('rejected_by', 0)->with('user')->get();
         } else if ($request->type == 'rejected') {
-            $users = WarmupBuilder::where('rejected_by', '<>', 0)->get();
+            $users = WarmupBuilder::where('rejected_by', '<>', 0)->with('user')->get();
         }
         return new WarmupBuilderResource($users);
     }

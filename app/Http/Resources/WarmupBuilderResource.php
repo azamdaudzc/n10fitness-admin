@@ -20,6 +20,7 @@ class WarmupBuilderResource extends JsonResource
             foreach ($this->resource as $setting) {
                 $name = $setting->name;
                 $description = $setting->description;
+                $creatorPicture = $setting->user->avatar != null ?  $setting->user->avatar : asset('/assets/media/avatars/blank.png');
                 $instructions = $setting->instructions;
 
                 $actions = '
@@ -42,12 +43,25 @@ class WarmupBuilderResource extends JsonResource
                               </ul>
                             </div>
                 ';
+                $creator = '<div class="d-flex align-items-center">
+                <div class="symbol symbol-35px symbol-circle">
+                        <img alt="Pic" src="' . $creatorPicture . '"
+                             style=" object-fit: cover;"/>
+                </div>
+                <div class="text-gray-800 text-hover-primary mb-1 ms-5">
+                    ' . $setting->user->first_name.' '.$setting->user->last_name . '
+
+                </div>
+                <!--end::Details-->
+                </div>';
+
                 $settings[] = [
                     'name' => $name,
                     'description' => $description,
                     'instructions' => $instructions,
                     'createdAt' => Carbon::createFromFormat('Y-m-d H:i:s', $setting->created_at)->format('d M, Y h:i A'),
-                    'actions' => $actions
+                    'actions' => $actions,
+                    'creator' => $creator
                 ];
             }
         }
