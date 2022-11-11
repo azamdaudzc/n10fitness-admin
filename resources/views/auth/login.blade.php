@@ -14,10 +14,10 @@
             <meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:type" content="article" />
-		<meta property="og:title" content="Metronic | Bootstrap HTML, VueJS, React, Angular, Asp.Net Core, Rails, Spring, Blazor, Django, Flask & Laravel Admin Dashboard Theme" />
-		<meta property="og:url" content="https://keenthemes.com/metronic" />
-		<meta property="og:site_name" content="Keenthemes | Metronic" />
-		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+		<meta property="og:title" content="N10Fitness | The Fitness App" />
+		<meta property="og:url" content="https://N10.com" />
+		<meta property="og:site_name" content="N10Fitness " />
+		<link rel="canonical" href="https://N10Fitness.com" />
 		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
 		<!--begin::Fonts(mandatory for all pages)-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
@@ -63,19 +63,19 @@
 						<!--begin::Card body-->
 						<div class="card-body p-10 p-lg-20">
 							<!--begin::Form-->
-                    
-         
+
+
 							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form2" method="POST" action="{{ route('login') }}">
                                 @csrf
 								<div class="text-center mb-11">
 									<!--begin::Title-->
 									<h1 class="text-dark fw-bolder mb-3">Sign In</h1>
 									<!--end::Title-->
-									
+
 								</div>
 								<!--begin::Heading-->
 								<!--begin::Login options-->
-								
+
 								<!--end::Login options-->
 								<!--begin::Separator-->
 								<div class="separator separator-content my-14">
@@ -108,9 +108,9 @@
 								<!--begin::Wrapper-->
 								<!--<div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
 									<div></div>
-									
+
 									<a  href="{{ route('password.request')}}" class="link-primary">Forgot Password ?</a>
-								
+
 								</div>-->
 								<!--end::Wrapper-->
 								<!--begin::Submit button-->
@@ -126,7 +126,7 @@
 									</button>
 								</div>
 								<!--end::Submit button-->
-								
+
 							</form>
 							<!--end::Form-->
 						</div>
