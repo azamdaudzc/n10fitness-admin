@@ -59,6 +59,8 @@ class UserClientController extends Controller
         return view('N10Pages.UserPages.UserClient.view', compact('user','page_heading','sub_page_heading'));
     }
 
+
+
     public function profile()
     {
         $id=Auth::user()->id;

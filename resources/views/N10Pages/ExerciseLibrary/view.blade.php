@@ -6,14 +6,16 @@
             <h3 class="fw-bold m-0">Library</h3>
         </div>
         <!--end::Card title-->
-        @if($data->approved_by==0 && $data->rejected_by==0)
-        <div><a class="btn btn-primary align-self-center approve_record" data-id="{{$data->id}}" href="javascript:void(0);">Approve</a>
-        <a class="btn btn-danger align-self-center reject_record" data-id="{{$data->id}}" href="javascript:void(0);">Reject</a>
-        </div>
-        @elseif ($data->approved_by!=0)
-        <div class="badge badge-light-success h-40px">Approved</div>
+        @if ($data->approved_by == 0 && $data->rejected_by == 0)
+            <div><a class="btn btn-primary align-self-center approve_record" data-id="{{ $data->id }}"
+                    href="javascript:void(0);">Approve</a>
+                <a class="btn btn-danger align-self-center reject_record" data-id="{{ $data->id }}"
+                    href="javascript:void(0);">Reject</a>
+            </div>
+        @elseif ($data->approved_by != 0)
+            <div class="badge badge-light-success h-40px">Approved</div>
         @else
-        <div class="badge badge-light-danger h-40px">Rejected</div>
+            <div class="badge badge-light-danger h-40px">Rejected</div>
         @endif
     </div>
     <!--begin::Card header-->
@@ -109,17 +111,21 @@
             <!--end::Col-->
         </div>
         <!--end::Input group-->
-        <div class="d-flex flex-column">
-            <h2 class="mb-1">Library Muscles</h2>
-            @foreach($library_muscles as $lm)
-            <div class="text-muted fw-bold">
-            <a href="#">{{$lm->name}}</a>
-            <span class="mx-3">|</span>
-            <a href="#">{{$lm->exerciseMuscle->name}}</a>
-            @endforeach
 
-        </div>
-        </div>
+        @foreach ($library_muscles as $lm)
+            <div class="row mb-7">
+                <!--begin::Label-->
+                <label class="col-lg-4 fw-semibold text-muted">{{ $lm->name }}</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8 fv-row">
+                    <span class="fw-semibold text-gray-800 fs-6">{{ $lm->exerciseMuscle->name }}</span>
+                </div>
+                <!--end::Col-->
+            </div>
+        @endforeach
+
+
 
 
     </div>

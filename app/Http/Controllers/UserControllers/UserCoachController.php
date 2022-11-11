@@ -72,6 +72,21 @@ class UserCoachController extends Controller
         ));
     }
 
+    public function viewAssign($id)
+    {
+        $user = new User();
+        $page_heading = 'Coach';
+        $sub_page_heading = collect(['User', 'Coach']);
+        if($id){
+            $user = User::find($id);
+        }
+        $all_users=User::where('user_type','user')->get();
+        $assign=true;
+
+        return view('N10Pages.UserPages.UserCoach.view', compact('assign','user','sub_page_heading','page_heading','all_users'
+        ));
+    }
+
     public function profile()
     {
         $id=Auth::user()->id;

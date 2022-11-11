@@ -37,7 +37,7 @@ class CoachClientResource extends JsonResource
 
                 ';
                 $athletic_type=$user->user->userAthleticType==null ?'':$user->user->userAthleticType->name;
-                $age=$user->user->age;
+                $age=$user->user->age.' Years';
                 $height=$user->user->height;
                 $gender=$user->user->gender;
                 $users[] = [

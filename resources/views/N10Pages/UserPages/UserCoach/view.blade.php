@@ -29,7 +29,7 @@
                     <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
                         <!--begin:::Tab item-->
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
+                            <a class="nav-link text-active-primary pb-4 @isset($assign) @else active @endif" data-bs-toggle="tab"
                                 href="#kt_user_view_overview_tab">Overview</a>
                         </li>
                         <!--end:::Tab item-->
@@ -41,7 +41,7 @@
                         <!--end:::Tab item-->
                         <!--begin:::Tab item-->
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab"
+                            <a class="nav-link text-active-primary pb-4 @isset($assign) active @endif"  data-bs-toggle="tab"
                                 href="#kt_user_view_overview_events_and_logs_tab">Clients</a>
                         </li>
                         <!--end:::Tab item-->
@@ -51,7 +51,7 @@
                     <!--begin:::Tab content-->
                     <div class="tab-content" id="myTabContent">
                         <!--begin:::Tab pane-->
-                        <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+                        <div class="tab-pane fade @isset($assign) @else show active @endif" id="kt_user_view_overview_tab" role="tabpanel">
                             <!--begin::Card-->
                             <div class="card card-flush mb-6 mb-xl-9">
                                 <!--begin::Card header-->
@@ -2193,7 +2193,7 @@
                         </div>
                         <!--end:::Tab pane-->
                         <!--begin:::Tab pane-->
-                        <div class="tab-pane fade" id="kt_user_view_overview_events_and_logs_tab" role="tabpanel">
+                        <div class="tab-pane fade @isset($assign) show active @endif" id="kt_user_view_overview_events_and_logs_tab" role="tabpanel">
                             <!--begin::Card-->
                             <div class="card pt-4 mb-6 mb-xl-9">
                                 <!--begin::Card header-->
@@ -2225,8 +2225,8 @@
                                                 <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                                     <th>User</th>
                                                     <th>Athletic Type</th>
-                                                    <th>Weight</th>
                                                     <th>Age</th>
+                                                    <th>Height</th>
                                                     <th>Gender</th>
                                                     <th>Actions</th>
                                                 </tr>

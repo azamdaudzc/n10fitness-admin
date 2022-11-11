@@ -46,6 +46,9 @@ class UserCoachResource extends JsonResource
                                     <a class="dropdown-item"  href="'.route('user.coach.view',$user->id).'">View</a>
                                 </li>
                                 <li>
+                                    <a class="dropdown-item"  href="'.route('user.coach.view.assign',$user->id).'">Assign Clients</a>
+                                </li>
+                                <li>
                                     <a class="dropdown-item delete_record" data-id="' . $user->id . '" href="javascript:void(0);">Delete</a>
                                 </li>
                               </ul>

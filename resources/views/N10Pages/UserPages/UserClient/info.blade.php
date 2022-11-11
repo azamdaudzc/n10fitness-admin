@@ -67,7 +67,7 @@
 
             <!--begin::Details item-->
             <div class="fw-bold mt-5">Age</div>
-            <div class="text-gray-600">{{ $user->age }}</div>
+            <div class="text-gray-600">{{ $user->age }} Years</div>
             <!--begin::Details item-->
 
             <!--begin::Details item-->

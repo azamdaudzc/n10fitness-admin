@@ -359,6 +359,7 @@
 									</div>
 								</div>
 							</div>
+
 							<!--begin::Footer-->
 							<div class="d-flex flex-column flex-center pb-8" id="kt_app_sidebar_footer" style="border-radius: 24px">
 								<!--begin::User menu-->

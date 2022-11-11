@@ -81,7 +81,8 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::get('user/coach/assigedclients', 'assigedclients')->name('user.coach.assigedclients');
         Route::post('user/coach/attachclient', 'attachclient')->name('user.coach.attachclient');
         Route::post('user/coach/deleteclient', 'deleteclient')->name('user.coach.deleteclient');
-        Route::get('user/coach/view/{id?}', 'view')->name('user.coach.view');
+        Route::get('user/coach/view/{id?}/{type?}', 'view')->name('user.coach.view');
+        Route::get('user/coach/assign/{id?}', 'viewAssign')->name('user.coach.view.assign');
         Route::get('user/coach/profile', 'profile')->name('user.coach.profile');
 
     });

@@ -76,14 +76,22 @@
             border-radius: 21px;
         }
 
-        .dataTable {
-            min-height: 160px
+        .table-responsive {
+            min-height: 20vh
+        }
+
+        .image-input-wrapper {
+            background-repeat: no-repeat !important;
+            background-size: contain !important;
         }
     </style>
+
     <style>
         .warmupvideo-container {
             position: relative;
 
+            width: 444px;
+            height: 200px;
         }
 
         .warmupvideo-image {
@@ -95,41 +103,41 @@
             backface-visibility: hidden;
         }
 
-        .warmupvideo-middle {
-            transition: .5s ease;
-            opacity: 0;
+        .warmupvideo-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
+            top: 10px;
+            left: 0;
+            width: 444px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.5s ease;
+        }
+
+        .warmupvideo-container:hover .warmupvideo-overlay {
+            display: block;
+            background: rgba(0, 0, 0, .3);
+        }
+
+        .warmupvideo-button {
+            position: absolute;
+            width: 444px;
+            left: 0;
+            top: 60px;
             text-align: center;
+            opacity: 0;
+            transition: opacity .35s ease;
         }
 
-        .warmupvideo-container .warmupvideo-image {
+        .warmupvideo-button img {
+            width: 180px;
+            padding: 12px 48px;
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        .warmupvideo-container:hover .warmupvideo-button {
             opacity: 1;
-        }
-
-        .warmupvideo-container .warmupvideo-middle {
-            opacity: 1;
-        }
-
-        .warmupvideo-text {
-            width: 100px;
-            height: 100px;
-
-        }
-        .warmupvideo-top{
-            position: absolute;
-            background-color: black;
-            opacity: 0.7;
-            width: 100%;
-            height: 100%;
-
-        }
-        .image-input-wrapper{
-            background-repeat: no-repeat !important;
-            background-size: contain !important;
         }
     </style>
 </head>
@@ -306,8 +314,8 @@
                 if (current != '/') {
 
                     if ($this.attr('href')) {
-                            var splitted=current.split("/");
-                            current='/'+splitted[1]+'/'+splitted[2];
+                        var splitted = current.split("/");
+                        current = '/' + splitted[1] + '/' + splitted[2];
                         if ($this.attr('href').indexOf(current) !== -1) {
                             $this.addClass('active');
                             $this.parent().parent().parent().addClass('here');
