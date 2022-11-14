@@ -16,12 +16,11 @@ return new class extends Migration
         Schema::create('program_builders', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->tinyInteger('days');
             $table->tinyInteger('weeks');
-            $table->tinyInteger('is_finished');
             $table->unsignedBigInteger('created_by');
+            $table->bigInteger('approved_by')->nullable()->default(0);
+            $table->bigInteger('rejected_by')->nullable()->default(0);
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

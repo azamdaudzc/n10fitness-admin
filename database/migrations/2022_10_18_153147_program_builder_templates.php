@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('program_builder_templates', function (Blueprint $table) {
+        Schema::create('user_program', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('program_builder_id');
             $table->foreign('program_builder_id')->references('id')->on('program_builders')->onDelete('cascade');
-            $table->tinyInteger('is_approved');
-            $table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->tinyInteger('is_completed')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+              $table->timestamps();
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('program_builder_templates');
+        Schema::dropIfExists('user_program');
     }
 };
