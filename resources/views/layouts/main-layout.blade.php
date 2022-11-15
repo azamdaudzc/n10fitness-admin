@@ -77,7 +77,7 @@
         }
 
         .table-responsive {
-            min-height: 20vh
+            min-height: 40vh
         }
 
         .image-input-wrapper {

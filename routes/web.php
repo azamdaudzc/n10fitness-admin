@@ -13,6 +13,7 @@ use App\Http\Controllers\SettingControllers\AthleticTypeController;
 use App\Http\Controllers\N10Controllers\ExerciseLibraryController;
 use App\Http\Controllers\CheckIns\UserCheckinQuestionsController;
 use App\Http\Controllers\N10Controllers\WarmupBuilderController;
+use App\Http\Controllers\N10Controllers\ProgramBuilderController;
 
 
 /*
@@ -25,6 +26,7 @@ use App\Http\Controllers\N10Controllers\WarmupBuilderController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
@@ -33,22 +35,22 @@ Route::get('/migratedatabase', function () {
     Artisan::call('migrate:fresh --seed');
 });
 
-Route::middleware(['auth','check_user_type','verified'])->group(function () {
+Route::middleware(['auth', 'check_user_type', 'verified'])->group(function () {
 
     Route::get('/', function () {
-        $data['page_heading']="Dashboard";
-        $data['sub_page_heading']=collect(['Main', 'Dashboard']);
+        $data['page_heading'] = "Dashboard";
+        $data['sub_page_heading'] = collect(['Main', 'Dashboard']);
         return view('dashboard')->with($data);
     });
     Route::get('/dashboard', function () {
-        $data['page_heading']="Dashboard";
-        $data['sub_page_heading']=collect(['Main', 'Dashboard']);
+        $data['page_heading'] = "Dashboard";
+        $data['sub_page_heading'] = collect(['Main', 'Dashboard']);
         return view('dashboard')->with($data);
     })->name('dashboard');
 
 
 
-    Route::controller(UserAdminController::class)->group(function(){
+    Route::controller(UserAdminController::class)->group(function () {
         Route::get('user/admin', 'index')->name('user.admin.index');
         Route::get('user/admin/lists', 'list')->name('user.admin.list');
         Route::post('user/admin/details', 'details')->name('user.admin.details');
@@ -59,7 +61,7 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::get('user/admin/profile', 'profile')->name('user.admin.profile');
     });
 
-    Route::controller(UserClientController::class)->group(function(){
+    Route::controller(UserClientController::class)->group(function () {
         Route::get('user/client', 'index')->name('user.client.index');
         Route::get('user/client/lists', 'list')->name('user.client.list');
         Route::post('user/client/details', 'details')->name('user.client.details');
@@ -68,95 +70,99 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::post('user/client/delete', 'delete')->name('user.client.delete');
         Route::get('user/client/view/{id?}', 'view')->name('user.client.view');
         Route::get('user/client/profile', 'profile')->name('user.client.profile');
-
     });
 
-    Route::controller(UserCoachController::class)->group(function(){
+    Route::controller(UserCoachController::class)->group(function () {
         Route::get('user/coach', 'index')->name('user.coach.index');
         Route::get('user/coach/lists', 'list')->name('user.coach.list');
         Route::post('user/coach/details', 'details')->name('user.coach.details');
         Route::post('user/coach/info', 'info')->name('user.coach.info');
         Route::post('user/coach/store', 'store')->name('user.coach.store');
         Route::post('user/coach/delete', 'delete')->name('user.coach.delete');
-        Route::get('user/coach/assigedclients', 'assigedclients')->name('user.coach.assigedclients');
+        Route::get('user/coach/assigedclients/{id?}', 'assigedclients')->name('user.coach.assigedclients');
         Route::post('user/coach/attachclient', 'attachclient')->name('user.coach.attachclient');
         Route::post('user/coach/deleteclient', 'deleteclient')->name('user.coach.deleteclient');
         Route::get('user/coach/view/{id?}/{type?}', 'view')->name('user.coach.view');
         Route::get('user/coach/assign/{id?}', 'viewAssign')->name('user.coach.view.assign');
         Route::get('user/coach/profile', 'profile')->name('user.coach.profile');
-
     });
 
-    Route::controller(MovementPatternController::class)->group(function(){
+    Route::controller(MovementPatternController::class)->group(function () {
         Route::get('setting/movementpattern/lists', 'list')->name('setting.movementpattern.list');
         Route::post('setting/movementpattern/details', 'details')->name('setting.movementpattern.details');
-        Route::get('setting/movementpattern/index','index')->name('setting.movementpattern.index');
-        Route::post('setting/movementpattern/store','store')->name('setting.movementpattern.store');
+        Route::get('setting/movementpattern/index', 'index')->name('setting.movementpattern.index');
+        Route::post('setting/movementpattern/store', 'store')->name('setting.movementpattern.store');
         Route::post('setting/movementpattern/delete', 'delete')->name('setting.movementpattern.delete');
-
     });
 
-    Route::controller(EquipmentController::class)->group(function(){
+    Route::controller(EquipmentController::class)->group(function () {
         Route::get('setting/equipment/lists', 'list')->name('setting.equipment.list');
         Route::post('setting/equipment/details', 'details')->name('setting.equipment.details');
-        Route::get('setting/equipment/index','index')->name('setting.equipment.index');
-        Route::post('setting/equipment/store','store')->name('setting.equipment.store');
+        Route::get('setting/equipment/index', 'index')->name('setting.equipment.index');
+        Route::post('setting/equipment/store', 'store')->name('setting.equipment.store');
         Route::post('setting/equipment/delete', 'delete')->name('setting.equipment.delete');
-
     });
 
-    Route::controller(CategoryController::class)->group(function(){
+    Route::controller(CategoryController::class)->group(function () {
         Route::get('setting/category/lists', 'list')->name('setting.category.list');
         Route::post('setting/category/details', 'details')->name('setting.category.details');
-        Route::get('setting/category/index','index')->name('setting.category.index');
-        Route::post('setting/category/store','store')->name('setting.category.store');
+        Route::get('setting/category/index', 'index')->name('setting.category.index');
+        Route::post('setting/category/store', 'store')->name('setting.category.store');
         Route::post('setting/category/delete', 'delete')->name('setting.category.delete');
-
     });
 
-    Route::controller(MuscleController::class)->group(function(){
+    Route::controller(MuscleController::class)->group(function () {
         Route::get('setting/muscle/lists', 'list')->name('setting.muscle.list');
         Route::post('setting/muscle/details', 'details')->name('setting.muscle.details');
-        Route::get('setting/muscle/index','index')->name('setting.muscle.index');
-        Route::post('setting/muscle/store','store')->name('setting.muscle.store');
+        Route::get('setting/muscle/index', 'index')->name('setting.muscle.index');
+        Route::post('setting/muscle/store', 'store')->name('setting.muscle.store');
         Route::post('setting/muscle/delete', 'delete')->name('setting.muscle.delete');
-
     });
 
-    Route::controller(AthleticTypeController::class)->group(function(){
+    Route::controller(AthleticTypeController::class)->group(function () {
         Route::get('setting/athletictype/lists', 'list')->name('setting.athletictype.list');
         Route::post('setting/athletictype/details', 'details')->name('setting.athletictype.details');
-        Route::get('setting/athletictype/index','index')->name('setting.athletictype.index');
-        Route::post('setting/athletictype/store','store')->name('setting.athletictype.store');
+        Route::get('setting/athletictype/index', 'index')->name('setting.athletictype.index');
+        Route::post('setting/athletictype/store', 'store')->name('setting.athletictype.store');
         Route::post('setting/athletictype/delete', 'delete')->name('setting.athletictype.delete');
-
     });
 
-    Route::controller(UserCheckinQuestionsController::class)->group(function(){
+    Route::controller(UserCheckinQuestionsController::class)->group(function () {
         Route::get('checkin/questions/lists', 'list')->name('checkin.questions.list');
         Route::get('checkin/questions/create-edit{id?}', 'create_edit')->name('checkin.questions.create-edit');
-        Route::get('checkin/questions/index','index')->name('checkin.questions.index');
+        Route::get('checkin/questions/index', 'index')->name('checkin.questions.index');
         Route::post('checkin/questions/details', 'details')->name('checkin.questions.details');
-        Route::post('checkin/questions/store','store')->name('checkin.questions.store');
+        Route::post('checkin/questions/store', 'store')->name('checkin.questions.store');
         Route::get('checkin/questions/view/{id?}', 'view')->name('checkin.questions.view');
         Route::post('checkin/questions/delete', 'delete')->name('checkin.questions.delete');
-
     });
 
-    Route::controller(WarmupBuilderController::class)->group(function(){
+    Route::controller(WarmupBuilderController::class)->group(function () {
         Route::get('warmup/builder/lists', 'list')->name('warmup.builder.list');
         Route::get('warmup/builder/create-edit{id?}', 'create_edit')->name('warmup.builder.create-edit');
-        Route::get('warmup/builder/index','index')->name('warmup.builder.index');
+        Route::get('warmup/builder/index', 'index')->name('warmup.builder.index');
         Route::post('warmup/builder/details', 'details')->name('warmup.builder.details');
-        Route::post('warmup/builder/store','store')->name('warmup.builder.store');
+        Route::post('warmup/builder/store', 'store')->name('warmup.builder.store');
         Route::get('warmup/builder/view/{id?}', 'view')->name('warmup.builder.view');
         Route::post('warmup/builder/delete', 'delete')->name('warmup.builder.delete');
         Route::post('warmup/builder/approve', 'approve')->name('warmup.builder.approve');
         Route::post('warmup/builder/reject', 'reject')->name('warmup.builder.reject');
-
     });
 
-    Route::controller(ExerciseLibraryController::class)->group(function(){
+
+
+    Route::controller(ProgramBuilderController::class)->group(function () {
+        Route::get('program/builder/lists', 'list')->name('program.builder.list');
+        Route::get('program/builder/index', 'index')->name('program.builder.index');
+        Route::post('program/builder/details', 'details')->name('program.builder.details');
+        Route::post('program/builder/store', 'store')->name('program.builder.store');
+        Route::get('program/builder/view/{id?}', 'view')->name('program.builder.view');
+        Route::post('program/builder/delete', 'delete')->name('program.builder.delete');
+        Route::post('program/builder/approve', 'approve')->name('program.builder.approve');
+        Route::post('program/builder/reject', 'reject')->name('program.builder.reject');
+    });
+
+    Route::controller(ExerciseLibraryController::class)->group(function () {
         Route::get('exercise/library', 'index')->name('exercise.library.index');
         Route::get('exercise/library/lists', 'list')->name('exercise.library.list');
         Route::get('exercise/library/create-edit/{id?}', 'create_edit')->name('exercise.library.create-edit');
@@ -168,9 +174,6 @@ Route::middleware(['auth','check_user_type','verified'])->group(function () {
         Route::post('exercise/library/reject', 'reject')->name('exercise.library.reject');
         Route::get('exercise/library/view/{id?}', 'view')->name('exercise.library.view');
     });
-
-
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -5,15 +5,14 @@
         <!--begin::Avatar-->
         <div class="symbol symbol-100px symbol-circle mb-7">
             @if ($user->avatar != null)
-                <img src="{{  $user->avatar }}" alt="image" />
+                <img src="{{ $user->avatar }}" alt="image" />
             @else
                 <img src="{{ asset('assets/media/avatars/blank.png') }}" alt="image" />
             @endif
         </div>
         <!--end::Avatar-->
         <!--begin::Name-->
-        <a href="#"
-            class="fs-3 text-gray-800 text-hover-primary fw-bold mb-3">{{ $user->first_name }}
+        <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-3">{{ $user->first_name }}
             {{ $user->last_name }}</a>
         <!--end::Name-->
         <!--begin::Position-->
@@ -30,9 +29,8 @@
     <!--end::Summary-->
     <!--begin::Details toggle-->
     <div class="d-flex flex-stack fs-4 py-3">
-        <div class="fw-bold rotate collapsible" data-bs-toggle="collapse"
-            href="#kt_user_view_details" role="button" aria-expanded="false"
-            aria-controls="kt_user_view_details">Details
+        <div class="fw-bold rotate collapsible" data-bs-toggle="collapse" href="#kt_user_view_details" role="button"
+            aria-expanded="false" aria-controls="kt_user_view_details">Details
             <span class="ms-2 rotate-180">
                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                 <span class="svg-icon svg-icon-3">
@@ -76,14 +74,14 @@
             <!--begin::Details item-->
 
             <!--begin::Details item-->
-             <div class="fw-bold mt-5">Gender</div>
-             <div class="text-gray-600">{{ $user->gender }}</div>
-             <!--begin::Details item-->
+            <div class="fw-bold mt-5">Gender</div>
+            <div class="text-gray-600">{{ $user->gender }}</div>
+            <!--begin::Details item-->
 
-             <!--begin::Details item-->
-             <div class="fw-bold mt-5">Athletic Type</div>
-             <div class="text-gray-600">{{ $user->athletic_type }}</div>
-             <!--begin::Details item-->
+            <!--begin::Details item-->
+            <div class="fw-bold mt-5">Athletic Type</div>
+            <div class="text-gray-600">{{ @$user->userAthleticType->name }}</div>
+            <!--begin::Details item-->
 
         </div>
     </div>

@@ -30,12 +30,12 @@ class ProgramBuilder extends Model
 {
 
     static $rules = [
-		'title' => 'required',
-		'user_id' => 'required',
-		'days' => 'required',
-		'weeks' => 'required',
-		'is_finished' => 'required',
-		'created_by' => 'required',
+        'title' => 'required',
+        'user_id' => 'required',
+        'days' => 'required',
+        'weeks' => 'required',
+        'is_finished' => 'required',
+        'created_by' => 'required',
     ];
 
     protected $perPage = 20;
@@ -45,7 +45,7 @@ class ProgramBuilder extends Model
      *
      * @var array
      */
-    protected $fillable = ['title','user_id','days','weeks','is_finished','created_by'];
+    protected $fillable = ['title', 'user_id', 'days', 'weeks', 'is_finished', 'created_by', 'approved_by', 'rejected_by'];
 
 
     /**
@@ -83,18 +83,13 @@ class ProgramBuilder extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function user2()
-    {
-        return $this->hasOne('App\Models\User', 'id', 'created_by');
-    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user()
     {
-        return $this->hasOne('App\Models\User', 'id', 'user_id');
+        return $this->hasOne('App\Models\User', 'id', 'created_by');
     }
-
-
 }
