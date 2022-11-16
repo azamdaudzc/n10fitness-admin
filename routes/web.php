@@ -155,7 +155,6 @@ Route::middleware(['auth', 'check_user_type', 'verified'])->group(function () {
         Route::get('program/builder/lists', 'list')->name('program.builder.list');
         Route::get('program/builder/index', 'index')->name('program.builder.index');
         Route::post('program/builder/details', 'details')->name('program.builder.details');
-        Route::post('program/builder/store', 'store')->name('program.builder.store');
         Route::get('program/builder/view/{id?}', 'view')->name('program.builder.view');
         Route::post('program/builder/delete', 'delete')->name('program.builder.delete');
         Route::post('program/builder/approve', 'approve')->name('program.builder.approve');
