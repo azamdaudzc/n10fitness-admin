@@ -31,9 +31,9 @@ class ProgramBuilderResource extends JsonResource
                               <ul class="dropdown-menu" aria-labelledby="actionsMenu">
 
 
-                                <li >
-                                <a class="dropdown-item create_new_off_canvas_modal view_record" data-id="' . $setting->id . '" href="javascript:void(0);" >View</a>
-                                </li>
+                              <li >
+                              <a class="dropdown-item " data-id="' . $setting->id . '" href="' . route('program.builder.view', $setting->id) . '" >View</a>
+                              </li>
                                 <li>
                                     <a class="dropdown-item delete_record" data-id="' . $setting->id . '" href="javascript:void(0);">Delete</a>
                                 </li>

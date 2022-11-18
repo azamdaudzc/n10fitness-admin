@@ -39,7 +39,7 @@ Users
 
                     </div>
                 <div class="card-body py-4">
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="approved_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5 table-wth-minh " id="approved_table">
                     <thead>
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                             <th>User</th>
@@ -72,7 +72,7 @@ Users
                         </div>
                     </div>
                 <div class="card-body py-4">
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="requested_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5 table-wth-minh " id="requested_table">
                     <thead>
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                             <th>User</th>
@@ -99,7 +99,7 @@ Users
 
                     </div>
                 <div class="card-body py-4">
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="rejected_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5 table-wth-minh " id="rejected_table">
                     <thead>
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                             <th>User</th>

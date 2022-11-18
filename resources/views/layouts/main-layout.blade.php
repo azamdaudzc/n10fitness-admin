@@ -76,8 +76,8 @@
             border-radius: 21px;
         }
 
-        .table-responsive {
-            min-height: 40vh
+        .table-wth-minh {
+            min-height: 20vh
         }
 
         .image-input-wrapper {
@@ -138,6 +138,45 @@
 
         .warmupvideo-container:hover .warmupvideo-button {
             opacity: 1;
+        }
+        .program-table thead {
+            font-weight: bold;
+        }
+
+        .program-table{
+            width: 100%
+        }
+
+        .center-vertical {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+        }
+
+        .center {
+            text-align: center;
+
+        }
+
+        .program-table thead{
+            background-color: #767676;
+            color: white;
+        }
+
+        .program-table tbody tr:nth-child(even){background-color: #f2f2f2;}
+
+        .program-main-area {
+            overflow-x: auto;
+            display: flex;
+        }
+
+        .program-sub-area {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        hr.solid {
+            border-top: 3px solid #bbb;
         }
     </style>
 </head>

@@ -46,7 +46,7 @@
 
                         </div>
                         <div class="card-body py-4">
-                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="approved_table">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5 table-wth-minh " id="approved_table">
                                 <thead>
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th>Name</th>
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="card-body py-4">
-                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="requested_table">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5 table-wth-minh " id="requested_table">
                                 <thead>
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th>Name</th>
@@ -107,7 +107,7 @@
 
                         </div>
                         <div class="card-body py-4">
-                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="rejected_table">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5 table-wth-minh " id="rejected_table">
                                 <thead>
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th>Name</th>
@@ -276,62 +276,7 @@
                 });
             });
 
-            $('body').on('click', '.approve_record', function() {
-                let id = $(this).attr('data-id');
 
-                Swal.fire({
-                    html: `Are you sure you want to approve`,
-                    icon: "info",
-                    buttonsStyling: false,
-                    showCancelButton: true,
-                    confirmButtonText: "Ok, got it!",
-                    cancelButtonText: 'Nope, cancel it',
-                    customClass: {
-                        confirmButton: "btn btn-primary",
-                        cancelButton: 'btn btn-danger'
-                    }
-                }).then(function(data) {
-                    if (data.isConfirmed == true) {
-                        $.post('{{ route('program.builder.approve') }}', {
-                            _token: '{{ csrf_token() }}',
-                            id
-                        }, function(d) {
-                            if (d.success == true) {
-                                toastr.success(d.msg);
-                                reloadTable();
-                            }
-                        });
-                    }
-                });
-            });
-            $('body').on('click', '.reject_record', function() {
-                let id = $(this).attr('data-id');
-
-                Swal.fire({
-                    html: `Are you sure you want to reject`,
-                    icon: "info",
-                    buttonsStyling: false,
-                    showCancelButton: true,
-                    confirmButtonText: "Ok, got it!",
-                    cancelButtonText: 'Nope, cancel it',
-                    customClass: {
-                        confirmButton: "btn btn-primary",
-                        cancelButton: 'btn btn-danger'
-                    }
-                }).then(function(data) {
-                    if (data.isConfirmed == true) {
-                        $.post('{{ route('program.builder.reject') }}', {
-                            _token: '{{ csrf_token() }}',
-                            id
-                        }, function(d) {
-                            if (d.success == true) {
-                                toastr.success(d.msg);
-                                reloadTable();
-                            }
-                        });
-                    }
-                });
-            });
         });
     </script>
 @endsection

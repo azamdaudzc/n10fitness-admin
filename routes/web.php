@@ -159,6 +159,8 @@ Route::middleware(['auth', 'check_user_type', 'verified'])->group(function () {
         Route::post('program/builder/delete', 'delete')->name('program.builder.delete');
         Route::post('program/builder/approve', 'approve')->name('program.builder.approve');
         Route::post('program/builder/reject', 'reject')->name('program.builder.reject');
+        Route::get('program/builder/view/{id?}', 'view')->name('program.builder.view');
+
     });
 
     Route::controller(ExerciseLibraryController::class)->group(function () {

@@ -2100,7 +2100,7 @@
                                 <!--begin::Card body-->
                                 <div class="card-body pt-0 pb-5" id="profile_form">
                                     <!--begin::Table wrapper-->
-                                    <div class="table-responsive">
+                                    <div class="table-responsive table-wth-minh">
                                         <!--begin::Table-->
                                         <table class="table align-middle table-row-dashed gy-5"
                                             id="kt_table_users_login_session">
@@ -2220,7 +2220,7 @@
                                     <!--begin::Card body-->
                                     <div class="card-body pt-0 pb-5">
                                         <!--begin::Table wrapper-->
-                                        <div class="table-responsive">
+                                        <div class="table-responsive table-wth-minh">
                                             <table class="table align-middle table-row-dashed fs-6 gy-5" id="users_table">
                                                 <thead>
                                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
