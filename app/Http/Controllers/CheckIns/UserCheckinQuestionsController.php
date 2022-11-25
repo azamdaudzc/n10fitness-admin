@@ -26,12 +26,12 @@ class UserCheckinQuestionsController extends Controller
 
     public function details(Request $request)
     {
-        $page_heading = 'ExerciseLibrary';
+        $page_heading = 'Checkin Question';
         $sub_page_heading = collect(['User', 'Checkin Questions']);
         $data = new CheckinQuestion();
-        $title = "Add ExerciseLibrary";
+        $title = "Add Checkin Question";
         if ($request->id) {
-            $title = "Edit ExerciseLibrary";
+            $title = "Edit Checkin Question";
             $data = CheckinQuestion::find($request->id);
         }
         $question_inputs = CheckinQuestionInput::where('checkin_question_id', $request->id)->get();
