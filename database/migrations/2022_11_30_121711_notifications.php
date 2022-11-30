@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_checkins', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('checkin_time', $precision = 0);
+            $table->string('name');
+            $table->text('message')->nullable();
+            $table->text('url')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('last_answered_question')->nullable();
-            $table->tinyInteger('is_completed')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_checkins');
+        Schema::dropIfExists('notifications');
     }
 };

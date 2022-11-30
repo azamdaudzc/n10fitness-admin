@@ -11,15 +11,17 @@ return new class extends Migration
      *
      * @return void
      */
+
     public function up()
     {
-        Schema::create('user_checkins', function (Blueprint $table) {
+        Schema::create('user_programs', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('checkin_time', $precision = 0);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('last_answered_question')->nullable();
-            $table->tinyInteger('is_completed')->nullable();
+            $table->unsignedBigInteger('program_builder_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('program_builder_id')->references('id')->on('program_builders')->onDelete('cascade');
+            $table->integer('is_completed')->nullable();
+            $table->date('start_date')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_checkins');
+        Schema::dropIfExists('user_programs');
     }
 };

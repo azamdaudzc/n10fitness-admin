@@ -26,6 +26,23 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        \App\Models\User::create([
+            'first_name' => 'Super',
+            'last_name' => 'Coach',
+            'email' => 'coach@coach.com',
+            'user_type' => 'coach',
+            'password' => Hash::make('coach'),
+        ]);
+
+        \App\Models\User::create([
+            'first_name' => 'Super',
+            'last_name' => 'Client',
+            'email' => 'client@client.com',
+            'user_type' => 'user',
+            'password' => Hash::make('client'),
+        ]);
+
+
         \App\Models\AthleticType::create([
             'name' => 'Powerlifter',
         ]);

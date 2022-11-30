@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('program_builder_id');
             $table->foreign('program_builder_id')->references('id')->on('program_builders')->onDelete('cascade');
             $table->integer('week_no');
+            $table->integer('week_group');
             $table->integer('assigned_calories')->nullable();
             $table->integer('assigned_proteins')->nullable();
             $table->timestamps();
