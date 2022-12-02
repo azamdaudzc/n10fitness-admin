@@ -178,6 +178,25 @@
         hr.solid {
             border-top: 3px solid #bbb;
         }
+
+        .notification {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+
+        .notification .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 2px 5px;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
+        }
     </style>
 </head>
 <!--end::Head-->
@@ -388,6 +407,12 @@
                 .end();
             $('input[name=_token]').val("{{ csrf_token() }}");
         })
+
+        $(".notification-main-icon").click(function(){
+
+            $.get('{{route('mark.notification.done')}}', function (){
+            });
+        });
     </script>
 
 </body>

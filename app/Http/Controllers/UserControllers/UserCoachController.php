@@ -221,6 +221,16 @@ class UserCoachController extends Controller
             'client_id' => $client_id,
             'coach_id' => $coach_id
         ]);
+        $name="Client Assigned";
+        $message="Client ".User::find( $client_id)->first_name.' '.User::find( $client_id)->last_name." Was Assigned";
+        $url="";
+        $type="CoachClient";
+        $this->sendNotification($coach_id,$name,$message,$url,$type);
+        $name="Coach Assigned";
+        $message="Coach ".User::find( $coach_id)->first_name.' '.User::find( $coach_id)->last_name." Was Assigned";
+        $url="";
+        $type="CoachClient";
+        $this->sendNotification($client_id,$name,$message,$url,$type);
         return response()->json(['success' => true, 'msg' => 'User Assigned']);
     }
     else{
@@ -230,7 +240,19 @@ class UserCoachController extends Controller
     }
 
     public function deleteclient(Request $request){
-        $user = ClientCoach::find($request->id)->delete();
+        $user = ClientCoach::find($request->id);
+        $name="Client Removed";
+        $message="Client ".User::find( $user->client_id)->first_name.' '.User::find( $user->client_id)->last_name." Was Removed";
+        $url="";
+        $type="CoachClient";
+        $this->sendNotification($user->coach_id,$name,$message,$url,$type);
+        $name="You Were Removed";
+        $message="Coach ".User::find( $user->coach_id)->first_name.' '.User::find( $user->coach_id)->last_name." Was Removed";
+        $url="";
+        $type="CoachClient";
+        $this->sendNotification($user->client_id,$name,$message,$url,$type);
+        $user->delete();
+
         return response()->json(['success' => true, 'msg' => 'User Removed']);
     }
 }

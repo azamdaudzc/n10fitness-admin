@@ -71,18 +71,7 @@ class ProgramBuilderController extends Controller
         return response()->json(['success' => true, 'msg' => 'Program Deleted']);
     }
 
-    public function approve(Request $request)
-    {
 
-        $exerciseLibrary = ProgramBuilder::find($request->id)->update(['approved_by' => Auth::user()->id, 'rejected_by' => 0]);
-        return response()->json(['success' => true, 'msg' => 'Program Approved']);
-    }
-
-    public function reject(Request $request)
-    {
-        $exerciseLibrary = ProgramBuilder::find($request->id)->update(['rejected_by' => Auth::user()->id, 'approved_by' => 0]);
-        return response()->json(['success' => true, 'msg' => 'Program Rejected']);
-    }
 
     public function view($id = 0)
     {
@@ -118,5 +107,34 @@ class ProgramBuilderController extends Controller
             return view('N10Pages.ProgramBuilder.view')->with($data);
         }
 
+    }
+
+
+    public function approve(Request $request)
+    {
+        $exerciseLibrary = ProgramBuilder::find($request->id);
+        $exerciseLibrary->update(['approved_by' => Auth::user()->id, 'rejected_by' => 0]);
+        if($exerciseLibrary->created_by != Auth::user()->id){
+            $name="Program Approved";
+            $message="Your Program ".$exerciseLibrary->name." Was Approved";
+            $url="";
+            $type="Program";
+            $this->sendNotification($exerciseLibrary->created_by,$name,$message,$url,$type);
+        }
+        return response()->json(['success' => true, 'msg' => 'Exercise Program Approved']);
+    }
+
+    public function reject(Request $request)
+    {
+        $exerciseLibrary = ProgramBuilder::find($request->id);
+        $exerciseLibrary->update(['rejected_by' => Auth::user()->id, 'approved_by' => 0]);
+        if($exerciseLibrary->created_by != Auth::user()->id){
+            $name="Program Rejected";
+            $message="Your Program ".$exerciseLibrary->name." Was Rejected";
+            $url="";
+            $type="Program";
+            $this->sendNotification($exerciseLibrary->created_by,$name,$message,$url,$type);
+        }
+        return response()->json(['success' => true, 'msg' => 'Exercise Program Rejected']);
     }
 }

@@ -150,13 +150,29 @@ class WarmupBuilderController extends Controller
 
     public function approve(Request $request)
     {
-        $exerciseLibrary = WarmupBuilder::find($request->id)->update(['approved_by' => Auth::user()->id, 'rejected_by' => 0]);
+        $exerciseWarmup = WarmupBuilder::find($request->id);
+        $exerciseWarmup->update(['approved_by' => Auth::user()->id, 'rejected_by' => 0]);
+        if($exerciseWarmup->created_by != Auth::user()->id){
+            $name="Warmup Approved";
+            $message="Your Warmup ".$exerciseWarmup->name." Was Approved";
+            $url="";
+            $type="Warmup";
+            $this->sendNotification($exerciseWarmup->created_by,$name,$message,$url,$type);
+        }
         return response()->json(['success' => true, 'msg' => 'Warmup Approved']);
     }
 
     public function reject(Request $request)
     {
-        $exerciseLibrary = WarmupBuilder::find($request->id)->update(['rejected_by' => Auth::user()->id, 'approved_by' => 0]);
+        $exerciseWarmup = WarmupBuilder::find($request->id);
+        $exerciseWarmup->update(['rejected_by' => Auth::user()->id, 'approved_by' => 0]);
+        if($exerciseWarmup->created_by != Auth::user()->id){
+            $name="Warmup Rejected";
+            $message="Your Warmup ".$exerciseWarmup->name." Was Rejected";
+            $url="";
+            $type="Warmup";
+            $this->sendNotification($exerciseWarmup->created_by,$name,$message,$url,$type);
+        }
         return response()->json(['success' => true, 'msg' => 'Warmup Rejected']);
     }
 }

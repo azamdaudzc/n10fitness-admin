@@ -1,19 +1,21 @@
 <?php
 
+use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\UserControllers\UserAdminController;
-use App\Http\Controllers\UserControllers\UserClientController;
-use App\Http\Controllers\UserControllers\UserCoachController;
-use App\Http\Controllers\SettingControllers\MovementPatternController;
-use App\Http\Controllers\SettingControllers\EquipmentController;
-use App\Http\Controllers\SettingControllers\CategoryController;
 use App\Http\Controllers\SettingControllers\MuscleController;
-use App\Http\Controllers\SettingControllers\AthleticTypeController;
-use App\Http\Controllers\N10Controllers\ExerciseLibraryController;
-use App\Http\Controllers\CheckIns\UserCheckinQuestionsController;
+use App\Http\Controllers\UserControllers\UserAdminController;
+use App\Http\Controllers\UserControllers\UserCoachController;
+use App\Http\Controllers\UserControllers\UserClientController;
+use App\Http\Controllers\SettingControllers\CategoryController;
 use App\Http\Controllers\N10Controllers\WarmupBuilderController;
+use App\Http\Controllers\SettingControllers\EquipmentController;
+use App\Http\Controllers\CheckIns\UserCheckinQuestionsController;
 use App\Http\Controllers\N10Controllers\ProgramBuilderController;
+use App\Http\Controllers\N10Controllers\ExerciseLibraryController;
+use App\Http\Controllers\SettingControllers\AthleticTypeController;
+use App\Http\Controllers\SettingControllers\MovementPatternController;
 
 
 /*
@@ -175,6 +177,11 @@ Route::middleware(['auth', 'check_user_type', 'verified'])->group(function () {
         Route::post('exercise/library/reject', 'reject')->name('exercise.library.reject');
         Route::get('exercise/library/view/{id?}', 'view')->name('exercise.library.view');
     });
+
+    Route::get('mark/notification/done',function (){
+        Notification::where('user_id',Auth::user()->id)->update(['read' => 1]);
+    })->name('mark.notification.done');
+
 });
 
 require __DIR__ . '/auth.php';

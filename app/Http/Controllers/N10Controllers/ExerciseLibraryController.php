@@ -172,15 +172,33 @@ class ExerciseLibraryController extends Controller
         return response()->json(['success' => true, 'msg' => 'Exercise Library Deleted']);
     }
 
+
+
     public function approve(Request $request)
     {
-        $exerciseLibrary = ExerciseLibrary::find($request->id)->update(['approved_by' => Auth::user()->id, 'rejected_by' => 0]);
+        $exerciseLibrary = ExerciseLibrary::find($request->id);
+        $exerciseLibrary->update(['approved_by' => Auth::user()->id, 'rejected_by' => 0]);
+        if($exerciseLibrary->created_by != Auth::user()->id){
+            $name="Library Approved";
+            $message="Your Library ".$exerciseLibrary->name." Was Approved";
+            $url="";
+            $type="ExerciseLibrary";
+            $this->sendNotification($exerciseLibrary->created_by,$name,$message,$url,$type);
+        }
         return response()->json(['success' => true, 'msg' => 'Exercise Library Approved']);
     }
 
     public function reject(Request $request)
     {
-        $exerciseLibrary = ExerciseLibrary::find($request->id)->update(['rejected_by' => Auth::user()->id, 'approved_by' => 0]);
+        $exerciseLibrary = ExerciseLibrary::find($request->id);
+        $exerciseLibrary->update(['rejected_by' => Auth::user()->id, 'approved_by' => 0]);
+        if($exerciseLibrary->created_by != Auth::user()->id){
+            $name="Library Rejected";
+            $message="Your Library ".$exerciseLibrary->name." Was Rejected";
+            $url="";
+            $type="ExerciseLibrary";
+            $this->sendNotification($exerciseLibrary->created_by,$name,$message,$url,$type);
+        }
         return response()->json(['success' => true, 'msg' => 'Exercise Library Rejected']);
     }
 }

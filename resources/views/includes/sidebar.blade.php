@@ -404,20 +404,82 @@
          <!--end::Primary menu-->
          <div class="d-flex flex-column flex-center pb-8" id="kt_app_sidebar_footer_notification"
              style="border-radius: 24px">
-             <div class="cursor-pointer symbol symbol-20px symbol-circle"
+             <div class="cursor-pointer symbol symbol-20px symbol-circle notification notification-main-icon"
                  data-kt-menu-trigger="{default: 'click', lg: 'click'}" data-kt-attach="parent"
                  data-kt-menu-placement="right-end">
                  <img alt="Logo" src="{{ asset('assets/media/sample/notification.png') }}" />
+                 <span class="badge">{{getNotificationCount()}}</span>
+
              </div>
-             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
+             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold fs-6 w-275px"
                  data-kt-menu="true">
-                 <div class="separator my-2"></div>
-                 <div class="menu-item px-5">
-                     <a href="#" class="menu-link px-5">Notification1</a>
-                 </div>
-                 <div class="menu-item px-5">
-                     <a href="#" class="menu-link px-5">Notification2</a>
-                 </div>
+                <!--begin::Heading-->
+                <div class="d-flex flex-column flex-center bgi-no-repeat rounded-top px-9 py-10"
+                style="background-image:url('{{asset('assets/media/misc/menu-header-bg.jpg')}}')">
+
+                <!--begin::Title-->
+                <h3 class="text-black fw-semibold mb-3">Notifications</h3>
+                <!--end::Title-->
+                <!--begin::Status-->
+                <span class="badge bg-primary py-2 px-3">{{getNotificationCount()}} pending</span>
+                <!--end::Status-->
+            </div>
+            <!--end::Heading-->
+            <!--begin:Nav-->
+            <div class="row g-0">
+               <div class="card-body pt-0">
+                   @foreach(getNotifications() as $notification)
+                   <!--begin::Item-->
+                   <div class="d-flex flex-stack">
+                       <!--begin::Flag-->
+                       <img src="assets/media/flags/united-states" class="me-4 w-25px" style="border-radius: 4px" alt="">
+                       <!--end::Flag-->
+                       <!--begin::Section-->
+                       <div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
+                           <!--begin::Content-->
+                           <div class="me-5">
+                               <!--begin::Title-->
+                               <a href="{{$notification->url}}" class="text-gray-800 fw-bold text-hover-primary fs-6">{{$notification->name}}</a>
+                               <!--end::Title-->
+                               <!--begin::Desc-->
+                               <span class="text-gray-400 fw-semibold fs-7 d-block text-start ps-0">{{$notification->message}}</span>
+                               <!--end::Desc-->
+
+                           </div>
+                           <!--end::Content-->
+
+                       </div>
+                       <!--end::Section-->
+                   </div>
+                   <!--end::Item-->
+                   <!--begin::Separator-->
+                   <div class="separator separator-dashed my-3"></div>
+                   <!--end::Separator-->
+                   @endforeach
+
+               </div>
+            </div>
+            <!--end:Nav-->
+            <!--begin::View more-->
+            <div class="py-2 text-center border-top">
+                <a href="#"
+                    class="btn btn-color-gray-600 btn-active-color-primary">View All
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
+                    <span class="svg-icon svg-icon-5">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="18" y="13" width="13" height="2"
+                                rx="1" transform="rotate(-180 18 13)" fill="currentColor" />
+                            <path
+                                d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z"
+                                fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </a>
+            </div>
+            <!--end::View more-->
+
              </div>
          </div>
 
