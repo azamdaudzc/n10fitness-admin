@@ -76,9 +76,7 @@
             border-radius: 21px;
         }
 
-        .table-wth-minh {
-            min-height: 20vh
-        }
+
 
         .image-input-wrapper {
             background-repeat: no-repeat !important;
@@ -196,6 +194,11 @@
             border-radius: 50%;
             background-color: red;
             color: white;
+        }
+
+        .table-responsive,
+        .dataTables_scrollBody {
+            overflow: visible !important;
         }
     </style>
 </head>

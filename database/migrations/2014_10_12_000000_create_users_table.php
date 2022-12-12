@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('athletic_type')->references('id')->on('athletic_types')->onDelete('cascade');
             $table->string('height')->nullable();
             $table->integer('age')->nullable();
-            $table->enum('gender',['male','female','other']);
+            $table->enum('gender',['male','female','other'])->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

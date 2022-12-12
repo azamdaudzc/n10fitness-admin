@@ -22,7 +22,7 @@ return new class extends Migration
             $table->tinyInteger('set_no')->nullable();
             $table->tinyInteger('rep_min_no')->nullable();
             $table->tinyInteger('rep_max_no')->nullable();
-            $table->tinyInteger('rpe_no')->nullable();
+            $table->float('rpe_no')->nullable();
             $table->string('load_text')->nullable();
             $table->string('rest_time')->nullable();
             $table->string('notes')->nullable();

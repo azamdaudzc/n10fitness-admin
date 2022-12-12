@@ -17,8 +17,10 @@ return new class extends Migration
         Schema::create('user_programs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('assigned_by');
             $table->unsignedBigInteger('program_builder_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('assigned_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('program_builder_id')->references('id')->on('program_builders')->onDelete('cascade');
             $table->integer('is_completed')->nullable();
             $table->date('start_date')->nullable();

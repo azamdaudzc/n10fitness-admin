@@ -215,6 +215,10 @@ class UserCoachController extends Controller
     public function attachclient(Request $request){
         $coach_id=$request->coach_id;
         $client_id=$request->client_id;
+        if(ClientCoach::where('client_id',$client_id)->exists()){
+            return response()->json(['success' => true, 'msg' => 'User Already Assigned To Another Coach']);
+
+        }
         if(!ClientCoach::where('client_id',$client_id)->where('coach_id',$coach_id)->exists()){
         ClientCoach::create([
             'assigned_by' => Auth::user()->id,

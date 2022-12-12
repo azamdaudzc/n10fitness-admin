@@ -418,7 +418,7 @@
                 style="background-image:url('{{asset('assets/media/misc/menu-header-bg.jpg')}}')">
 
                 <!--begin::Title-->
-                <h3 class="text-black fw-semibold mb-3">Notifications</h3>
+                <h3 class="text-white fw-semibold mb-3">Notifications</h3>
                 <!--end::Title-->
                 <!--begin::Status-->
                 <span class="badge bg-primary py-2 px-3">{{getNotificationCount()}} pending</span>
@@ -490,7 +490,7 @@
                  data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-attach="parent"
                  data-kt-menu-placement="right-end">
                  @if (Auth::user()->avatar != null)
-                     <img alt="Logo" src="{{ asset('storage/') . '/' . Auth::user()->avatar }}"
+                     <img alt="Logo" src="{{  Auth::user()->avatar }}"
                          style=" object-fit: cover;" />
                  @else
                      <img alt="Logo" src="{{ asset('assets/media/avatars/300-2.jpg') }}" />
@@ -505,7 +505,7 @@
                          <!--begin::Avatar-->
                          <div class="symbol symbol-50px me-5">
                              @if (Auth::user()->avatar != null)
-                                 <img alt="Logo" src="{{ asset('storage/') . '/' . Auth::user()->avatar }}"
+                                 <img alt="Logo" src="{{  Auth::user()->avatar }}"
                                      style=" object-fit: cover;" />
                              @else
                                  <img alt="Logo" src="{{ asset('assets/media/avatars/300-2.jpg') }}" />

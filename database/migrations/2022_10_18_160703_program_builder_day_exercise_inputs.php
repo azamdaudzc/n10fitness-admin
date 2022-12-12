@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('reps')->nullable();
             $table->integer('rpe')->nullable();
             $table->integer('peak_exterted_max')->nullable();
+            $table->integer('highest_peak_exterted_max')->nullable();
             $table->timestamps();
         });
     }

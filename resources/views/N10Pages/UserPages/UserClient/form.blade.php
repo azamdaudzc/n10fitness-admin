@@ -70,7 +70,7 @@
 
             <div class="mb-10">
                 <label for="height" class="form-label">Height</label>
-                <input class="form-control" placeholder="height" name="height" type="number" value="{{$user->height}}" id="height">
+                <input class="form-control" placeholder="height" name="height" type="text" value="{{$user->height}}" id="height">
             </div>
 
             <div class="mb-10">
