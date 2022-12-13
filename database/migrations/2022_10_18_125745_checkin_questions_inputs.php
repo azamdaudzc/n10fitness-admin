@@ -22,6 +22,7 @@ return new class extends Migration
             $table->json('options')->nullable();
             $table->integer('display_order')->nullable();
             $table->unsignedBigInteger('checkin_question_id');
+            $table->string('analytics_hook')->nullable();
             $table->foreign('checkin_question_id')->references('id')->on('checkin_questions')->onDelete('cascade');
             $table->timestamps();
         });

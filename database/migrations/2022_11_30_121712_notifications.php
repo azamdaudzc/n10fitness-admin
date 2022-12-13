@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('message')->nullable();
             $table->text('url')->nullable();
+            $table->string('notification_type')->nullable();
             $table->tinyInteger('read')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

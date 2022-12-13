@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('program_builder_week_id');
             $table->foreign('program_builder_week_id')->references('id')->on('program_builder_weeks')->onDelete('cascade');
             $table->string('day_title');
+            $table->float('client_weight')->nullable();
+            $table->text('client_waist')->nullable();
             $table->integer('day_no');
             $table->timestamps();
         });

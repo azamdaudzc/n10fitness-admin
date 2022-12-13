@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('week_group');
             $table->integer('assigned_calories')->nullable();
             $table->integer('assigned_proteins')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }

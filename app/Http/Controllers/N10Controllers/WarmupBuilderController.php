@@ -156,7 +156,7 @@ class WarmupBuilderController extends Controller
             $name="Warmup Approved";
             $message="Your Warmup ".$exerciseWarmup->name." Was Approved";
             $url="";
-            $type="Warmup";
+            $type="WarmupApproved";
             $this->sendNotification($exerciseWarmup->created_by,$name,$message,$url,$type);
         }
         return response()->json(['success' => true, 'msg' => 'Warmup Approved']);
@@ -170,7 +170,7 @@ class WarmupBuilderController extends Controller
             $name="Warmup Rejected";
             $message="Your Warmup ".$exerciseWarmup->name." Was Rejected";
             $url="";
-            $type="Warmup";
+            $type="WarmupRejected";
             $this->sendNotification($exerciseWarmup->created_by,$name,$message,$url,$type);
         }
         return response()->json(['success' => true, 'msg' => 'Warmup Rejected']);

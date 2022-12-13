@@ -174,7 +174,7 @@
                  <!--end:Menu item-->
 
                  <!--begin:Menu item-->
-                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start"
+                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" style="display: none"
                      class="menu-item  show py-2">
                      <!--begin:Menu link-->
                      <span class="menu-link menu-center">
@@ -439,7 +439,7 @@
                            <!--begin::Content-->
                            <div class="me-5">
                                <!--begin::Title-->
-                               <a href="{{$notification->url}}" class="text-gray-800 fw-bold text-hover-primary fs-6">{{$notification->name}}</a>
+                               <a href="{{notificationWhereToGo($notification->notification_type)}}" class="text-gray-800 fw-bold text-hover-primary fs-6">{{$notification->name}}</a>
                                <!--end::Title-->
                                <!--begin::Desc-->
                                <span class="text-gray-400 fw-semibold fs-7 d-block text-start ps-0">{{$notification->message}}</span>

@@ -228,12 +228,12 @@ class UserCoachController extends Controller
         $name="Client Assigned";
         $message="Client ".User::find( $client_id)->first_name.' '.User::find( $client_id)->last_name." Was Assigned";
         $url="";
-        $type="CoachClient";
+        $type="CoachClientAssigned";
         $this->sendNotification($coach_id,$name,$message,$url,$type);
         $name="Coach Assigned";
         $message="Coach ".User::find( $coach_id)->first_name.' '.User::find( $coach_id)->last_name." Was Assigned";
         $url="";
-        $type="CoachClient";
+        $type="CoachClientAssigned";
         $this->sendNotification($client_id,$name,$message,$url,$type);
         return response()->json(['success' => true, 'msg' => 'User Assigned']);
     }
@@ -248,12 +248,12 @@ class UserCoachController extends Controller
         $name="Client Removed";
         $message="Client ".User::find( $user->client_id)->first_name.' '.User::find( $user->client_id)->last_name." Was Removed";
         $url="";
-        $type="CoachClient";
+        $type="CoachClientRemoved";
         $this->sendNotification($user->coach_id,$name,$message,$url,$type);
         $name="You Were Removed";
         $message="Coach ".User::find( $user->coach_id)->first_name.' '.User::find( $user->coach_id)->last_name." Was Removed";
         $url="";
-        $type="CoachClient";
+        $type="CoachClientRemoved";
         $this->sendNotification($user->client_id,$name,$message,$url,$type);
         $user->delete();
 

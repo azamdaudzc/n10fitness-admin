@@ -182,7 +182,7 @@ class ExerciseLibraryController extends Controller
             $name="Library Approved";
             $message="Your Library ".$exerciseLibrary->name." Was Approved";
             $url="";
-            $type="ExerciseLibrary";
+            $type="ExerciseLibraryApproved";
             $this->sendNotification($exerciseLibrary->created_by,$name,$message,$url,$type);
         }
         return response()->json(['success' => true, 'msg' => 'Exercise Library Approved']);
@@ -196,7 +196,7 @@ class ExerciseLibraryController extends Controller
             $name="Library Rejected";
             $message="Your Library ".$exerciseLibrary->name." Was Rejected";
             $url="";
-            $type="ExerciseLibrary";
+            $type="ExerciseLibraryRejected";
             $this->sendNotification($exerciseLibrary->created_by,$name,$message,$url,$type);
         }
         return response()->json(['success' => true, 'msg' => 'Exercise Library Rejected']);

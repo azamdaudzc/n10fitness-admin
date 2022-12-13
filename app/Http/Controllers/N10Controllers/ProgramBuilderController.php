@@ -118,7 +118,7 @@ class ProgramBuilderController extends Controller
             $name="Program Approved";
             $message="Your Program ".$exerciseLibrary->name." Was Approved";
             $url="";
-            $type="Program";
+            $type="ProgramApproved";
             $this->sendNotification($exerciseLibrary->created_by,$name,$message,$url,$type);
         }
         return response()->json(['success' => true, 'msg' => 'Exercise Program Approved']);
@@ -132,7 +132,7 @@ class ProgramBuilderController extends Controller
             $name="Program Rejected";
             $message="Your Program ".$exerciseLibrary->name." Was Rejected";
             $url="";
-            $type="Program";
+            $type="ProgramRejected";
             $this->sendNotification($exerciseLibrary->created_by,$name,$message,$url,$type);
         }
         return response()->json(['success' => true, 'msg' => 'Exercise Program Rejected']);
