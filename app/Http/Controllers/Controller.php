@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Jobs\SendEmail;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;

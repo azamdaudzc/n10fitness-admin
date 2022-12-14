@@ -70,7 +70,7 @@
 
             <div class="mb-10">
                 <label for="height" class="form-label">Height In CM</label>
-                <input class="form-control" placeholder="height" name="height" type="nnumber" step="0.01" value="{{$user->height}}" id="height">
+                <input class="form-control" placeholder="height" name="height" type="number" step="0.01" value="{{$user->height}}" id="height">
             </div>
 
             <div class="mb-10">

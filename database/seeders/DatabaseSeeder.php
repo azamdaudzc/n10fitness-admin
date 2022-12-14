@@ -77,9 +77,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserSeeder::class,
-            ExerciseSeeder::class,
+            // ExerciseSeeder::class,
             CheckinSeeder::class,
-            NotificationSeeder::class,
+            // NotificationSeeder::class,
         ]);
 
     }
