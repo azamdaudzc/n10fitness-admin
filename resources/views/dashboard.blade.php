@@ -150,7 +150,7 @@
                                                         <!--begin::Wrapper-->
                                                         <div class="text-gray-400 fw-bold fs-7 text-end">
                                                             <!--begin::Number-->
-                                                            <span class="text-gray-800 fw-bold fs-6 d-block">{{DB::table('users')->where('user_type','coach')->count('id')}}</span>
+                                                            <span class="text-gray-800 fw-bold fs-6 d-block">{{DB::table('users')->where('user_type','admin')->count('id')}}</span>
                                                             <!--end::Number-->
                                                         </div>
                                                         <!--end::Wrapper-->
