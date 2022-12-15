@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('assigned_proteins')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
+            $table->tinyInteger('is_completed')->nullable();
             $table->timestamps();
         });
     }

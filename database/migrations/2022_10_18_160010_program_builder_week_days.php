@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('client_weight')->nullable();
             $table->text('client_waist')->nullable();
             $table->integer('day_no');
+            $table->tinyInteger('is_completed')->nullable();
             $table->timestamps();
         });
     }
