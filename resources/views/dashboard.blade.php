@@ -8,33 +8,7 @@
 								<div id="kt_app_content_container" class="app-container container-xxl">
 									<!--begin::Row-->
 									<div class="row gy-5 g-xl-10">
-										<!--begin::Col-->
-										<div class="col-xl-4 mb-xl-10">
-											<!--begin::Engage widget 1-->
-											<div class="card h-md-100">
-												<!--begin::Body-->
-												<div class="card-body d-flex flex-column flex-center">
-													<!--begin::Heading-->
-													<div class="mb-2">
-														<!--begin::Title-->
-														<h1 class="fw-semibold text-gray-800 text-center lh-lg">N10 Fitness
-														<br />
-														<span class="fw-bolder">Welcome A New Client</span></h1>
-														<!--end::Title-->
-														<!--begin::Illustration-->
-														<div class="py-10 text-center">
-															<img src="{{asset('assets/media/svg/illustrations/easy/4.svg')}}" class="w-200px" alt="" />
-														</div>
-														<!--end::Illustration-->
-													</div>
-													<!--end::Heading-->
 
-												</div>
-												<!--end::Body-->
-											</div>
-											<!--end::Engage widget 1-->
-										</div>
-										<!--end::Col-->
 
                                         <div class="col-xl-4">
                                             <!--begin::List widget 11-->
@@ -43,7 +17,7 @@
                                                 <div class="card-header pt-7 mb-3">
                                                     <!--begin::Title-->
                                                     <h3 class="card-title align-items-start flex-column">
-                                                        <span class="card-label fw-bold text-gray-800">Total Stats</span>
+                                                        <span class="card-label fw-bold text-gray-800">Total Users</span>
                                                         <span class="text-gray-400 mt-1 fw-semibold fs-6"></span>
                                                     </h3>
                                                     <!--end::Title-->
@@ -295,171 +269,11 @@
                                         </div>
 
 
-                                        <div class="col-xl-4">
-                                            <!--begin::List widget 11-->
-                                            <div class="card card-flush h-xl-100">
-                                                <!--begin::Header-->
-                                                <div class="card-header pt-7 mb-3">
-                                                    <!--begin::Title-->
-                                                    <h3 class="card-title align-items-start flex-column">
-                                                        <span class="card-label fw-bold text-gray-800">Total Stats</span>
-                                                        <span class="text-gray-400 mt-1 fw-semibold fs-6"></span>
-                                                    </h3>
-                                                    <!--end::Title-->
-                                                    <!--begin::Toolbar-->
 
-                                                    <!--end::Toolbar-->
-                                                </div>
-                                                <!--end::Header-->
-                                                <!--begin::Body-->
-                                                <div class="card-body pt-4">
-                                                    <!--begin::Item-->
-                                                    <div class="d-flex flex-stack">
-                                                        <!--begin::Section-->
-                                                        <div class="d-flex align-items-center me-5">
-                                                            <!--begin::Symbol-->
-                                                            <div class="symbol symbol-40px me-4">
-                                                                <span class="symbol-label">
-                                                                    <i class="fonticon-ship fs-1 p-0 text-gray-600"></i>
-                                                                </span>
-                                                            </div>
-                                                            <!--end::Symbol-->
-                                                            <!--begin::Content-->
-                                                            <div class="me-5">
-                                                                <!--begin::Title-->
-                                                                <a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6">Movement Patterns</a>
-                                                                <!--end::Title-->
-                                                                <!--begin::Desc-->
-                                                                <span class="text-gray-400 fw-semibold fs-7 d-block text-start ps-0">Total number of exercise patterns</span>
-                                                                <!--end::Desc-->
-                                                            </div>
-                                                            <!--end::Content-->
-                                                        </div>
-                                                        <!--end::Section-->
-                                                        <!--begin::Wrapper-->
-                                                        <div class="text-gray-400 fw-bold fs-7 text-end">
-                                                            <!--begin::Number-->
-                                                            <span class="text-gray-800 fw-bold fs-6 d-block">{{DB::table('exercise_movement_patterns')->count('id')}}</span>
-                                                            <!--end::Number-->
-                                                        </div>
-                                                        <!--end::Wrapper-->
-                                                    </div>
-                                                    <!--end::Item-->
-                                                    <!--begin::Separator-->
-                                                    <div class="separator separator-dashed my-5"></div>
-                                                    <!--end::Separator-->
-                                                   <!--begin::Item-->
-                                                   <div class="d-flex flex-stack">
-                                                    <!--begin::Section-->
-                                                    <div class="d-flex align-items-center me-5">
-                                                        <!--begin::Symbol-->
-                                                        <div class="symbol symbol-40px me-4">
-                                                            <span class="symbol-label">
-                                                                <i class="fonticon-ship fs-1 p-0 text-gray-600"></i>
-                                                            </span>
-                                                        </div>
-                                                        <!--end::Symbol-->
-                                                        <!--begin::Content-->
-                                                        <div class="me-5">
-                                                            <!--begin::Title-->
-                                                            <a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6">Muscles</a>
-                                                            <!--end::Title-->
-                                                            <!--begin::Desc-->
-                                                            <span class="text-gray-400 fw-semibold fs-7 d-block text-start ps-0">Total number of library muscles</span>
-                                                            <!--end::Desc-->
-                                                        </div>
-                                                        <!--end::Content-->
-                                                    </div>
-                                                    <!--end::Section-->
-                                                    <!--begin::Wrapper-->
-                                                    <div class="text-gray-400 fw-bold fs-7 text-end">
-                                                        <!--begin::Number-->
-                                                        <span class="text-gray-800 fw-bold fs-6 d-block">{{DB::table('exercise_muscles')->count('id')}}</span>
-                                                        <!--end::Number-->
-                                                    </div>
-                                                    <!--end::Wrapper-->
-                                                </div>
-                                                <!--end::Item-->
-                                                    <!--begin::Separator-->
-                                                    <div class="separator separator-dashed my-5"></div>
-                                                    <!--end::Separator-->
-                                                    <!--begin::Item-->
-                                                    <div class="d-flex flex-stack">
-                                                        <!--begin::Section-->
-                                                        <div class="d-flex align-items-center me-5">
-                                                            <!--begin::Symbol-->
-                                                            <div class="symbol symbol-40px me-4">
-                                                                <span class="symbol-label">
-                                                                    <i class="fonticon-ship fs-1 p-0 text-gray-600"></i>
-                                                                </span>
-                                                            </div>
-                                                            <!--end::Symbol-->
-                                                            <!--begin::Content-->
-                                                            <div class="me-5">
-                                                                <!--begin::Title-->
-                                                                <a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6">Athletic Types</a>
-                                                                <!--end::Title-->
-                                                                <!--begin::Desc-->
-                                                                <span class="text-gray-400 fw-semibold fs-7 d-block text-start ps-0">Total number of admins</span>
-                                                                <!--end::Desc-->
-                                                            </div>
-                                                            <!--end::Content-->
-                                                        </div>
-                                                        <!--end::Section-->
-                                                        <!--begin::Wrapper-->
-                                                        <div class="text-gray-400 fw-bold fs-7 text-end">
-                                                            <!--begin::Number-->
-                                                            <span class="text-gray-800 fw-bold fs-6 d-block">{{DB::table('athletic_types')->count('id')}}</span>
-                                                            <!--end::Number-->
-                                                        </div>
-                                                        <!--end::Wrapper-->
-                                                    </div>
-                                                    <!--end::Item-->
-                                                    <!--begin::Separator-->
-                                                    <div class="separator separator-dashed my-5"></div>
-                                                    <!--end::Separator-->
-                                                   <!--begin::Item-->
-                                                   <div class="d-flex flex-stack">
-                                                    <!--begin::Section-->
-                                                    <div class="d-flex align-items-center me-5">
-                                                        <!--begin::Symbol-->
-                                                        <div class="symbol symbol-40px me-4">
-                                                            <span class="symbol-label">
-                                                                <i class="fonticon-ship fs-1 p-0 text-gray-600"></i>
-                                                            </span>
-                                                        </div>
-                                                        <!--end::Symbol-->
-                                                        <!--begin::Content-->
-                                                        <div class="me-5">
-                                                            <!--begin::Title-->
-                                                            <a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6">Equipments</a>
-                                                            <!--end::Title-->
-                                                            <!--begin::Desc-->
-                                                            <span class="text-gray-400 fw-semibold fs-7 d-block text-start ps-0">Total number of exercise libraries</span>
-                                                            <!--end::Desc-->
-                                                        </div>
-                                                        <!--end::Content-->
-                                                    </div>
-                                                    <!--end::Section-->
-                                                    <!--begin::Wrapper-->
-                                                    <div class="text-gray-400 fw-bold fs-7 text-end">
-                                                        <!--begin::Number-->
-                                                        <span class="text-gray-800 fw-bold fs-6 d-block">{{DB::table('exercise_equipment')->count('id')}}</span>
-                                                        <!--end::Number-->
-                                                    </div>
-                                                    <!--end::Wrapper-->
-                                                </div>
-                                                <!--end::Item-->
-
-                                                </div>
-                                                <!--end::Body-->
-                                            </div>
-                                            <!--end::List widget 11-->
-                                        </div>
 
 
                                         <div class="col-xl-4">
-                                        <div class="card card-flush h-md-50 mb-lg-10">
+                                        <div class="card card-flush h-md-60 mb-lg-10">
                                             <!--begin::Header-->
                                             <div class="card-header pt-5">
                                                 <!--begin::Title-->
